@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Rebusjakt.Models.Hunt>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="content-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
+                <h1 class="heading">Rebusjakt</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+       
+        <h2 class="content-sub-heading">Senaste jakter</h2>
+        <div class="tile-wrap">
+            @foreach (var item in Model)
+            {
+                <a class="tile" href="/game/index/@item.Id" title="@item.Name">
+                    <div class="tile-inner">
+                        @item.Name
+                    </div>
+                </a>
+            }                
+        </div>
+    </div>
+</div>
