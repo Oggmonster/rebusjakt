@@ -21,7 +21,7 @@ namespace Rebusjakt.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("RiddleContext", throwIfV1Schema: false)
         {
         }
 

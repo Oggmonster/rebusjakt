@@ -3,10 +3,6 @@
 		e.preventDefault();
 		var numberNode = this.refs.number.getDOMNode();
         var number = numberNode.value.trim();
-		if(isNan(number)){
-			alert("Du måste skriva in ett nummer som svar");
-			return false;
-		}
 		var isCorrect = parseInt(this.props.answer,10) === parseInt(number, 10);
 		this.props.onHasAnswered(isCorrect);
 	},

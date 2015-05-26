@@ -1,0 +1,152 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+}
+
+<header class="header">
+    <ul class="nav nav-list pull-left">
+        <li class="">
+            <a class="menu-toggle" href="#menu">
+                <span class="access-hide">Menu</span>
+                <span class="icon icon-menu icon-lg"></span>
+                <span class="header-close icon icon-close icon-lg"></span>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-list pull-right">
+        <li class="">
+            <a class="menu-toggle" href="#search">
+                <span class="access-hide">Search</span>
+                <span class="icon icon-search icon-lg"></span>
+                <span class="header-close icon icon-close icon-lg"></span>
+            </a>
+        </li>
+        <li>
+            <a class="menu-toggle" href="#profile">
+                <span class="access-hide">John Smith</span>
+                <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/images/users/avatar-001.jpg"></span>
+                <span class="header-close icon icon-close icon-lg"></span>
+            </a>
+        </li>
+    </ul>
+</header>
+<nav class="menu" id="menu">
+    <div class="menu-scroll">
+        <div class="menu-wrap">
+            <div class="menu-content">
+                <ul class="nav">
+                    <li>
+                        <a href="/hunt">Admin</a>
+                    </li>
+                    <li>
+                        <a href="ui-collapse.html">Collapsible Regions</a>
+                    </li>
+                    <li>
+                        <a href="ui-dropdown.html">Dropdowns</a>
+                    </li>
+                    <li>
+                        <a href="ui-modal.html">Modals &amp; Toasts</a>
+                    </li>
+                    <li>
+                        <a href="ui-nav.html">Navs</a>
+                    </li>
+                    <li>
+                        <a href="ui-progress.html">Progress Bars</a>
+                    </li>
+                    <li>
+                        <a href="ui-tab.html">Tabs</a>
+                    </li>
+                    <li>
+                        <a href="ui-tile.html">Tiles</a>
+                    </li>
+                </ul>
+                <hr>
+                <ul class="nav">
+                    <li>
+                        <a href="ui-button.html">Annan sektion</a>
+                    </li>
+                    <li>
+                        <a href="ui-form.html">Länk</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<nav class="menu menu-right" id="profile">
+    <div class="menu-scroll">
+        <div class="menu-wrap">
+            <div class="menu-top">
+                <div class="menu-top-img">
+                    <img alt="John Smith" src="/images/samples/landscape.jpg">
+                </div>
+                <div class="menu-top-info">
+                    <a class="menu-top-user" href="javascript:void(0)"><span class="avatar pull-left"><img alt="Användarbild" src="/images/users/avatar-001.jpg"></span> @User.Identity.GetUserName()</a>
+                </div>
+            </div>
+            <div class="menu-content">
+                <ul class="nav">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Inställningar", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Inställningar" })
+                            <a href="javascript:void(0)"><span class="icon icon-account-box"></span>Profile Settings</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><span class="icon icon-add-to-photos"></span>Upload Photo</a>
+                        </li>
+                        <li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()"><span class="icon icon-exit-to-app"></span> Logga ut</a>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Ny användare", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Logga in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="menu menu-right menu-search" id="search">
+    <div class="menu-scroll">
+        <div class="menu-wrap">
+            <div class="menu-top">
+                <div class="menu-top-info">
+                    <form class="menu-top-form">
+                        <label class="access-hide" for="menu-search">Search</label>
+                        <input class="form-control form-control-inverse menu-search-focus" id="menu-search" placeholder="Search" type="search">
+                        <button class="access-hide" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="menu-content">
+                <div class="menu-content-inner">
+                    <p><strong>Saved Search Queries:</strong></p>
+                    <ul>
+                        <li><a href="javascript:void(0)">lorem ipsum dolor sit amet</a></li>
+                        <li><a href="javascript:void(0)">consectetur adipiscing elit</a></li>
+                        <li><a href="javascript:void(0)">sed ornare orci lorem</a></li>
+                        <li><a href="javascript:void(0)">vel eleifend elit tempor eleifend</a></li>
+                        <li><a href="javascript:void(0)">morbi feugiat aliquet justo</a></li>
+                    </ul>
+                    <hr>
+                    <p><strong>Popular Search Queries:</strong></p>
+                    <ul>
+                        <li><a href="javascript:void(0)">id ullamcorper tortor lobortis eu</a></li>
+                        <li><a href="javascript:void(0)">aliquam ut tellus arcu</a></li>
+                        <li><a href="javascript:void(0)">cestibulum tortor purus</a></li>
+                        <li><a href="javascript:void(0)">pretium ac dolor id</a></li>
+                        <li><a href="javascript:void(0)">gravida molestie libero</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -40,8 +40,11 @@ GameMaster.prototype.load = function () {
 }
 
 GameMaster.prototype.save = function () {
-    console.log(this.gameRiddles);
     localStorage.setItem(this.huntKey, JSON.stringify(this.gameRiddles));
+}
+
+GameMaster.prototype.finish = function () {
+    localStorage.removeItem(this.huntKey);
 }
 
 GameMaster.prototype.score = function () {

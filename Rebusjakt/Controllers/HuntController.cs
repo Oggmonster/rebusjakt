@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Rebusjakt.Controllers
 {
+    [Authorize]
     public class HuntController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();

@@ -13,17 +13,19 @@ var GameRiddle = React.createClass({
 		this.props.onCollectQuestions(this.props.gameRiddle);
 	},
 	render: function(){
-		var actions, location, gameRiddle = this.props.gameRiddle, cardClass = "card";
+		var actions, extraContent, gameRiddle = this.props.gameRiddle, cardClass = "card";
 		if(gameRiddle.isSolved){
-			if(gameRiddle.isCompleted){
+			if(gameRiddle.isCompleted && gameRiddle.isCorrect){
 				cardClass += " card-green-bg";
 			}else if(!gameRiddle.isCorrect){
 				cardClass += " card-red-bg";
 			} else {
 				if(gameRiddle.hasQuestions){
+					var unAnswered = gameRiddle.gameQuestions.filter(function(q){ return !q.isAnswered; }).length;
+					extraContent = <p><strong>{unAnswered} st obesvarade frågor</strong></p>;
 					actions = <a href="#"  onClick={this.handleAnswerQuestions}><span className="text-blue">Svara på frågor</span></a>;
 				}else{
-					location = <p><span className="icon icon-place alt-text"></span> Frågorna finns vid {gameRiddle.riddle.LocationName}</p>;
+					extraContent = <p><span className="icon icon-place alt-text"></span> Frågorna finns vid {gameRiddle.riddle.LocationName}</p>;
 					actions = <a href="#" onClick={this.handleCollectQuestions}><span className="text-blue">Hämta frågor</span></a>;
 				}
 			}
@@ -36,7 +38,7 @@ var GameRiddle = React.createClass({
 						<div className="card-main">
 							<div className="card-inner">
 								<p dangerouslySetInnerHTML={{__html: emojione.toImage(gameRiddle.riddle.Description)}} />
-								{location}
+								{extraContent}
 							</div>
 							<div className="card-action">
 								<ul className="nav nav-list pull-left">
@@ -79,16 +81,19 @@ var GameApp = React.createClass({
 		this.state.master.save();
 	},
 	handleRiddleSolved: function(gameRiddle){
-		var gameRiddles = this.state.data;
+		
 		this.save();
 		$("#game-container").show();
 		$("#content-container").hide();
+		var gameRiddles = this.state.data;
 		this.setState({data: gameRiddles});
 	},
 	handleReturn: function(){
 		this.save();
 		$("#game-container").show();
 		$("#content-container").hide();
+		var gameRiddles = this.state.data;
+		this.setState({data: gameRiddles});
 	},
 	handleRiddleOpen: function(gameRiddle){
 		$("#game-container").hide();
@@ -96,11 +101,10 @@ var GameApp = React.createClass({
 		React.render(<RiddleGuesser gameRiddle={gameRiddle} maxwrong={3} onReturn={this.handleReturn} onSolved={this.handleRiddleSolved}  />, document.getElementById("content-container"));
 	},
 	handleCollectQuestions: function(gameRiddle){
-		gameRiddle.hasQuestions = true;
-		this.save();
-		var gameRiddles = this.state.data;
-		this.setState({data: gameRiddles});
-	},
+		$("#game-container").hide();
+		$("#content-container").show();
+		React.render(<LocationChecker gameRiddle={gameRiddle} onReturn={this.handleReturn} />, document.getElementById("content-container"));
+	},	
 	handleAnswerQuestions: function(gameRiddle){
 		$("#game-container").hide();
 		$("#content-container").show();
@@ -114,19 +118,29 @@ var GameApp = React.createClass({
 		var gameRiddles = this.state.data;
 		this.setState({data: gameRiddles});
 	},
+	handleGiveUp(e){
+		e.preventDefault();
+		if(confirm("Är du säker på att du vill avsluta?")){
+			this.state.master.finish();
+		}		
+	},
 	getInitialState: function() {
 		var gameRiddles = this.props.gameMaster.gameRiddles;
 		return { master: this.props.gameMaster, data: gameMaster.gameRiddles, total: gameRiddles.length };
     },
 	render: function(){
 		var solvedCount = this.state.data.filter(function(r){ return r.isSolved; }).length;
-		var isFinished = this.state.data.every(function(r){ return r.isCompleted });		
+		var isFinished = this.state.data.every(function(r){ return r.isCompleted });	
 		return (
 		<div>
 		{
 			isFinished ? 
 			<div>
 				<h2 className="content-sub-heading">Snyggt du har klarat alla rebusar!</h2>
+				<p>Ditt resultat {this.state.master.score()}p</p>
+				<p>
+					<a href="#" onClick={this.handleGiveUp}>Nollställ</a>
+				</p>
 			</div> :
 			<div>
 				<h2 className="content-sub-heading">

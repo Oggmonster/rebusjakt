@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Rebusjakt.Controllers
 {
+    [Authorize]
     public class RiddleAdminController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();

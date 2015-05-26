@@ -9,7 +9,7 @@ var GameQuestion = React.createClass({
 	render: function(){
 		var answer = this.props.data.question.Answer;
 		var answerForms = {
-			"text" : <TextGuesser answer={answer} maxwrong={2} onHasAnswered={this.handleHasAnswered} />,
+			"text" : <TextGuesser answer={answer} maxwrong={3} onHasAnswered={this.handleHasAnswered} />,
 			"number" : <NumberGuesser answer={answer} onHasAnswered={this.handleHasAnswered} />,
 			"multi" : <MultiGuesser answer={answer} options={this.props.data.question.AnswerOptions} onHasAnswered={this.handleHasAnswered}s />,
 			"trueorfalse" : <TrueOrFalseGuesser answer={answer} onHasAnswered={this.handleHasAnswered} />
@@ -54,8 +54,8 @@ var QuestionGuesser = React.createClass({
 		
 		if(isFinished){
 			finishedMessage = (<div>
-				<p>Bra gjort! Alla frågor besvarade <span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /></p>
-				<p><a href="#" onClick={this.handleReturn} >Återgå till rebuslistan</a></p></div>);
+					<p>Bra gjort <span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /></p><p> Alla frågor besvarade. Du kan återgå till rebuslistan.</p>
+				</div>);
 		}
 		if(this.state.showQuestion){
 			jsxQuestion = <GameQuestion data={this.state.gameQuestion} onHasAnswered={this.handleHasAnswered} />;

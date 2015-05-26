@@ -80,6 +80,9 @@
 			var gameRiddle = this.state.gameRiddle;
 			gameRiddle.isSolved = true;
 			gameRiddle.isCorrect = isWinner;
+			if(!isWinner){
+				gameRiddle.isCompleted = true;
+			}
 			this.props.onSolved(gameRiddle);
 		},
 		handleReturn: function(){
