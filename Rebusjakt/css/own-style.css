@@ -1,0 +1,33 @@
+﻿.map-holder {
+    height: 300px;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    padding: 0px;
+}
+.line-through {
+    text-decoration:line-through;
+}
+.input-inline {
+    display:inline-block;
+    width:70%;    
+    margin-right:5px;
+}
+
+.btn-inline {
+    vertical-align:baseline;
+}
+
+.emoji-options{
+    font-size:28px;
+    margin:10px;
+}
+
+.emoji-list span {   
+  margin: 8px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.hide {
+    display:none;
+}

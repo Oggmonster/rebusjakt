@@ -14,17 +14,34 @@
 </div>
 <div class="content-inner">
     <div class="container">
-       
         <h2 class="content-sub-heading">Senaste jakter</h2>
-        <div class="tile-wrap">
-            @foreach (var item in Model)
-            {
-                <a class="tile" href="/game/index/@item.Id" title="@item.Name">
-                    <div class="tile-inner">
-                        @item.Name
+        <div class="card-wrap">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner">
+                                    <p class="card-heading text-alt">@item.Name</p>
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <ul class="nav nav-list pull-left">
+                                        <li>
+                                            <a href="/game/index/@item.Id" title="Lägg till rebusar">
+                                                <span class="text-blue">Starta</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </a>
-            }                
+                }
+            </div>
         </div>
     </div>
 </div>

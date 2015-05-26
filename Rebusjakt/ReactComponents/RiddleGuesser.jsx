@@ -1,16 +1,5 @@
 ﻿    
 
-    var Riddle = React.createClass({        
-        render: function(){
-            return(
-                <div>
-                    <h3>{this.props.data.Name}</h3>
-                    <p>{this.props.data.Description}</p>                    
-                 </div>
-                );
-        }
-    });
-
     var RiddleEndGame = React.createClass({
 		completedGuessing: function(){
 			this.props.onSolved(this.props.isWinner);
@@ -21,16 +10,17 @@
                     {
                         this.props.isWinner ? 
                         <div>
-                            <h4>Bra där du gissade rätt</h4>
-                            <p>
-                                Kartan nedan visar platsen där du hittar dina frågor.
-                            </p>
-							<button className="btn" onClick={this.completedGuessing}>Återgå till rebuslistan</button>
+                            <h2 className="content-sub-heading">Bra där du gissade rätt</h2>
+							<p>
+								Bege dig till <strong>{this.props.riddle.LocationName}</strong> för att hämta rebusens frågor.
+                            </p>                                
+							<a href="#" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
                             <GoogleMap lat={this.props.riddle.Latitude} lng={this.props.riddle.Longitude} />
                         </div> : 
                         <div>
-                            <h4>Tss tss, inte ens nära.</h4>
-							<button className="btn" onClick={this.completedGuessing}>Återgå till rebuslistan</button>
+                            <h2 className="content-sub-heading">Fel fel fel!</h2>
+							<p dangerouslySetInnerHTML={{__html: emojione.toImage(":worried:")}} />
+							<a href="#" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
                         </div>
                     }
                 </div>
@@ -106,15 +96,17 @@
         render: function () { 
                 
                 return (
-                    <div className="riddle-guesser">
+                    <div>
                         { 
                             this.state.isOver ? 
                             <RiddleEndGame isWinner={this.state.isWinner} riddle={this.state.riddle} onSolved={this.handleSolved} /> : 
                             <div>
-                                <Riddle data={this.state.riddle}  />                                
-                                <TextGuesser answer={this.state.riddle.Answer} maxwrong={2} onHasAnswered={this.handleHasAnswered} />
-								<hr />
-								<button className="btn" onClick={this.handleReturn}>Återgå till rebuslistan</button>
+								<h2 className="content-sub-heading">Lös rebus</h2>
+								<p dangerouslySetInnerHTML={{__html: emojione.toImage(this.state.riddle.Description)}} />
+                                <TextGuesser answer={this.state.riddle.Answer} maxwrong={this.props.maxwrong} onHasAnswered={this.handleHasAnswered} />
+								<p>
+									<a href="#" onClick={this.handleReturn}>Återgå till rebuslistan</a>
+								</p>
                             </div>
                         }
                         

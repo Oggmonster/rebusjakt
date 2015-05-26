@@ -39,7 +39,6 @@ namespace Rebusjakt.Controllers
 
         public ActionResult Edit(int id)
         {
-
             var hunt = unitOfWork.HuntRepository.GetByID(id);
             return View(hunt);
         }
@@ -64,8 +63,17 @@ namespace Rebusjakt.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(Hunt hunt)
+        public ActionResult Delete(Hunt model)
         {
+            var hunt = unitOfWork.HuntRepository.GetByID(model.Id);
+            foreach (var riddle in hunt.Riddles.ToList())
+            {
+                foreach (var question in riddle.Questions.ToList())
+                {
+                    unitOfWork.QuestionRepository.Delete(question.Id);
+                }
+                unitOfWork.RiddleRepository.Delete(riddle.Id);
+            }
             unitOfWork.HuntRepository.Delete(hunt.Id);
             unitOfWork.Save();
             return RedirectToAction("Index");

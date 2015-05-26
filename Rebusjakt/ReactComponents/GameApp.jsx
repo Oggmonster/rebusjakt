@@ -4,37 +4,49 @@ var GameRiddle = React.createClass({
 		e.preventDefault();
 		this.props.onRiddleOpen(this.props.gameRiddle);
 	},
-	handleAnswerQuestions: function(){
+	handleAnswerQuestions: function(e){
+		e.preventDefault();
 		this.props.onAnswerQuestions(this.props.gameRiddle);
 	},
-	handleCollectQuestions: function(){
+	handleCollectQuestions: function(e){
+		e.preventDefault();
 		this.props.onCollectQuestions(this.props.gameRiddle);
 	},
 	render: function(){
-		var content, gameRiddle = this.props.gameRiddle;
+		var actions, location, gameRiddle = this.props.gameRiddle, cardClass = "card";
 		if(gameRiddle.isSolved){
-			if(gameRiddle.isCorrect){
-				var questionButton, questions;
+			if(gameRiddle.isCompleted){
+				cardClass += " card-green-bg";
+			}else if(!gameRiddle.isCorrect){
+				cardClass += " card-red-bg";
+			} else {
 				if(gameRiddle.hasQuestions){
-					questions = <p>{gameRiddle.riddle.Questions.length} frågor</p>;
-					questionButton = gameRiddle.isCompleted ? <strong>Klar!</strong> : <button className="btn btn-small" onClick={this.handleAnswerQuestions}>Svara på frågor</button>;
-				}else {
-					questionButton = <button className="btn btn-small" onClick={this.handleCollectQuestions}>Hämta frågor</button>;
+					actions = <a href="#"  onClick={this.handleAnswerQuestions}><span className="text-blue">Svara på frågor</span></a>;
+				}else{
+					location = <p><span className="icon icon-place alt-text"></span> Frågorna finns vid {gameRiddle.riddle.LocationName}</p>;
+					actions = <a href="#" onClick={this.handleCollectQuestions}><span className="text-blue">Hämta frågor</span></a>;
 				}
-				content = <div>
-						{gameRiddle.riddle.Name} 
-						{questions}
-						<p>
-							{questionButton}
-						</p>
-					</div>;
-			}else{
-				content = <div className="line-through">{gameRiddle.riddle.Name}</div>;
 			}
 		}else{
-			content = <div><a href="#" onClick={this.handleOpenRiddle}>{gameRiddle.riddle.Name}</a></div>;
+			actions = <a href="#" onClick={this.handleOpenRiddle}><span className="text-blue">Lös rebus</span></a>;
 		}
-		return content;		 
+		return (
+				<div className="col-lg-3 col-md-4 col-sm-6">
+					<div className={cardClass}>
+						<div className="card-main">
+							<div className="card-inner">
+								<p dangerouslySetInnerHTML={{__html: emojione.toImage(gameRiddle.riddle.Description)}} />
+								{location}
+							</div>
+							<div className="card-action">
+								<ul className="nav nav-list pull-left">
+									<li>{actions}</li>
+								</ul>
+							</div>
+						</div>						
+					</div>
+				</div>					
+		);	 
 	}
 });
 
@@ -50,32 +62,31 @@ var GameRiddleList = React.createClass({
 	},
 	render: function(){
 		var nodes = this.props.data.map(function(gameRiddle){			
-			return(<li><GameRiddle gameRiddle={gameRiddle} onRiddleOpen={this.handleRiddleOpen} onCollectQuestions={this.handleCollectQuestions} onAnswerQuestions={this.handleAnswerQuestions} /><hr/></li>);		
+			return (<GameRiddle gameRiddle={gameRiddle} onRiddleOpen={this.handleRiddleOpen} onCollectQuestions={this.handleCollectQuestions} onAnswerQuestions={this.handleAnswerQuestions} />);		
 		}.bind(this));
 		return (
-			<ul className="list-unstyled">
-				{nodes}
-			</ul>
+			 <div className="card-wrap">
+				<div className="row">          
+					{nodes}
+				</div>
+            </div>	
 		);
 	}
 });
 
 var GameApp = React.createClass({
+	save : function(){
+		this.state.master.save();
+	},
 	handleRiddleSolved: function(gameRiddle){
 		var gameRiddles = this.state.data;
+		this.save();
 		$("#game-container").show();
-		$("#riddle-container").hide();
-		gameRiddles = gameRiddles.sort(function(a,b){
-			if(a.isSolved)
-				return -1;
-			else if(b.isSolved)
-				return 1;
-			else
-				return 0;
-		});
+		$("#content-container").hide();
 		this.setState({data: gameRiddles});
 	},
 	handleReturn: function(){
+		this.save();
 		$("#game-container").show();
 		$("#content-container").hide();
 	},
@@ -86,6 +97,7 @@ var GameApp = React.createClass({
 	},
 	handleCollectQuestions: function(gameRiddle){
 		gameRiddle.hasQuestions = true;
+		this.save();
 		var gameRiddles = this.state.data;
 		this.setState({data: gameRiddles});
 	},
@@ -94,64 +106,32 @@ var GameApp = React.createClass({
 		$("#content-container").show();
 		React.render(<QuestionGuesser gameRiddle={gameRiddle} onReturn={this.handleReturn} onCompleted={this.handleQuestionsCompleted} />, document.getElementById("content-container"));
 	},
-	handleQuestionsCompleted: function(gameRiddle, score){
+	handleQuestionsCompleted: function(gameRiddle){
 		$("#game-container").show();
 		$("#content-container").hide();
 		gameRiddle.isCompleted = true;
-		gameRiddle.score = score;
+		this.save();
 		var gameRiddles = this.state.data;
 		this.setState({data: gameRiddles});
 	},
 	getInitialState: function() {
-		var riddles = this.props.initialData;
-		var gameRiddles = [];
-		riddles.forEach(function(riddle){
-			gameRiddles.push({
-				riddle: riddle,
-				isSolved: false,
-				hasQuestions: false,
-				isCorrect: false,
-				score: 0,
-				isCompleted: false
-			});
-		});
-		return { data: gameRiddles, total: gameRiddles.length };
+		var gameRiddles = this.props.gameMaster.gameRiddles;
+		return { master: this.props.gameMaster, data: gameMaster.gameRiddles, total: gameRiddles.length };
     },
 	render: function(){
 		var solvedCount = this.state.data.filter(function(r){ return r.isSolved; }).length;
-		var isFinished = this.state.data.every(function(r){ return r.isCompleted });
-		var score = 0;
-		console.log(this.state.data);		
-		score = this.state.data.reduce(function(p,c){ 	
-			console.log("p");
-			console.log(p);
-			console.log(c);
-			if(!p)
-				p = 0;
-
-			return p + parseInt(c.score, 10); 
-		});
-		if(isFinished){
-			score = this.state.data.reduce(function(a,b){ return a.score + b.score; });
-		}
+		var isFinished = this.state.data.every(function(r){ return r.isCompleted });		
 		return (
 		<div>
 		{
 			isFinished ? 
 			<div>
-				<h2>Snyggt du har klarat alla rebusar!</h2>
-				<p>
-					Din poäng är {score}
-				</p>
+				<h2 className="content-sub-heading">Snyggt du har klarat alla rebusar!</h2>
 			</div> :
 			<div>
-				<h1>Game on</h1>	
-				<p>
+				<h2 className="content-sub-heading">
 					{solvedCount} av {this.state.total} rebusar avklarade.
-				</p>
-				<p>
-					poäng {score}
-				</p>
+				</h2>
 				<hr />
 				<GameRiddleList data={this.state.data} onRiddleOpen={this.handleRiddleOpen} onCollectQuestions={this.handleCollectQuestions} onAnswerQuestions={this.handleAnswerQuestions} />
 			</div>
@@ -161,4 +141,6 @@ var GameApp = React.createClass({
 	}
 });
 
-React.render(<GameApp initialData={huntData.Riddles} huntId={huntData.HuntId} />, document.getElementById("game-container"));
+var gameMaster = new GameMaster(huntData.Riddles, huntData.HuntId);
+
+React.render(<GameApp gameMaster={gameMaster} />, document.getElementById("game-container"));

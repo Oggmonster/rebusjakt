@@ -12,30 +12,49 @@
     </div>
 </div>
 <div class="content-inner">
-    <div class="container">       
+    <div class="container">
         <p>
             <a href="/hunt/create" class="btn btn-blue" title="Ny Jakt">Ny jakt</a>
         </p>
-        <div class="tile-wrap">
-            @foreach (var item in Model)
-            {
-                <div class="tile">
-                    <div class="tile-action tile-action-show">
-                        <ul class="nav nav-list pull-right">
-                            <li>
-                                <a href="/hunt/edit/@item.Id"><span class="access-hide">Add</span><span class="icon icon-edit"></span></a>
-                            </li>
-                            <li>
-                                <a href="/hunt/delete/@item.Id"><span class="access-hide">Ta bort</span><span class="icon icon-delete"></span></a>
-                            </li>
-                        </ul>
+        <div class="card-wrap">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner">
+                                    <p class="card-heading text-alt">@item.Name</p>
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                    <p>
+                                        Antal rebusar: @item.Riddles.Count
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <ul class="nav nav-list pull-left">
+                                        <li>
+                                            <a href="/riddleadmin/index/@item.Id" title="Lägg till rebusar">
+                                                <span class="text-blue">Rebusar</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/hunt/edit/@item.Id" title="Ändra"><span class="access-hide">Ändra</span><span class="icon icon-edit"></span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/hunt/delete/@item.Id" title="Ta bort"><span class="access-hide">Ta bort</span><span class="icon icon-delete"></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tile-inner">
-                        <a class="text-overflow" href="/riddleadmin/index/@item.Id">@item.Name</a>
-                    </div>
+                }
                 </div>
-            }
+            </div>
+           
         </div>
     </div>
-</div>
+    
 

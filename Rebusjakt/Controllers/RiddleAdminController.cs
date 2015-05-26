@@ -80,6 +80,11 @@ namespace Rebusjakt.Controllers
 
         public void DeleteRiddle(int id)
         {
+            var riddle = unitOfWork.RiddleRepository.GetByID(id);
+            foreach (var item in riddle.Questions.ToList())
+            {
+                unitOfWork.QuestionRepository.Delete(item.Id);
+            }
             unitOfWork.RiddleRepository.Delete(id);
             unitOfWork.Save();
         }

@@ -1,18 +1,29 @@
 ﻿
     var RiddleForm = React.createClass({
         handleMapPosition: function(position){
-            this.refs.lat.getDOMNode().value = position.lat;
-            this.refs.lng.getDOMNode().value = position.lng;
+			var riddle = this.state.riddle;
+			riddle.Latitude = position.lat;
+			riddle.Longitude = position.lng;
+			this.setState({riddle: riddle});            
         },        
+		handleEmojiSelected: function(short){
+			var riddle = this.state.riddle;
+			riddle.Description = (riddle.Description || "") + " " + short + " ";
+			this.setState({riddle: riddle});
+		},
 		handleCancel: function(){
 			var original = this.state.original;
 			var riddle = this.state.riddle;
-			riddle.Name = original.Name;
+			riddle =  $.extend(true, riddle, original); //copy back from original
 			this.setState({ riddle: riddle });
 			this.props.onRiddleCancel();
 		},
         handleSubmit: function(e){
             e.preventDefault();
+            return false;
+        },
+		handleSaveForm: function(e){
+			e.preventDefault();
             var latNode = this.refs.lat.getDOMNode();
             var lngNode = this.refs.lng.getDOMNode();
             var lat = latNode.value;
@@ -22,14 +33,22 @@
                 alert("Du måste lägga till en adress som rebusen ska leda till");
                 return false;
             }
-            var riddleForm = this.refs.riddleform.getDOMNode();
-            this.props.onRiddleSubmit(this.props.riddle.Id, $(riddleForm).serialize());
-			this.refs.name.getDOMNode().value = '';
+			var riddle = {};
+			$("#riddle-form").serializeArray().map(function(x){
+				riddle[x.name] = x.value;
+			});
+			riddle.Description = emojione.toShort(riddle.Description);
+            this.props.onRiddleSubmit(riddle);
+			//var riddleForm = this.refs.riddleform.getDOMNode();
+			//this.props.onRiddleSubmit(this.props.riddle.Id, $(riddleForm).serialize());
 			this.refs.riddle.getDOMNode().value = '';
-			this.refs.answerNode.getDOMNode().value = '';
+			this.refs.answer.getDOMNode().value = '';
             latNode.value = '';
             lngNode.value = '';
-        },
+		},
+		handleShowEmojiPicker: function(){
+			this.setState({ showEmojiPicker: true });
+		},
 		handleShowMap: function(){
 			this.setState({showMap: true});
 		},
@@ -39,21 +58,24 @@
             this.setState({riddle: riddle});
         },
         getInitialState: function() {
-			var original = $.extend(true, {}, this.props.riddle);
+			var original = $.extend(true, {}, this.props.riddle); //copy
             return { riddle: this.props.riddle, original: original };
         },
         render: function(){
-			var huntName = "Ny jakt", map;
-			if(this.state.riddle.Name){
-				huntName = this.state.riddle.Name;
+			var riddleDescription, map, emojiPicker;
+			if(this.state.riddle.Description){
+				riddleDescription = <p dangerouslySetInnerHTML={{__html: emojione.toImage(this.state.riddle.Description)}} />;
 			}
 			if(this.state.showMap){
-				map = <GeocodeMap onPickPosition={this.handleMapPosition} />;          
+				map = <GeocodeMap lat={this.state.riddle.Latitude} lng={this.state.riddle.Longitude} onPickPosition={this.handleMapPosition} />;          
+			}
+			if(this.state.showEmojiPicker){
+				emojiPicker = <EmojiPicker onEmojiSelected={this.handleEmojiSelected} />;
 			}
             return (
                 <div>
-					<h2 className="content-sub-heading">{huntName}</h2>
-                    <form ref="riddleform" onSubmit={this.handleSubmit} className="form">
+					{riddleDescription}				
+                    <form id="riddle-form" ref="riddleform" onSubmit={this.handleSubmit} className="form">
 						<input type="hidden" name="Id" ref="id" value={this.props.riddle.Id} />
                         <input type="hidden" name="HuntId" value={this.props.huntId} />
 						<input type="hidden" name="Latitude" ref="lat" value={this.state.riddle.Latitude} onChange={this.handleChange.bind(this, "Latitude")} />
@@ -61,16 +83,18 @@
 						<div className="form-group">
 							<div className="row">
 								<div className="col-lg-6 col-md-8 col-sm-10">
-									<label>Namn / Rubrik</label>
-									<input type="text" className="form-control form-control-default" id="Name" name="Name" ref="name" value={this.state.riddle.Name} onChange={this.handleChange.bind(this, "Name")} />
-								</div>
-							</div>
-						</div>
-						<div className="form-group">
-							<div className="row">
-								<div className="col-lg-6 col-md-8 col-sm-10">
 									<label>Rebus</label>
 									<textarea id="Description" rows="3" cols="30" className="form-control form-control-default" name="Description" ref="riddle" value={this.state.riddle.Description} onChange={this.handleChange.bind(this, "Description")}></textarea>
+									<span className="form-help form-help-msg">Du kan använda emojis i texten (välj nedan om du inte redan har stöd från emojis)</span>
+									<p>
+										<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-emoji-region" onClick={this.handleShowEmojiPicker}>
+											<span className="collapsed-hide">Dölj</span>
+											<span className="collapsed-show">Välj emoji</span>
+										</a>	
+									</p>									
+									<div className="collapsible-region collapse" id="collapsible-emoji-region">
+										{emojiPicker}
+									</div>			
 								</div>
 							</div>
 						</div>
@@ -90,30 +114,29 @@
 								</div>
 							</div>
 						</div>
-						<div className="form-group-btn">
-							<div className="row">
-								<div className="col-lg-6 col-md-8 col-sm-10">
-									<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-region">
-										<span className="collapsed-hide">Dölj</span>
-										<span className="collapsed-show" onClick={this.handleShowMap}>Välj kartposition</span>
-									</a>									
-								</div>
+					</form>
+					<div className="form-group">
+						<div className="row">
+							<div className="col-lg-6 col-md-8 col-sm-10">
+								<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-map-region" onClick={this.handleShowMap}>
+									<span className="collapsed-hide">Dölj</span>
+									<span className="collapsed-show">Välj kartposition</span>
+								</a>	
+								<div className="collapsible-region collapse" id="collapsible-map-region">
+									{map}
+								</div>								
 							</div>
 						</div>
-                        <div className="form-group-btn">
-							<div className="row">
-								<div className="col-lg-6 col-md-8 col-sm-10">
-									<button className="btn btn-blue waves-button waves-light waves-effect" type="submit">Spara</button>
-									&nbsp;
-									<a className="btn btn-flat btn-red waves-button waves-effect" onClick={this.handleCancel}>Avbryt</a>
-								</div>
-							</div>
-						</div>
-                    </form>
-					<div className="collapsible-region collapse" id="collapsible-region">
-						{map}
 					</div>
-                       
+                    <div className="form-group-btn">
+						<div className="row">
+							<div className="col-lg-6 col-md-8 col-sm-10">
+								<button className="btn btn-blue waves-button waves-light waves-effect" onClick={this.handleSaveForm}>Spara</button>
+								&nbsp;
+								<a className="btn btn-flat btn-red waves-button waves-effect" onClick={this.handleCancel}>Avbryt</a>
+							</div>
+						</div>
+					</div>
                 </div>
                 );
         }
@@ -140,11 +163,9 @@
                   <div className="col-lg-3 col-md-4 col-sm-6">
 					<div className="card">
 						<div className="card-main">
-							<div className="card-inner">
-								<p className="card-heading text-alt">{riddle.Name}</p>
-								<p>
-									{riddle.Description}
-								</p>
+							<div className="card-inner">								
+								<p dangerouslySetInnerHTML={{__html: emojione.toImage(riddle.Description)}} />
+								<p>{riddle.Answer}</p>
 								<p>
 									Antal frågor: {riddle.Questions.length}
 								</p>
@@ -153,7 +174,7 @@
 								<ul className="nav nav-list pull-left">
 									<li>
 										<a href="#" onClick={this.addQuestions.bind(this, riddle)}>
-											<span className="icon icon-add text-blue"></span>&nbsp;<span className="text-blue">Lägg till frågor</span>
+											<span className="text-blue">Frågor</span>
 										</a>
 									</li>
 									<li>
@@ -174,7 +195,7 @@
 					<div className="row">                    
 						{riddleNodes}
 					</div>
-                </div>
+                </div>				
                 );
         }
     });
@@ -184,16 +205,15 @@
             var riddle = { Id : 0 };
             this.setState({ showRiddleForm: true, riddle: riddle});
         },
-        handleRiddleSubmit: function(id, riddle){
-            if(!id || id === 0){
-                this.saveNewRiddle(riddle);
+        handleRiddleSubmit: function(riddle){
+            if(riddle.Id > 0){
+				this.saveRiddleEdit(riddle);
             }else{
-                this.saveRiddleEdit(riddle);
+                this.saveNewRiddle(riddle);
             }
         },
 		handleRiddleCancel: function(){
 			var riddles = this.state.data;
-			console.log(riddles);
 			this.setState({ data: riddles, showRiddleForm: false });
 		},
         saveNewRiddle: function(riddle){
@@ -246,7 +266,7 @@
             return { data: this.props.initialData, showRiddleForm: false };
         },
         render: function () {           
-            var riddleForm, riddleList, newButton, intro;
+            var riddleForm, riddleList, newButton, intro, backButton;
             if(this.state.showRiddleForm){
 				var riddle = this.state.riddle;
                 riddleForm = <RiddleForm riddle={riddle} onRiddleSubmit={this.handleRiddleSubmit} onRiddleCancel={this.handleRiddleCancel} huntId={this.props.huntId} />;
@@ -255,6 +275,7 @@
 				intro = <h2 className="content-sub-heading">Lägg till nya eller redigera befintliga rebusar</h2>;
                 newButton = <button className="btn btn-blue" onClick={this.handleNewRiddleClick} >Lägg till ny rebus</button>;
                 riddleList = <RiddleList data={this.state.data} onRiddleEdit={this.handleRiddleEdit} onRiddleDelete={this.handleRiddleDelete} onRiddleNewQuestions={this.handleRiddleNewQuestions} />;
+				backButton = <p><a href="/hunt" title="Tillbaka till admin">Tillbaka till admin</a></p>;
             }
 
             return (
@@ -262,7 +283,8 @@
 					{intro}
                     {riddleForm}
                     {newButton}                                     
-                    {riddleList}                    
+                    {riddleList}         
+					{backButton}           
                 </div>
                 );
         }
