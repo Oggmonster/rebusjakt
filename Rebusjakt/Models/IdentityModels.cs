@@ -23,6 +23,7 @@ namespace Rebusjakt.Models
         public ApplicationDbContext()
             : base("RiddleContext", throwIfV1Schema: false)
         {
+            
         }
 
         public static ApplicationDbContext Create()

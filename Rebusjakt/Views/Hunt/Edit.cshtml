@@ -21,7 +21,9 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
-
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(m => m.StartLatitude)
+            @Html.HiddenFor(m => m.StartLongitude)
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-6 col-md-8 col-sm-10">
@@ -40,6 +42,16 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="StartLocation">Startplats</label>
+                        @Html.EditorFor(model => model.StartLocation, new { htmlAttributes = new { @class = "form-control form-control-default" } })
+                        @Html.ValidationMessageFor(model => model.StartLocation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div id="location-picker"></div>
             <div class="form-group-btn">
                 <div class="row">
                     <div class="col-lg-6 col-md-8 col-sm-10">
@@ -53,3 +65,8 @@
         </p>
     </div>
 </div>
+@section scripts{
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="~/ReactComponents/GeocodeMap.jsx"></script>
+    <script src="~/ReactComponents/LocationPicker.jsx"></script>
+}

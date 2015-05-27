@@ -19,6 +19,12 @@ namespace Rebusjakt.DAL
             this.dbSet = context.Set<TEntity>();
         }
 
+        public virtual IQueryable<TEntity> Get()
+        {
+            return dbSet;
+        }
+
+        /*
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -45,7 +51,7 @@ namespace Rebusjakt.DAL
             {
                 return query.ToList();
             }
-        }
+        }*/
 
         public virtual TEntity GetByID(object id)
         {

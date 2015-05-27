@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace Rebusjakt.Controllers
 {
@@ -15,7 +16,8 @@ namespace Rebusjakt.Controllers
         
         public ActionResult Index()
         {
-            var hunts = unitOfWork.HuntRepository.Get().ToList();
+            string userId = User.Identity.GetUserId();
+            var hunts = unitOfWork.HuntRepository.Get().Where(h => h.UserId == userId).ToList();
             return View(hunts);
         }
 
@@ -31,6 +33,7 @@ namespace Rebusjakt.Controllers
         {
             if(ModelState.IsValid)
             {
+                hunt.UserId = User.Identity.GetUserId();
                 unitOfWork.HuntRepository.Insert(hunt);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -40,14 +43,25 @@ namespace Rebusjakt.Controllers
 
         public ActionResult Edit(int id)
         {
+
             var hunt = unitOfWork.HuntRepository.GetByID(id);
+            if (hunt.UserId != User.Identity.GetUserId())
+            {
+                return RedirectToAction("Index");
+            }
             return View(hunt);
         }
+
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Hunt hunt)
         {
+            if (hunt.UserId != User.Identity.GetUserId())
+            {
+                return RedirectToAction("Index");
+            }
             if (ModelState.IsValid && hunt.Id > 0)
             {
                 unitOfWork.HuntRepository.Update(hunt);
@@ -78,6 +92,48 @@ namespace Rebusjakt.Controllers
             unitOfWork.HuntRepository.Delete(hunt.Id);
             unitOfWork.Save();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult MakeActive(int id)
+        {
+            var hunt = unitOfWork.HuntRepository.GetByID(id);
+            if(hunt.UserId != User.Identity.GetUserId()){
+                return Json("Det verkar inte vara du som skapat jakten");
+            }
+            if (IsReadyForPublic(hunt))
+            {
+                hunt.IsActive = true;
+                try
+                {
+                    unitOfWork.Save();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.InnerException.Message);
+                }
+                
+                return Json("Aktiverad");
+            }
+            else
+            {
+                return Json("Se till så att det finns rebusar först och att alla rebusar har minst en fråga.");
+            }
+        }
+
+        /// <summary>
+        /// Check if hunt is ready to make public - has riddles and all riddles has questions
+        /// </summary>
+        private bool IsReadyForPublic(Hunt hunt)
+        {
+            if (hunt.Riddles.Count == 0)
+                return false;
+
+            foreach (var item in hunt.Riddles)
+            {
+                if (item.Questions.Count == 0)
+                    return false;
+            }                
+            return true;
         }
 
         protected override void Dispose(bool disposing)

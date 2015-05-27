@@ -29,8 +29,8 @@
                                         @item.Description
                                     </p>
                                     <p>
-                                        Antal rebusar: @item.Riddles.Count
-                                    </p>
+                                        
+                                    </p>                                   
                                 </div>
                                 <div class="card-action">
                                     <ul class="nav nav-list pull-left">
@@ -38,6 +38,16 @@
                                             <a href="/riddleadmin/index/@item.Id" title="Lägg till rebusar">
                                                 <span class="text-blue">Rebusar</span>
                                             </a>
+                                        </li>
+                                        <li>
+                                            @if (!item.IsActive)
+                                            {
+                                                <a href="#" class="btn-makeactive" data-id="@item.Id">Visa publikt</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="btn-makeinactive" data-id="@item.Id">Visa inte publikt</a>
+                                            }
                                         </li>
                                         <li>
                                             <a href="/hunt/edit/@item.Id" title="Ändra"><span class="access-hide">Ändra</span><span class="icon icon-edit"></span></a>
@@ -58,3 +68,17 @@
     </div>
     
 
+@section scripts{
+    <script>
+        $(function () {
+            $(".btn-makeactive").on("click", function (e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                $.post("/hunt/makeactive", { id: id }, function(response){
+                    console.log(response);
+                },"json");
+            });
+        });
+    </script>
+
+}
