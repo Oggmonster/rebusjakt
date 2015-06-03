@@ -1,4 +1,4 @@
-﻿@model Rebusjakt.ViewModels.HuntViewModel
+﻿@model IEnumerable<Rebusjakt.Models.Hunt>
 @{
     ViewBag.Title = "Index";
 }
@@ -6,32 +6,105 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
-                <h1 class="heading">@Model.HuntName</h1>
+                <h1 class="heading">Admin</h1>
             </div>
         </div>
     </div>
 </div>
 <div class="content-inner">
     <div class="container">
-        <div id="riddle-container"></div>
-        <div id="question-container"></div>
-        
+        <p>
+            <a href="/riddleadmin/create" class="btn btn-blue" title="Ny Jakt">Ny jakt</a>
+        </p>
+        <div class="card-wrap">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card">
+                            <div class="card-main">
+                                <div class="card-inner">
+                                    <p class="card-heading text-alt">@item.Name</p>
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                    <div class="activation-container">
+                                        <strong class="activation-message">@(item.IsActive ? "Visas publikt" : "Visas inte publikt")</strong>
+                                        <p>
+                                            <a href="#" class="btn-makeactive btn btn-blue @(item.IsActive ? "hide" : "")" data-id="@item.Id">Visa publikt</a>
+                                            <a href="#" class="btn-makeinactive btn btn-red @(item.IsActive ? "" : "hide")" data-id="@item.Id">Visa inte publikt</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <ul class="nav nav-list pull-left">
+                                        <li>
+                                            <a href="/riddleadmin/riddles/@item.Id" title="Lägg till rebusar">
+                                                <span class="text-blue">Rebusar</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            
+                                        </li>
+                                        <li>
+                                            <a href="/riddleadmin/edit/@item.Id" title="Ändra"><span class="access-hide">Ändra</span><span class="icon icon-edit"></span></a>
+                                        </li>
+                                        <li>
+                                            <a href="/riddleadmin/delete/@item.Id" title="Ta bort"><span class="access-hide">Ta bort</span><span class="icon icon-delete"></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+           
+        </div>
     </div>
-</div>
+    
 
-@section scripts {
+@section scripts{
     <script>
-        var huntData = @Html.Raw(Json.Encode(Model));
+        $(function () {
+            $(".btn-makeactive").on("click", function (e) {
+                e.preventDefault();
+                var id = $(this).attr("data-id");
+                var self = this;
+                var container = $(self).closest(".activation-container");
+                var messageHolder = container.find(".activation-message");
+                $.post("/riddleadmin/makeactive", { id: id }, function (response) {
+                    if (response === "ok") {
+                        $(self).addClass("hide");
+                        container.find(".btn-makeinactive").removeClass("hide");
+                        messageHolder.html("Visas nu publikt!");
+                    } else {
+                        messageHolder.html(response);
+                    }
+                },"json");
+            });
+
+            $(".btn-makeinactive").on("click", function (e) {
+                e.preventDefault();
+                if (!confirm("Är du säker på att du inte vill att den här jakten ska vara synlig längre?")) {
+                    return false;
+                }
+                var id = $(this).attr("data-id");
+                var self = this;
+                var container = $(self).closest(".activation-container");
+                var messageHolder = container.find(".activation-message");
+                $.post("/riddleadmin/makeinactive", { id: id }, function (response) {
+                    if (response === "ok") {
+                        $(self).addClass("hide");
+                        container.find(".btn-makeactive").removeClass("hide");
+                        messageHolder.html("Visas inte publikt!");
+                    } else {
+                        messageHolder.html(response);
+                    }
+                }, "json");
+            });
+        });
     </script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="~/ReactComponents/GeocodeMap.jsx"></script>
-    <script src="~/ReactComponents/GoogleMap.jsx"></script>
-    <script src="~/ReactComponents/EmojiPicker.jsx"></script>
-    <script src="~/ReactComponents/RiddleCreator.jsx"></script>
-    <script src="~/ReactComponents/QuestionCreator.jsx"></script>
-
-    @*<script src="~/ReactComponents/RiddleGuesser.jsx"></script>*@
-
 
 }
-

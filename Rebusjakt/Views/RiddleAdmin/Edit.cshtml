@@ -1,0 +1,120 @@
+﻿@model Rebusjakt.Models.Hunt
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="content-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
+                <h1 class="heading">Ändra @Model.Name</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        @using (Html.BeginForm(new { htmlAttributes = new { @class = "form" } }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.IsActive)
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="Name">Namn på jakten</label>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-default" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="Name">Tema</label>
+                        @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control form-control-default" } })
+                        <span class="form-help form-help-msg">Exempel på teman är Simpsons, 80-tals musik, Fiskar, Rymden etc.</span>
+                        @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="Description">Kort beskrivning</label>
+                        <textarea name="Description" id="Description" cols="30" rows="5" class="form-control form-control-default">@Model.Description</textarea>
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="StartLocation">Startplats</label>
+                        @Html.EditorFor(model => model.StartLocation, new { htmlAttributes = new { @class = "form-control form-control-default" } })
+                        <span class="form-help form-help-msg">Det kan vara en adress eller en välkänd plats, t.ex. Slottet</span>
+                        @Html.ValidationMessageFor(model => model.StartLocation, "", new { @class = "text-danger" })
+                        <p>
+                            <input id="StartLatitude" name="StartLatitude" type="text" placeholder="Latitud" readonly value="@Model.StartLatitude" class="form-control form-control-default" style="width:80px; display:inline-block" />
+                            <input id="StartLongitude" name="StartLongitude" type="text" placeholder="Longitud" readonly value="@Model.StartLongitude" class="form-control form-control-default" style="width:80px; display:inline-block" />
+                            @Html.ValidationMessageFor(model => model.StartLatitude, "", new { @class = "text-danger" })
+                        </p>                       
+                        <div id="start-location-picker"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="StartLocation">Målgång</label>
+                        @Html.EditorFor(model => model.EndLocation, new { htmlAttributes = new { @class = "form-control form-control-default" } })                        
+                        @Html.ValidationMessageFor(model => model.EndLocation, "", new { @class = "text-danger" })
+                        <p>
+                            <input id="EndLatitude" name="EndLatitude" type="text" placeholder="Latitud" readonly value="@Model.EndLatitude" class="form-control form-control-default" style="width:80px; display:inline-block" />
+                            <input id="EndLongitude" name="EndLongitude" type="text" placeholder="Longitud" readonly value="@Model.EndLongitude" class="form-control form-control-default" style="width:80px; display:inline-block" />
+                            @Html.ValidationMessageFor(model => model.EndLatitude, "", new { @class = "text-danger" })
+                        </p>
+                        <div id="end-location-picker"></div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label>Starttid</label>
+                        <input type="datetime-local" name="StartDate" value="@(Model.StartDate.HasValue ? Model.StartDate.Value.ToString("yyyy-MM-ddTHH:mm") : "")" class="form-control form-control-default" />
+                        <span class="form-help form-help-msg">Om du vill kan du sätta en starttid för jakten. Det innebär att jakten kommer att vara låst fram till den tidpunkten.</span>
+                    </div>
+                </div>
+            </div>*@
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <label for="Name">Tidsgräns (i minuter)</label>
+                        <input type="number" name="TimeLimit" value="@Model.TimeLimit"  class="form-control form-control-default" />
+                        <span class="form-help form-help-msg">Hur lång tid deltagarna ska ha på sig att slutföra jakten. Låt värdet vara 0 om du inte vill sätta någon tidsgräns.</span>
+                        @Html.ValidationMessageFor(model => model.TimeLimit, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-btn">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10">
+                        <button class="btn btn-blue waves-button waves-light waves-effect" type="submit">Spara</button>
+                    </div>
+                </div>
+            </div>
+        }
+        <p>
+            @Html.ActionLink("Tillbaka till admin", "Index")
+        </p>
+    </div>
+</div>
+@section scripts{
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    @Scripts.Render("~/bundles/hunteditor")
+}

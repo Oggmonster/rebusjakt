@@ -1,84 +1,115 @@
-﻿@model IEnumerable<Rebusjakt.Models.Hunt>
+﻿@model Rebusjakt.ViewModels.HuntIndexViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Hunt.Name;
 }
+
 <div class="content-heading">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
-                <h1 class="heading">Admin</h1>
+                <h1 class="heading">@Model.Hunt.Name</h1>
             </div>
         </div>
     </div>
 </div>
 <div class="content-inner">
     <div class="container">
-        <p>
-            <a href="/hunt/create" class="btn btn-blue" title="Ny Jakt">Ny jakt</a>
-        </p>
         <div class="card-wrap">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="card">
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <p class="card-heading text-alt">@item.Name</p>
-                                    <p>
-                                        @item.Description
-                                    </p>
-                                    <p>
-                                        
-                                    </p>                                   
-                                </div>
-                                <div class="card-action">
-                                    <ul class="nav nav-list pull-left">
-                                        <li>
-                                            <a href="/riddleadmin/index/@item.Id" title="Lägg till rebusar">
-                                                <span class="text-blue">Rebusar</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            @if (!item.IsActive)
-                                            {
-                                                <a href="#" class="btn-makeactive" data-id="@item.Id">Visa publikt</a>
-                                            }
-                                            else
-                                            {
-                                                <a href="#" class="btn-makeinactive" data-id="@item.Id">Visa inte publikt</a>
-                                            }
-                                        </li>
-                                        <li>
-                                            <a href="/hunt/edit/@item.Id" title="Ändra"><span class="access-hide">Ändra</span><span class="icon icon-edit"></span></a>
-                                        </li>
-                                        <li>
-                                            <a href="/hunt/delete/@item.Id" title="Ta bort"><span class="access-hide">Ta bort</span><span class="icon icon-delete"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+            <div class="card">
+                <div class="card-inner">                    
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <p>
+                                @Model.Hunt.Description
+                            </p>
+                            <p>
+                                <span class="icon icon-label text-green"></span> Tema: @Model.Hunt.Theme
+                            </p>
+                            <p>
+                                <span class="icon icon-timer text-green"></span> Tidsgräns: @Model.Hunt.TimeLimit minuter
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            
+                            <p>
+                                <span class="icon icon-place text-green"></span> Startar vid: @Model.Hunt.StartLocation
+                            </p>
+                            <div id="map-container"></div>
                         </div>
                     </div>
-                }
+                    <p>Vi rekommenderar att du befinner dig vid startpunkten innan du startar jakten.</p>
+                    <p>
+                        <a class="btn btn-blue" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h3 class="content-sub-heading">Topplista</h3>
+                <div class="tile-wrap">
+                    @foreach (var item in Model.TopScores)
+                    {
+                        <div class="tile">
+                            <div class="pull-left tile-side">
+                                <div class="avatar avatar-blue avatar-md">
+                                   @(item.Score) p
+                                </div>
+                            </div>                            
+                            <div class="tile-inner">
+                                    <a>@item.UserName</a>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
-           
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h3 class="content-sub-heading">Vad tycker deltagarna?</h3>
+                <div class="tile-wrap">
+                    @if (Model.HuntReviews.Count == 0)
+                    {
+                        <div class="tile">
+                            <div class="tile-inner">Ingen har tyckt något än.</div>
+                        </div>
+                    }
+                    @foreach (var item in Model.HuntReviews)
+                    {
+                        <div class="tile">
+                            @if (item.IsPositive)
+                            {
+                                <div class="pull-right tile-side">
+                                    <div class="avatar avatar-green avatar-md">
+                                        <span class="icon icon-thumb-up"></span>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="pull-right tile-side">
+                                    <div class="avatar avatar-red avatar-md">
+                                        <span class="icon icon-thumb-down"></span>
+                                    </div>
+                                </div>
+                            }
+                            <div class="tile-inner">
+                                    @item.Description<br />
+                                    <a>@item.UserName</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
-    
+</div>
 
-@section scripts{
+@section Scripts{
     <script>
-        $(function () {
-            $(".btn-makeactive").on("click", function (e) {
-                e.preventDefault();
-                var id = $(this).attr("data-id");
-                $.post("/hunt/makeactive", { id: id }, function(response){
-                    console.log(response);
-                },"json");
-            });
-        });
+        var mapData = {
+            lat: @(Model.Hunt.StartLatitude),
+            lng: @(Model.Hunt.StartLongitude)
+            };
     </script>
-
+    @Scripts.Render("~/bundles/huntview")
 }

@@ -1,0 +1,29 @@
+﻿@model Rebusjakt.ViewModels.HuntViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="content-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
+                <h1 class="heading">@Model.HuntName</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div id="riddle-container"></div>
+        <div id="question-container"></div>
+        
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        var huntData = @Html.Raw(Json.Encode(Model));
+    </script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    @Scripts.Render("~/bundles/riddleeditor")
+}
+

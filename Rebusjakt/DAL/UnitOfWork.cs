@@ -13,6 +13,9 @@ namespace Rebusjakt.DAL
         private GenericRepository<Hunt> huntRepository;
         private GenericRepository<Riddle> riddleRepository;
         private GenericRepository<Question> questionRepository;
+        private GenericRepository<UserScore> userScoreRepository;
+        private GenericRepository<HuntReview> huntReviewRepository;
+        private GenericRepository<User> userRepository;
 
         public UnitOfWork()
         {
@@ -55,6 +58,43 @@ namespace Rebusjakt.DAL
                 return questionRepository;
             }
         }
+
+        public GenericRepository<UserScore> UserScoreRepository
+        {
+            get
+            {
+                if (this.userScoreRepository == null)
+                {
+                    this.userScoreRepository = new GenericRepository<UserScore>(context);
+                }
+                return userScoreRepository;
+            }
+        }
+
+        public GenericRepository<HuntReview> HuntReviewRepository
+        {
+            get
+            {
+                if (this.huntReviewRepository == null)
+                {
+                    this.huntReviewRepository = new GenericRepository<HuntReview>(context);
+                }
+                return huntReviewRepository;
+            }
+        }
+
+        public GenericRepository<User> UserRepository
+        {
+            get
+            {
+                if (this.userRepository == null)
+                {
+                    this.userRepository = new GenericRepository<User>(context);
+                }
+                return userRepository;
+            }
+        }
+
 
         public void Save()
         {

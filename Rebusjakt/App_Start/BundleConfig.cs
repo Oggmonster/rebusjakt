@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+using System.Web.Optimization.React;
 
 namespace Rebusjakt
 {
@@ -8,24 +9,48 @@ namespace Rebusjakt
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
+           
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+            bundles.Add(new JsxBundle("~/bundles/riddleeditor").Include(
+                    "~/ReactComponents/GeocodeMap.jsx",
+                    "~/ReactComponents/GoogleMap.jsx",
+                    "~/ReactComponents/EmojiPicker.jsx",
+                    "~/ReactComponents/RiddleCreator.jsx",
+                    "~/ReactComponents/QuestionCreator.jsx"
+                ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new JsxBundle("~/bundles/hunteditor").Include(
+                    "~/ReactComponents/GeocodeMap.jsx",
+                    "~/ReactComponents/LocationStartEndPicker.jsx"
+                ));
+
+            bundles.Add(new JsxBundle("~/bundles/huntview").Include(
+                    "~/ReactComponents/GoogleMap.jsx",
+                    "~/ReactComponents/MapApp.jsx"
+                ));
+
+            bundles.Add(new JsxBundle("~/bundles/game").Include(
+                    "~/js/gamemaster.js",
+                    "~/ReactComponents/GoogleMap.jsx",
+                   "~/ReactComponents/TrueOrFalseGuesser.jsx",
+                   "~/ReactComponents/TextGuesser.jsx",
+                   "~/ReactComponents/NumberGuesser.jsx",
+                   "~/ReactComponents/MultiGuesser.jsx",
+                   "~/ReactComponents/LocationChecker.jsx",
+                   "~/ReactComponents/RiddleGuesser.jsx",
+                   "~/ReactComponents/QuestionGuesser.jsx",
+                   "~/ReactComponents/CountDownTimer.jsx",
+                   "~/ReactComponents/CorrectHunt.jsx",
+                   "~/ReactComponents/ReviewForm.jsx",
+                   "~/ReactComponents/GameApp.jsx"
+                ));
+
+            BundleTable.EnableOptimizations = true;
+            
+
         }
     }
 }

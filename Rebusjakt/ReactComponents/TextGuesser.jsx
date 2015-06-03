@@ -3,11 +3,10 @@
         var styling = {letterSpacing:'5px', fontSize:'1.5em'};
 		var wrongWords, wrongGuessesLeft;
 		if(this.props.wrongGuesses.length > 0){
-			console.log(this.props);
 			wrongGuessesLeft = this.props.maxwrong - this.props.wrongGuesses.length;
-			var guessNodes = this.props.wrongGuesses.map(function(word){
+			var guessNodes = this.props.wrongGuesses.map(function(word, i){
 				return(
-						<div className="tile tile-red"><div className="tile-inner">{word}</div></div>
+						<div key={i} className="tile tile-red"><div className="tile-inner">{word}</div></div>
 					);
 			});
 			wrongWords = (<div className="tile-wrap">

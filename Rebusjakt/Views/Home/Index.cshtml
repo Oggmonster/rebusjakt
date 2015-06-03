@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Rebusjakt.Models.Hunt>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Rebusjakt";
 }
 
 <div class="content-heading">
@@ -25,14 +25,20 @@
                                 <div class="card-inner">
                                     <p class="card-heading text-alt">@item.Name</p>
                                     <p>
-                                        @item.Description
+                                        <span class="icon icon-label text-green"></span> @item.Theme
+                                    </p>                                    
+                                    <p>
+                                        <span class="icon icon-place text-green"></span> @item.StartLocation
+                                    </p>
+                                    <p>
+                                        <span class="icon icon-timer text-green"></span> @item.TimeLimit minuter
                                     </p>
                                 </div>
                                 <div class="card-action">
                                     <ul class="nav nav-list pull-left">
                                         <li>
-                                            <a href="/game/index/@item.Id" title="Lägg till rebusar">
-                                                <span class="text-blue">Starta</span>
+                                            <a href="/hunt/index/@item.Id" title="Lägg till rebusar">
+                                                <span class="text-blue">Visa</span>
                                             </a>
                                         </li>
                                     </ul>

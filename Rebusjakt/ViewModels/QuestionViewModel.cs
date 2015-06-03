@@ -19,7 +19,7 @@ namespace Rebusjakt.ViewModels
         public string AnswerType { get; set; }
 
         /// <summary>
-        /// Answer options in JSON
+        /// Comma separeted answer options
         /// </summary>
         public string AnswerOptions { get; set; }
 

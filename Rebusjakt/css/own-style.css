@@ -1,8 +1,10 @@
 ﻿.map-holder {
-    height: 300px;
-    width: 100%;
+    max-width:100%;
     margin: 10px 0 10px 0;
     padding: 0px;
+}
+.container img {
+     max-width:100%;
 }
 .line-through {
     text-decoration:line-through;
@@ -30,4 +32,14 @@
 
 .hide {
     display:none;
+}
+
+.text-danger {
+    color:red; font-size:0.8em; display:block;
+}
+
+.heading-background-image {
+    background-image: url(../images/rebusheader.jpg);
+    background-size:cover;
+    background-position:center;
 }

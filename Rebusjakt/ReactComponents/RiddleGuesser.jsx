@@ -14,13 +14,13 @@
 							<p>
 								Bege dig till <strong>{this.props.riddle.LocationName}</strong> för att hämta rebusens frågor.
                             </p>                                
-							<a href="#" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
                             <GoogleMap lat={this.props.riddle.Latitude} lng={this.props.riddle.Longitude} />
+							<a href="#" className="btn" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
                         </div> : 
                         <div>
-                            <h2 className="content-sub-heading">Fel fel fel!</h2>
+                            <h2 className="content-sub-heading">Tyvärr det var fel</h2>
 							<p dangerouslySetInnerHTML={{__html: emojione.toImage(":worried:")}} />
-							<a href="#" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
+							<a href="#" className="btn" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
                         </div>
                     }
                 </div>

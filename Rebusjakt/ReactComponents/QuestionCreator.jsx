@@ -86,11 +86,12 @@
 						</div>
 						<div className="radio radio-adv">
 							<label htmlFor="input-radio-4">
-								<input className="access-hide" id="input-radio-4" name="AnswerType" value="trueorfalse" type="radio" checked={this.state.question.AnswerType === "trueorfalse"} onClick={this.handleOptionClick} onChange={this.handleChange.bind(this, "AnswerType")} />Sant eller falskt
+								<input className="access-hide" id="input-radio-4" name="AnswerType" value="trueorfalse" type="radio" checked={this.state.question.AnswerType === "trueorfalse"} onClick={this.handleOptionClick} onChange={this.handleChange.bind(this, "AnswerType")} />
+								Sant eller falskt <small>(skriv <strong>true</strong> eller <strong>false</strong> som svar)</small>
 								<span className="circle"></span>
 								<span className="circle-check"></span>
 							</label>
-							<span className="form-help form-help-msg">Skriv <strong>true</strong> eller <strong>false</strong> som svar</span>
+							
 						</div>
 					</div>
 					<div className={"form-group " + answerOptionsClasses}>

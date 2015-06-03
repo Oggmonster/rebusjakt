@@ -14,6 +14,9 @@ namespace Rebusjakt.DAL
         public DbSet<Hunt> Hunts { get; set; }
         public DbSet<Riddle> Riddles { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<UserScore> UserScores { get; set; }
+        public DbSet<HuntReview> HuntReviews { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +29,11 @@ namespace Rebusjakt.DAL
                 .HasMany(r => r.Questions)
                 .WithRequired(q => q.Riddle)
                 .HasForeignKey(q => q.RiddleId);
+
+            modelBuilder.Entity<User>()
+                .ToTable("AspNetUsers");
+
+
         }
     }
 }

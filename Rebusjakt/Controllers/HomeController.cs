@@ -1,4 +1,5 @@
 ﻿using Rebusjakt.DAL;
+using Rebusjakt.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Rebusjakt.Controllers
 
         public ActionResult Index()
         {
-            var hunts = unitOfWork.HuntRepository.Get().ToList();
+            var hunts = unitOfWork.HuntRepository.Get().Where(h => h.IsActive).ToList();
             return View(hunts);
         }
 

@@ -53,9 +53,7 @@ var QuestionGuesser = React.createClass({
 		var isFinished = this.state.gameQuestions.every(function(q){ return q.isAnswered; });
 		
 		if(isFinished){
-			finishedMessage = (<div>
-					<p>Bra gjort <span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /></p><p> Alla frågor besvarade. Du kan återgå till rebuslistan.</p>
-				</div>);
+			finishedMessage = <p><span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /> Alla frågor besvarade. Du kan återgå till rebuslistan.</p>;
 		}
 		if(this.state.showQuestion){
 			jsxQuestion = <GameQuestion data={this.state.gameQuestion} onHasAnswered={this.handleHasAnswered} />;
@@ -92,6 +90,7 @@ var QuestionGuesser = React.createClass({
 								{nodes}   
 							</div>
 						</div>   
+						{finishedMessage}
 						<p>
 							<a href="#" onClick={this.handleReturn}>Återgå till rebuslistan</a>
 						</p>
@@ -101,7 +100,6 @@ var QuestionGuesser = React.createClass({
 			<div>
 			{
 				<div>
-					{finishedMessage}
 					{jsxQuestion}
 					{jsxList}
 				</div>

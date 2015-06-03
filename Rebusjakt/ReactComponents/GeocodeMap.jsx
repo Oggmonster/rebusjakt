@@ -7,7 +7,7 @@
                 zoom: 12,
                 center: new google.maps.LatLng(lat,lng)
             };
-            map = new google.maps.Map(React.findDOMNode(this.refs.map),
+            var map = new google.maps.Map(React.findDOMNode(this.refs.map),
                 mapOptions);
 
             google.maps.event.addListener(map,'click',function(event) { 
@@ -20,13 +20,14 @@
                 position: map.getCenter(),
                 map: map
             });
-			var geocoder = new google.maps.Geocoder();
-			this.setState({map: map, marker: marker, geocoder: geocoder});
+			this.geocoder = new google.maps.Geocoder();
+			this.map = map;
+			this.marker = marker;
         },
         geoCodeIt : function(data){
-            var geocoder = this.state.geocoder;
-            var map = this.state.map;
-			var marker = this.state.marker;
+            var geocoder = this.geocoder;
+            var map = this.map;
+			var marker = this.marker;
             geocoder.geocode(data, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {    
 					map.setCenter(results[0].geometry.location);                
@@ -61,11 +62,12 @@
 			$(".txt-address").focus();
         },
         render: function () {
+			var mapStyle = {height:"350px"};
             return(
                     <div>
 						<h2 className="content-sub-heading">Välj kartposition</h2>
                         <p>
-                            Sök efter en plats eller klicka på kartan för att ange den plats som rebusen ska leda till.
+                            Sök efter en plats eller klicka på kartan för att markera kartposition.
                         </p>
                         <form onSubmit={this.handleSubmit}>
 							<div className="form-group">
@@ -77,7 +79,7 @@
 								</div>
 							</div>
                         </form>           
-                        <div className="map-holder" ref="map"></div>
+                        <div className="map-holder" style={mapStyle} ref="map"></div>
                     </div>
                 );
         }

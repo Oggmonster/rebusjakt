@@ -39,8 +39,6 @@
 			});
 			riddle.Description = emojione.toShort(riddle.Description);
             this.props.onRiddleSubmit(riddle);
-			//var riddleForm = this.refs.riddleform.getDOMNode();
-			//this.props.onRiddleSubmit(this.props.riddle.Id, $(riddleForm).serialize());
 			this.refs.riddle.getDOMNode().value = '';
 			this.refs.answer.getDOMNode().value = '';
             latNode.value = '';
@@ -54,7 +52,12 @@
 		},
         handleChange: function(attribute, event) {            
             var riddle = this.state.riddle;    
-            riddle[attribute] = event.target.value;
+			var content = event.target.value;
+			if(attribute === "Description"){
+				//safeguard against html and script tags
+				content = content.replace(/<|>/g,"");
+			}
+            riddle[attribute] = content;
             this.setState({riddle: riddle});
         },
         getInitialState: function() {
@@ -262,27 +265,50 @@
             var riddles = this.state.data;      
             this.setState({ data: riddles, showRiddleForm: false });
         },
+		handleShowMap: function(){
+			var riddles = this.state.data;    
+			var positions = riddles.map(function(riddle){
+				return {
+					lat: riddle.Latitude,
+					lng: riddle.Longitude,
+					name: riddle.LocationName
+				};
+			});
+			this.setState({ showMap: true, positions: positions });
+		},
+		handleHideMap: function(){
+			var riddles = this.state.data;      
+            this.setState({ data: riddles, showRiddleForm: false, showMap: false });
+		},
         getInitialState: function() {
             return { data: this.props.initialData, showRiddleForm: false };
         },
         render: function () {           
-            var riddleForm, riddleList, newButton, intro, backButton;
+            var riddleForm, riddleList, newButton, mapContent, mapButton, intro, backButton;
             if(this.state.showRiddleForm){
 				var riddle = this.state.riddle;
                 riddleForm = <RiddleForm riddle={riddle} onRiddleSubmit={this.handleRiddleSubmit} onRiddleCancel={this.handleRiddleCancel} huntId={this.props.huntId} />;
-            }
+            }else if(this.state.showMap){
+				var positions = this.state.positions;
+				var first = positions.shift();
+				mapContent = <div><GoogleMap lat={first.lat} lng={first.lng} positions={positions} /><a href="#" onClick={this.handleHideMap}>Tillbaka</a></div>;
+			}
             else{
 				intro = <h2 className="content-sub-heading">Lägg till nya eller redigera befintliga rebusar</h2>;
                 newButton = <button className="btn btn-blue" onClick={this.handleNewRiddleClick} >Lägg till ny rebus</button>;
                 riddleList = <RiddleList data={this.state.data} onRiddleEdit={this.handleRiddleEdit} onRiddleDelete={this.handleRiddleDelete} onRiddleNewQuestions={this.handleRiddleNewQuestions} />;
-				backButton = <p><a href="/hunt" title="Tillbaka till admin">Tillbaka till admin</a></p>;
+				backButton = <p><a href="/riddleadmin/index" title="Tillbaka till admin">Tillbaka till admin</a></p>;
+				if(this.state.data.length > 0){
+					mapButton = <button onClick={this.handleShowMap} className="btn" ><span className="icon icon-place"></span> Visa karta</button>;
+				}
             }
 
             return (
                 <div className="riddle-creator">
 					{intro}
                     {riddleForm}
-                    {newButton}                                     
+					{mapContent}
+                    {newButton} &nbsp; {mapButton}                                   
                     {riddleList}         
 					{backButton}           
                 </div>

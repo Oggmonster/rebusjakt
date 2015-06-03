@@ -19,7 +19,9 @@ namespace Rebusjakt.Models
 
         public string Description { get; set; }
 
-        [Required(ErrorMessage="Du skriva in startplats")]
+        public string Theme { get; set; }
+
+        [Required(ErrorMessage="Du måste skriva in startplats")]
         public string StartLocation { get; set; }
 
         [Required(ErrorMessage = "Du måste välja startposition")]
@@ -27,11 +29,24 @@ namespace Rebusjakt.Models
 
         public string StartLongitude { get; set; }
 
+        [Required(ErrorMessage = "Du måste skriva in målgång")]
+        public string EndLocation { get; set; }
+
+        [Required(ErrorMessage = "Du måste välja målgångsposition")]
+        public string EndLatitude { get; set; }
+
+        public string EndLongitude { get; set; }
+
+        public int TimeLimit { get; set; }
+
         public bool IsActive { get; set; }
+
+        //public DateTime? StartDate { get; set; }        
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedDate { get; set; }
 
         public virtual ICollection<Riddle> Riddles { get; set; }
+
     }
 }

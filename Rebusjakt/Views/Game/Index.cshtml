@@ -1,4 +1,4 @@
-﻿@model Rebusjakt.ViewModels.HuntViewModel
+﻿@model Rebusjakt.ViewModels.GameViewModel
 @{
     ViewBag.Title = Model.HuntName;
 }
@@ -23,16 +23,7 @@
     <script>
         var huntData = @Html.Raw(Json.Encode(Model));
     </script>
-    <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="/js/gamemaster.js"></script>
-    <script src="~/ReactComponents/GoogleMap.jsx"></script>
-    <script src="~/ReactComponents/TrueOrFalseGuesser.jsx"></script>
-    <script src="~/ReactComponents/TextGuesser.jsx"></script>
-    <script src="~/ReactComponents/NumberGuesser.jsx"></script>
-    <script src="~/ReactComponents/MultiGuesser.jsx"></script>
-    <script src="~/ReactComponents/LocationChecker.jsx"></script>
-    <script src="~/ReactComponents/RiddleGuesser.jsx"></script>
-    <script src="~/ReactComponents/QuestionGuesser.jsx"></script>
-    <script src="~/ReactComponents/GameApp.jsx"></script>
+    @*<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>*@
+    @Scripts.Render("~/bundles/game")
 }
 
