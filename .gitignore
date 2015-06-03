@@ -2,6 +2,7 @@ bin/
 obj/
 debug/
 packages/
+App_Data/
 
 # Compiled source #
 ###################
