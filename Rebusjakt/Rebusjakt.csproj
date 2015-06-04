@@ -223,9 +223,11 @@
     <Compile Include="Controllers\HuntController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RiddleAdminController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\RiddleContext.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,7 +248,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\RiddleAdminViewModel.cs" />
     <Compile Include="ViewModels\RiddleViewModel.cs" />
+    <Compile Include="ViewModels\UserIndexViewModel.cs" />
     <Compile Include="ViewModels\UserScoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -431,10 +435,11 @@
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Shared\_TopNavigation.cshtml" />
     <Content Include="Views\Hunt\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\UserNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="cassette-cache\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

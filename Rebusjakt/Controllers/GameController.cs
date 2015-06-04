@@ -39,7 +39,7 @@ namespace Rebusjakt.Controllers
             ViewBag.HideTopNavigation = true;
             return View(viewModel);
         }
-        //double sLatitude, double sLongitude, double eLatitude, double eLongitude
+        
         public JsonResult CalculateDistance(FormCollection form)
         {
             double sLatitude = 0, sLongitude = 0, eLatitude = 0, eLongitude = 0;

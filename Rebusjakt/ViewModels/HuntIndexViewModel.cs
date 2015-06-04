@@ -10,6 +10,10 @@ namespace Rebusjakt.ViewModels
     {
         public Hunt Hunt { get; set; }
 
+        public string Creator { get; set; }
+
+        public string CreatorUrl { get; set; }
+
         public List<HuntReviewViewModel> HuntReviews { get; set; }
 
         public List<UserScoreViewModel> TopScores { get; set; }

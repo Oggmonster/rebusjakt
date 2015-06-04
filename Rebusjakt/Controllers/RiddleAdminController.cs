@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Rebusjakt.Extensions;
 
 namespace Rebusjakt.Controllers
 {
@@ -36,6 +37,7 @@ namespace Rebusjakt.Controllers
             if (ModelState.IsValid)
             {
                 hunt.UserId = User.Identity.GetUserId();
+                hunt.Slug = hunt.Name.ToSlug();
                 unitOfWork.HuntRepository.Insert(hunt);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -66,6 +68,7 @@ namespace Rebusjakt.Controllers
             }
             if (ModelState.IsValid && hunt.Id > 0)
             {
+                hunt.Slug = hunt.Name.ToSlug();
                 unitOfWork.HuntRepository.Update(hunt);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -148,7 +151,7 @@ namespace Rebusjakt.Controllers
         public ActionResult Riddles(int id)
         {
             var hunt = unitOfWork.HuntRepository.GetByID(id);
-            var viewModel = new GameViewModel
+            var viewModel = new RiddleAdminViewModel
             {
                 HuntId = hunt.Id,
                 HuntName = hunt.Name

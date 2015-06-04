@@ -11,6 +11,8 @@ namespace Rebusjakt.ViewModels
 
         public string UserName { get; set; }
 
+        public string UserUrl { get; set; }
+
         public int TimeInSeconds { get; set; }
 
         public int Score { get; set; }

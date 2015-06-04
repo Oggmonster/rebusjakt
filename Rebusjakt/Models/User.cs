@@ -13,6 +13,8 @@ namespace Rebusjakt.Models
 
         public string UserName { get; set; }
 
+        public string Slug { get; set; }
+
         public string Email { get; set; }
 
     }

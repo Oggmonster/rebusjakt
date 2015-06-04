@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Rebusjakt.Models;
+using Rebusjakt.Extensions;
 
 namespace Rebusjakt.Controllers
 {
@@ -151,7 +152,8 @@ namespace Rebusjakt.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var slug = model.UserName.ToSlug();
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Slug = slug };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

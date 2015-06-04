@@ -28,19 +28,24 @@
                             <p>
                                 <span class="icon icon-timer text-green"></span> Tidsgräns: @Model.Hunt.TimeLimit minuter
                             </p>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            
                             <p>
                                 <span class="icon icon-place text-green"></span> Startar vid: @Model.Hunt.StartLocation
                             </p>
+                            <p>
+                                <span class="icon icon-person text-green"></span> Skapad av: <a href="@Model.CreatorUrl" title="@Model.Creator">@Model.Creator</a>
+                            </p>
+                            <p>Vi rekommenderar att du befinner dig vid startpunkten innan du startar jakten.</p>
+                            <p>
+                                <a class="btn btn-blue" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            
+                            
                             <div id="map-container"></div>
                         </div>
                     </div>
-                    <p>Vi rekommenderar att du befinner dig vid startpunkten innan du startar jakten.</p>
-                    <p>
-                        <a class="btn btn-blue" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
-                    </p>
+                    
                 </div>
 
             </div>
@@ -49,6 +54,14 @@
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <h3 class="content-sub-heading">Topplista</h3>
                 <div class="tile-wrap">
+                    @if (Model.TopScores.Count == 0)
+                    {
+                        <div class="tile">
+                            <div class="tile-inner">
+                                Ingen har slutfört jakten än.
+                            </div>
+                        </div>
+                    }
                     @foreach (var item in Model.TopScores)
                     {
                         <div class="tile">
@@ -58,7 +71,7 @@
                                 </div>
                             </div>                            
                             <div class="tile-inner">
-                                    <a>@item.UserName</a>
+                                    <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a>
                             </div>
                         </div>
                     }
@@ -94,7 +107,7 @@
                             }
                             <div class="tile-inner">
                                     @item.Description<br />
-                                    <a>@item.UserName</a>
+                                    <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a>
                             </div>
                         </div>
                     }

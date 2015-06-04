@@ -164,8 +164,7 @@ var GameApp = React.createClass({
     },
 	render: function(){
 		var countDowntimer, mapButton, reviewForm, reviewThanks, scoreMessage = <p>{this.state.scoreMessage}</p>, endMessage = "Snyggt du har klarat alla rebusar!";
-		var marginStyle = { marginLeft : '20px'}
-		var solvedCount = this.state.data.filter(function(r){ return r.isSolved; }).length;
+		var marginStyle = { marginLeft : '20px'}, backUrl = "/jakt/" + this.state.master.huntId;
 		var hasCorrectRiddles = this.state.data.filter(function(r){ return r.isCorrect; }).length > 0;
 		var allCompleted = this.state.data.every(function(r){ return r.isCompleted });
 		var isCompleted = allCompleted || this.state.timeIsUp ;	
@@ -190,10 +189,13 @@ var GameApp = React.createClass({
 			this.state.isFinished ? 
 			(
 			<div>
+				
 				<h2 className="content-sub-heading">Ditt resultat är {this.state.master.score()} p med tiden {this.state.master.endTime } s</h2>
 				{scoreMessage}
 				<p>
-					För att föreviga ögonblicket får ni gärna ta en lagbild och ladda upp till Instagram med hashtagen #rebusjakt.
+					<span dangerouslySetInnerHTML={{__html: emojione.toImage(":camera:")}} /> <br />
+					För att föreviga ögonblicket får ni gärna ta en bild där ni försöker få med er själva samt platsen ni befinner er på.<br/>
+					Ladda upp bilden till Instagram med hashtagen #rebusjakt
 				</p>
 				<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-correct-hunt" >
 					<span className="collapsed-hide">Dölj</span>
@@ -204,6 +206,9 @@ var GameApp = React.createClass({
 				</div>	
 				{reviewForm}
 				{reviewThanks}
+				<p>
+					<a href={backUrl} className="btn">Avsluta</a>
+				</p>
 			</div>
 			)
 			:
@@ -213,11 +218,7 @@ var GameApp = React.createClass({
 			</div>) :
 			(<div>
 				<p>
-				{countDowntimer} 				
-				<span className="alt-text text-green" style={marginStyle}>
-					{solvedCount} av {this.state.total} rebusar avklarade.
-				</span>
-				{mapButton}
+					{countDowntimer} {mapButton}		 
 				</p>
 				<hr />
 				<GameRiddleList data={this.state.data} onRiddleOpen={this.handleRiddleOpen} onCollectQuestions={this.handleCollectQuestions} onAnswerQuestions={this.handleAnswerQuestions} />

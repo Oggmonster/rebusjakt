@@ -16,35 +16,37 @@ var ReviewForm = React.createClass({
 		return {isUpVote : true};
 	},
 	render: function(){
-		var voteText = this.state.isUpVote ? "Toppen!" : "Botten!";
+		var voteText = this.state.isUpVote ? "Toppen!" : "meh";
 		var upStyle = this.state.isUpVote ? {fontSize:"1.5em"} : {};
 		var downStyle = this.state.isUpVote ? {} : {fontSize:"1.5em"};
 		return(
-		<div>
-			<h2 className="content-sub-heading">Vad tyckte du?</h2>
-			<form onSubmit={this.handleSubmit}>
-				<p>{voteText}</p>
-				<a href="#" style={upStyle} onClick={this.handleVote.bind(null, true)}><span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /></a>
-				&nbsp; &nbsp; &nbsp; &nbsp;
-				<a href="#" style={downStyle} onClick={this.handleVote.bind(null, false)} ><span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsdown:")}} /></a>
-				
-				<div className="form-group">
-					<div className="row">
-						<div className="col-lg-6 col-md-8 col-sm-10">
-							<label>Kommentar</label>
-							<textarea rows="3" cols="30" className="form-control form-control-default" name="Description" ref="description"></textarea>
+		<div className="card-wrap">
+			<div className="card">
+				<div className="card-main">
+				<div className="card-inner">
+					<p className="card-heading text-alt">Vad tyckte du?</p>				
+					<p>{voteText}</p>
+					<a href="#" style={upStyle} onClick={this.handleVote.bind(null, true)}><span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /></a>
+					&nbsp; &nbsp; &nbsp; &nbsp;
+					<a href="#" style={downStyle} onClick={this.handleVote.bind(null, false)} ><span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsdown:")}} /></a>
+					<div className="form-group">
+						<div className="row">
+							<div className="col-lg-6 col-md-8 col-sm-10">
+								<label>Kommentar</label>
+								<textarea rows="3" cols="30" className="form-control form-control-default" name="Description" ref="description"></textarea>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div className="form-group-btn">
-					<div className="row">
-						<div className="col-lg-6 col-md-8 col-sm-10">
-							<button className="btn btn-blue waves-button waves-light waves-effect" type="submit">Skicka</button>
-						</div>
-					</div>
+				<div className="card-action">
+					<ul className="nav nav-list pull-left">
+						<li>
+							<a href="#" onClick={this.handleSubmit}><span className="text-blue">Skicka</span></a>
+						</li>
+					</ul>
 				</div>
-
-			</form>
+				</div>
+			</div>
 		</div>
 		);
 	}

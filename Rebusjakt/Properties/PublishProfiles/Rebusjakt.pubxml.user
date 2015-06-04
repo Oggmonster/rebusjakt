@@ -115,7 +115,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:43:59</publishTime>
     </File>
     <File Include="bin/Rebusjakt.dll">
-      <publishTime>06/03/2015 16:38:34</publishTime>
+      <publishTime>06/04/2015 16:53:22</publishTime>
     </File>
     <File Include="bin/ru-ru/JavaScriptEngineSwitcher.Core.resources.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -289,7 +289,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2015 16:20:25</publishTime>
     </File>
     <File Include="ReactComponents/GameApp.jsx">
-      <publishTime>06/03/2015 14:54:27</publishTime>
+      <publishTime>06/04/2015 16:52:44</publishTime>
     </File>
     <File Include="ReactComponents/GeocodeMap.jsx">
       <publishTime>06/03/2015 10:17:33</publishTime>
@@ -322,7 +322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/03/2015 14:40:40</publishTime>
     </File>
     <File Include="ReactComponents/ReviewForm.jsx">
-      <publishTime>06/03/2015 11:26:18</publishTime>
+      <publishTime>06/04/2015 16:31:25</publishTime>
     </File>
     <File Include="ReactComponents/RiddleController.jsx">
       <publishTime>05/12/2015 14:34:25</publishTime>
@@ -604,10 +604,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:27</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/02/2015 16:28:54</publishTime>
+      <publishTime>06/04/2015 15:50:29</publishTime>
     </File>
     <File Include="Views/Hunt/Index.cshtml">
-      <publishTime>06/03/2015 16:29:52</publishTime>
+      <publishTime>06/04/2015 15:43:42</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -640,7 +640,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/03/2015 12:07:15</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Riddles.cshtml">
-      <publishTime>06/03/2015 10:28:25</publishTime>
+      <publishTime>06/04/2015 12:37:54</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -657,6 +657,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_TopNavigation.cshtml">
       <publishTime>05/29/2015 10:40:03</publishTime>
     </File>
+    <File Include="Views/User/Index.cshtml">
+      <publishTime>06/04/2015 15:13:25</publishTime>
+    </File>
+    <File Include="Views/User/UserNotFound.cshtml">
+      <publishTime>06/04/2015 15:32:09</publishTime>
+    </File>
     <File Include="Views/Web.config">
       <publishTime>06/02/2015 16:18:14</publishTime>
     </File>
@@ -664,7 +670,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/03/2015 16:38:34</publishTime>
+      <publishTime>06/04/2015 16:53:22</publishTime>
     </File>
   </ItemGroup>
 </Project>

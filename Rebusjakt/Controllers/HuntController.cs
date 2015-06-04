@@ -14,12 +14,19 @@ namespace Rebusjakt.Controllers
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
-        public ActionResult Index(int id)
+        public ActionResult Index(int id, string slug)
         {
             var hunt = unitOfWork.HuntRepository.GetByID(id);
+            if (slug != hunt.Slug)
+            {
+                return RedirectPermanent(string.Format("/jakt/{0}/{1}", hunt.Id, hunt.Slug));
+            }
+            var creator = unitOfWork.UserRepository.GetByID(hunt.UserId);
             var viewModel = new HuntIndexViewModel
             {
-                Hunt = hunt
+                Hunt = hunt,
+                Creator = creator.UserName,
+                CreatorUrl = "/u/" + creator.Slug
             };            
             
             viewModel.HuntReviews = unitOfWork.HuntReviewRepository.Get().Where(h => h.HuntId == id)
@@ -28,6 +35,7 @@ namespace Rebusjakt.Controllers
                     Description = r.Description,
                     IsPositive = r.IsPositive,
                     UserName = r.User.UserName,
+                    UserUrl = "/u/" + r.User.Slug,
                     CreatedDate = r.CreatedDate                    
                 }).ToList();
 
@@ -35,6 +43,7 @@ namespace Rebusjakt.Controllers
                 new UserScoreViewModel
                 {
                     UserName = s.User.UserName,
+                    UserUrl = "/u/" + s.User.Slug,
                     Score = s.Score,
                     TimeInSeconds = s.TimeInSeconds,
                     CreatedDate = s.CreatedDate
