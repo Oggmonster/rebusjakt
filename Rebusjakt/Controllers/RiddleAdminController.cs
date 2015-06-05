@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Rebusjakt.Extensions;
+using Rebusjakt.Search;
 
 namespace Rebusjakt.Controllers
 {
@@ -16,6 +17,7 @@ namespace Rebusjakt.Controllers
     public class RiddleAdminController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+        private Indexer indexer = new Indexer();
 
         public ActionResult Index()
         {
@@ -39,7 +41,8 @@ namespace Rebusjakt.Controllers
                 hunt.UserId = User.Identity.GetUserId();
                 hunt.Slug = hunt.Name.ToSlug();
                 unitOfWork.HuntRepository.Insert(hunt);
-                unitOfWork.Save();
+                unitOfWork.Save();                
+                indexer.UpdateHunt(hunt);
                 return RedirectToAction("Index");
             }
             return View(hunt);
@@ -71,6 +74,7 @@ namespace Rebusjakt.Controllers
                 hunt.Slug = hunt.Name.ToSlug();
                 unitOfWork.HuntRepository.Update(hunt);
                 unitOfWork.Save();
+                indexer.UpdateHunt(hunt);
                 return RedirectToAction("Index");
             }
             return View(hunt);

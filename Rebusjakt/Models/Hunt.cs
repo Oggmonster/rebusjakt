@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nest;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,6 +44,19 @@ namespace Rebusjakt.Models
 
         public bool IsActive { get; set; }
 
+        [NotMapped]
+        [ElasticProperty(Type=FieldType.GeoPoint)]
+        public Location Location
+        {
+            get
+            {
+                double lat = 0, lng = 0;
+                double.TryParse(StartLatitude.Replace(".",","), out lat);
+                double.TryParse(StartLongitude.Replace(".", ","), out lng);
+                return new Location(lat, lng);
+            }
+        }
+
         //public DateTime? StartDate { get; set; }        
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -50,5 +64,17 @@ namespace Rebusjakt.Models
 
         public virtual ICollection<Riddle> Riddles { get; set; }
 
+    }
+
+    public class Location
+    {
+        public Location(double lat, double lon)
+        {
+            Lat = lat;
+            Lon = lon;
+        }
+
+        public double Lat { get; set; }
+        public double Lon { get; set; }
     }
 }
