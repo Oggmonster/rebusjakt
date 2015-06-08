@@ -30,7 +30,7 @@ namespace Rebusjakt.Controllers
             double lat = 0, lng = 0;
             double.TryParse(latStr.Replace(".", ","), out lat);
             double.TryParse(lngStr.Replace(".", ","), out lng);
-            var result = searcher.SearchByLocation(lat,lng);
+            var result = searcher.SearchByLocation(lat,lng, 10);
             var hunts = new List<Hunt>();
             if (result.Total > 0)
             {
@@ -40,7 +40,7 @@ namespace Rebusjakt.Controllers
             return View("Index", hunts);
         }
 
-        public JsonResult Search(string q, string latStr, string lngStr)
+        public JsonResult Search(string q, string latStr, string lngStr, int radius)
         {
             Nest.ISearchResponse<Hunt> result = null;
             var hunts = new List<Hunt>();
@@ -51,16 +51,21 @@ namespace Rebusjakt.Controllers
             {
                 if (!string.IsNullOrEmpty(q))
                 {
-                    result = searcher.SearchByQueryAndLocation(q, lat, lng);
+                    result = searcher.SearchByQueryAndLocation(q, lat, lng, radius);
                 }
                 else
                 {
-                    result = searcher.SearchByLocation(lat, lng);
+                    result = searcher.SearchByLocation(lat, lng, radius);
                 }
                 hunts = result.Hits.Select(h => h.Source).ToList();
                 CalculateDistances(hunts, lat, lng);
             }
-            return Json(hunts.Select(h => new { Name = h.Name, Description = h.Description, Distance = h.Distance, Theme = h.Theme }).ToList());           
+            else
+            {
+                result = searcher.Search(q);
+                hunts = result.Hits.Select(h => h.Source).ToList();
+            }
+            return Json(hunts.Select(h => new { Id = h.Id, Name = h.Name, Description = h.Description, Distance = h.Distance, Theme = h.Theme, StartLocation = h.StartLocation, TimeLimit = h.TimeLimit }).ToList());           
         }
 
         private List<Hunt> CalculateDistances(List<Hunt> hunts, double lat, double lng)
@@ -72,16 +77,9 @@ namespace Rebusjakt.Controllers
                 huntLng = 0;
                 double.TryParse(item.StartLatitude.Replace(".", ","), out huntLat);
                 double.TryParse(item.StartLongitude.Replace(".", ","), out huntLng);
-                item.Distance = GeolocationService.CalculateDistance(lat, lng, huntLat, huntLng);
+                item.Distance = Math.Round(GeolocationService.CalculateDistance(lat, lng, huntLat, huntLng));
             }
             return hunts;
-        }
-
-
-        public JsonResult Search(string q)
-        {            
-            var result = searcher.Search(q);
-            return Json(result);
         }
     }
 }

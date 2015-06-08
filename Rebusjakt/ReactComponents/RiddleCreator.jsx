@@ -22,27 +22,44 @@
             e.preventDefault();
             return false;
         },
+        isValid : function(){
+        	if(!this.refs.riddle.getDOMNode().value){
+        		alert("Du måste skriva in en rebus");
+        		return false;
+        	}
+        	if(!this.refs.answer.getDOMNode().value){
+        		alert("Du måste skriva in ett svar");
+        		return false;
+        	}
+        	if(!this.refs.locationname.getDOMNode().value){
+        		alert("Du måste skriva in vilken plats rebusen leder till");
+        		return false;
+        	}        	
+        	if(!this.refs.lat.getDOMNode().value){
+        		alert("Du måste markera rebusens plats på kartan");
+        		return false;
+        	}
+        	return true;
+
+        },
 		handleSaveForm: function(e){
 			e.preventDefault();
-            var latNode = this.refs.lat.getDOMNode();
-            var lngNode = this.refs.lng.getDOMNode();
-            var lat = latNode.value;
-            var lng = lngNode.value;
-            if(!lat || !lng)
-            {
-                alert("Du måste lägga till en adress som rebusen ska leda till");
-                return false;
-            }
+			if(!this.isValid()){
+				return false;
+			}
 			var riddle = {};
+			//serializearray ignores disabled (readonly) inputs?
 			$("#riddle-form").serializeArray().map(function(x){
 				riddle[x.name] = x.value;
 			});
+			riddle.Latitude = this.refs.lat.getDOMNode().value;
+			riddle.Longitude = this.refs.lng.getDOMNode().value;
 			riddle.Description = emojione.toShort(riddle.Description);
             this.props.onRiddleSubmit(riddle);
 			this.refs.riddle.getDOMNode().value = '';
 			this.refs.answer.getDOMNode().value = '';
-            latNode.value = '';
-            lngNode.value = '';
+            this.refs.lat.getDOMNode().value = '';
+            this.refs.lng.getDOMNode().value = '';
 		},
 		handleShowEmojiPicker: function(){
 			this.setState({ showEmojiPicker: true });
@@ -66,6 +83,7 @@
         },
         render: function(){
 			var riddleDescription, map, emojiPicker;
+			var coordInputStyle = { width:"80px", display:"inline-block" };
 			if(this.state.riddle.Description){
 				riddleDescription = <p dangerouslySetInnerHTML={{__html: emojione.toImage(this.state.riddle.Description)}} />;
 			}
@@ -81,8 +99,7 @@
                     <form id="riddle-form" ref="riddleform" onSubmit={this.handleSubmit} className="form">
 						<input type="hidden" name="Id" ref="id" value={this.props.riddle.Id} />
                         <input type="hidden" name="HuntId" value={this.props.huntId} />
-						<input type="hidden" name="Latitude" ref="lat" value={this.state.riddle.Latitude} onChange={this.handleChange.bind(this, "Latitude")} />
-                        <input type="hidden" name="Longitude" ref="lng" value={this.state.riddle.Longitude} onChange={this.handleChange.bind(this, "Longitude")} />
+						
 						<div className="form-group">
 							<div className="row">
 								<div className="col-lg-6 col-md-8 col-sm-10">
@@ -121,6 +138,11 @@
 					<div className="form-group">
 						<div className="row">
 							<div className="col-lg-6 col-md-8 col-sm-10">
+								 <p>
+                            		<input name="Latitude" type="text" placeholder="Latitud" ref="lat" readOnly value={this.state.riddle.Latitude} onChange={this.handleChange.bind(this, "Latitude")}  className="form-control form-control-default" style={coordInputStyle} />
+                            		<input name="Longitude" type="text" placeholder="Longitud" ref="lng"  readOnly value={this.state.riddle.Longitude} onChange={this.handleChange.bind(this, "Longitude")}  className="form-control form-control-default" style={coordInputStyle} />
+                            
+                        		</p>       
 								<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-map-region" onClick={this.handleShowMap}>
 									<span className="collapsed-hide">Dölj</span>
 									<span className="collapsed-show">Välj kartposition</span>

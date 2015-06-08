@@ -32,6 +32,10 @@ namespace Rebusjakt
                     "~/ReactComponents/MapApp.jsx"
                 ));
 
+            bundles.Add(new JsxBundle("~/bundles/search").Include(
+                    "~/ReactComponents/SearchApp.jsx"
+                ));
+
             bundles.Add(new JsxBundle("~/bundles/game").Include(
                     "~/js/gamemaster.js",
                     "~/ReactComponents/GoogleMap.jsx",

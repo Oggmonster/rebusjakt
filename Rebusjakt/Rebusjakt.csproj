@@ -97,6 +97,9 @@
     <Reference Include="React.Web">
       <HintPath>..\packages\React.Web.1.5.2\lib\net40\React.Web.dll</HintPath>
     </Reference>
+    <Reference Include="React.Web.Mvc4">
+      <HintPath>..\packages\React.Web.Mvc4.1.5.2\lib\net40\React.Web.Mvc4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite">
@@ -385,6 +388,7 @@
     <None Include="Properties\PublishProfiles\Rebusjakt.pubxml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="ReactComponents\SearchApp.jsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

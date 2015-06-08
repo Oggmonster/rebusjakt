@@ -35,6 +35,11 @@ namespace Rebusjakt.Search
             client.DeleteIndex(indexName);
         }
 
+        public void DeleteHunt(int id)
+        {
+            client.Delete<Hunt>(id);
+        }
+
         public void UpdateHunt(Hunt hunt)
         {
             var response = client.Update<Hunt, object>(h => h

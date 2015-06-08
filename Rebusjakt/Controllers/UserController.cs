@@ -24,7 +24,6 @@ namespace Rebusjakt.Controllers
             {
                 return View("UserNotFound");
             }
-            
             var viewModel = new UserIndexViewModel
             {
                 UserName = user.UserName

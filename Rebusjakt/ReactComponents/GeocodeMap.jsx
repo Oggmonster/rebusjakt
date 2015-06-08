@@ -10,16 +10,20 @@
             var map = new google.maps.Map(React.findDOMNode(this.refs.map),
                 mapOptions);
 
-            google.maps.event.addListener(map,'click',function(event) { 
-                var lat = event.latLng.lat();
-                var lng = event.latLng.lng();
-                var latlng = new google.maps.LatLng(lat,lng);
-                this.geoCodeIt({'latLng': latlng, 'region' : 'se'});
-            }.bind(this));
+            
 			var marker = new google.maps.Marker({
                 position: map.getCenter(),
                 map: map
             });
+            google.maps.event.addListener(map,'click',function(event) { 
+                var lat = event.latLng.lat();
+                var lng = event.latLng.lng();
+                var latlng = new google.maps.LatLng(lat,lng);
+                this.setState({lat: lat, lng: lng});
+                this.props.onPickPosition({'lat': lat , 'lng' : lng });
+                marker.setPosition(latlng);
+            }.bind(this));
+
 			this.geocoder = new google.maps.Geocoder();
 			this.map = map;
 			this.marker = marker;

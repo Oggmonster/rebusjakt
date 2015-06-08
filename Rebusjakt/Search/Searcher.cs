@@ -44,14 +44,14 @@ namespace Rebusjakt.Search
             return result;
         }
 
-        public ISearchResponse<Hunt> SearchByLocation(double lat, double lng)
+        public ISearchResponse<Hunt> SearchByLocation(double lat, double lng, int radius)
         {
             var result = client.Search<Hunt>(s => s
                 .Index(indexName)
                 .Filter(
                     filterDescriptor =>
                         filterDescriptor.GeoDistance(post1 => post1.Location, geoDistanceFilterDescriptor => geoDistanceFilterDescriptor
-                            .Distance(10, GeoUnit.Kilometers)
+                            .Distance(radius, GeoUnit.Kilometers)
                             .Location(lat, lng)
                             .Optimize(GeoOptimizeBBox.Indexed)))
                 .SortGeoDistance(sort => sort
@@ -66,7 +66,7 @@ namespace Rebusjakt.Search
               return result;
         }
 
-        public ISearchResponse<Hunt> SearchByQueryAndLocation(string query, double lat, double lng)
+        public ISearchResponse<Hunt> SearchByQueryAndLocation(string query, double lat, double lng, int radius)
         {
             if (string.IsNullOrEmpty(query))
             {
@@ -85,7 +85,7 @@ namespace Rebusjakt.Search
                 .Filter(
                     filterDescriptor =>
                         filterDescriptor.GeoDistance(post1 => post1.Location, geoDistanceFilterDescriptor => geoDistanceFilterDescriptor
-                            .Distance(10, GeoUnit.Kilometers)
+                            .Distance(radius, GeoUnit.Kilometers)
                             .Location(lat, lng)
                             .Optimize(GeoOptimizeBBox.Indexed)))
                 .SortGeoDistance(sort => sort

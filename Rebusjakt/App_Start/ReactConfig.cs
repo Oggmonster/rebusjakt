@@ -8,6 +8,9 @@ namespace Rebusjakt
 	{
 		public static void Configure()
 		{
+            ReactSiteConfiguration.Configuration = new ReactSiteConfiguration()
+               .AddScript("~/ReactComponents/SearchApp.jsx");
+
 			// ES6 features are enabled by default. Uncomment the below line to disable them.
 			// See http://reactjs.net/guides/es6.html for more information.
 			//ReactSiteConfiguration.Configuration.SetUseHarmony(false);

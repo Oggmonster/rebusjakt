@@ -42,7 +42,6 @@ namespace Rebusjakt.Controllers
                 hunt.Slug = hunt.Name.ToSlug();
                 unitOfWork.HuntRepository.Insert(hunt);
                 unitOfWork.Save();                
-                indexer.UpdateHunt(hunt);
                 return RedirectToAction("Index");
             }
             return View(hunt);
@@ -74,7 +73,10 @@ namespace Rebusjakt.Controllers
                 hunt.Slug = hunt.Name.ToSlug();
                 unitOfWork.HuntRepository.Update(hunt);
                 unitOfWork.Save();
-                indexer.UpdateHunt(hunt);
+                if (hunt.IsActive)
+                {
+                    indexer.UpdateHunt(hunt);
+                }                
                 return RedirectToAction("Index");
             }
             return View(hunt);
@@ -98,8 +100,13 @@ namespace Rebusjakt.Controllers
                 }
                 unitOfWork.RiddleRepository.Delete(riddle.Id);
             }
+            if (hunt.IsActive)
+            {
+                indexer.DeleteHunt(model.Id);
+            }
             unitOfWork.HuntRepository.Delete(hunt.Id);
             unitOfWork.Save();
+            
             return RedirectToAction("Index");
         }
 
@@ -114,6 +121,9 @@ namespace Rebusjakt.Controllers
             {
                 hunt.IsActive = true;
                 unitOfWork.Save();
+                //remove related object for index update to be able to serialize object
+                hunt.Riddles = null;
+                indexer.UpdateHunt(hunt);
                 return Json("ok");
             }
             else
@@ -131,6 +141,7 @@ namespace Rebusjakt.Controllers
             }
             hunt.IsActive = false;
             unitOfWork.Save();
+            indexer.DeleteHunt(hunt.Id);
             return Json("ok");
         }
 

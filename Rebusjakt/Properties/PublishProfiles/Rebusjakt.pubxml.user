@@ -118,10 +118,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/02/2015 16:28:43</publishTime>
     </File>
     <File Include="bin/React.Web.Mvc4.dll">
-      <publishTime>05/07/2015 09:43:59</publishTime>
+      <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="bin/Rebusjakt.dll">
-      <publishTime>06/05/2015 12:30:10</publishTime>
+      <publishTime>06/08/2015 15:06:06</publishTime>
     </File>
     <File Include="bin/ru-ru/JavaScriptEngineSwitcher.Core.resources.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -283,7 +283,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 10:08:19</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>06/05/2015 09:06:19</publishTime>
+      <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="ReactComponents/CorrectHunt.jsx">
       <publishTime>06/01/2015 16:33:08</publishTime>
@@ -338,6 +338,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="ReactComponents/RiddleGuesser.jsx">
       <publishTime>06/03/2015 14:46:34</publishTime>
+    </File>
+    <File Include="ReactComponents/SearchApp.jsx">
+      <publishTime>06/08/2015 15:02:25</publishTime>
     </File>
     <File Include="ReactComponents/TextGuesser.jsx">
       <publishTime>06/01/2015 13:56:26</publishTime>
@@ -610,10 +613,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:27</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/04/2015 15:50:29</publishTime>
+      <publishTime>06/08/2015 14:38:56</publishTime>
     </File>
     <File Include="Views/Hunt/Index.cshtml">
-      <publishTime>06/04/2015 15:43:42</publishTime>
+      <publishTime>06/08/2015 14:03:03</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -649,7 +652,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2015 12:37:54</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>06/05/2015 09:39:46</publishTime>
+      <publishTime>06/08/2015 15:00:13</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -658,13 +661,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/02/2015 14:36:07</publishTime>
+      <publishTime>06/08/2015 10:33:28</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
     <File Include="Views/Shared/_TopNavigation.cshtml">
-      <publishTime>06/05/2015 10:37:06</publishTime>
+      <publishTime>06/08/2015 14:35:20</publishTime>
     </File>
     <File Include="Views/User/Index.cshtml">
       <publishTime>06/04/2015 15:13:25</publishTime>
@@ -673,13 +676,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2015 15:32:09</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>06/02/2015 16:18:14</publishTime>
+      <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>05/07/2015 09:41:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/05/2015 12:30:11</publishTime>
+      <publishTime>06/08/2015 15:06:07</publishTime>
     </File>
   </ItemGroup>
 </Project>
