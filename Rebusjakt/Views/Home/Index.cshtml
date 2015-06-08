@@ -14,6 +14,9 @@
 </div>
 <div class="content-inner">
     <div class="container">
+        <p>
+            <a id="btn-bylocation" href="#" class="btn btn-blue">Hitta jakter nära mig</a>
+        </p>
         <h2 class="content-sub-heading">Senaste jakter</h2>
         <div class="card-wrap">
             <div class="row">
@@ -51,3 +54,26 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            var handleGeoPosition = function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                window.location = "/search/bylocation/?latStr=" + lat + "&lngStr=" + lng;
+            };
+            var handleGeoError = function () {
+                alert("funkar inte...");
+            };
+
+            $("#btn-bylocation").on("click", function (e) {
+                e.preventDefault();
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(handleGeoPosition, handleGeoError);
+                }
+            });
+
+        });
+    </script>
+}

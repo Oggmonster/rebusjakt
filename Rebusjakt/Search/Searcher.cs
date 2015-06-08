@@ -25,18 +25,21 @@ namespace Rebusjakt.Search
             client = new ElasticClient(settings);
         }
 
-        public ISearchResponse<Hunt> Search(string searchTerm)
+        public ISearchResponse<Hunt> Search(string query)
         {
-            searchTerm = string.Join("* ", searchTerm.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-            searchTerm += "*";
+            if (string.IsNullOrEmpty(query))
+            {
+                query = " ";
+            }
+            query = string.Join("* ", query.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            query += "*";
             var result = client.Search<Hunt>(s => s
                 .From(0)
                 .Size(50)
                 .Query(q =>
-                    q.QueryString(h => h.Query(searchTerm).OnFields(f => f.Name, f => f.Theme, f => f.Description).AnalyzeWildcard(true))
+                    q.QueryString(h => h.Query(query).OnFields(f => f.Name, f => f.Theme, f => f.Description).AnalyzeWildcard(true))
                 )
             );
-            //q.Fuzzy(fz => fz.OnField("name").Value(searchTerm)).
 
             return result;
         }
@@ -48,11 +51,53 @@ namespace Rebusjakt.Search
                 .Filter(
                     filterDescriptor =>
                         filterDescriptor.GeoDistance(post1 => post1.Location, geoDistanceFilterDescriptor => geoDistanceFilterDescriptor
-                            .Distance(500, GeoUnit.Kilometers)
+                            .Distance(10, GeoUnit.Kilometers)
                             .Location(lat, lng)
                             .Optimize(GeoOptimizeBBox.Indexed)))
-                );
+                .SortGeoDistance(sort => sort
+					.OnField(e => e.Location)
+					.Ascending()
+					.PinTo(lat, lng)
+					.Unit(GeoUnit.Kilometers)
+					.Mode(SortMode.Max)
+					.DistanceType(GeoDistance.Arc)
+				));
+            
               return result;
+        }
+
+        public ISearchResponse<Hunt> SearchByQueryAndLocation(string query, double lat, double lng)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                query = " ";
+            }
+            query = string.Join("* ", query.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            query += "*";
+
+            var result = client.Search<Hunt>(s => s
+                .Index(indexName)
+                .From(0)
+                .Size(50)
+                .Query(q =>
+                    q.QueryString(h => h.Query(query).OnFields(f => f.Name, f => f.Theme, f => f.Description).AnalyzeWildcard(true))
+                )
+                .Filter(
+                    filterDescriptor =>
+                        filterDescriptor.GeoDistance(post1 => post1.Location, geoDistanceFilterDescriptor => geoDistanceFilterDescriptor
+                            .Distance(10, GeoUnit.Kilometers)
+                            .Location(lat, lng)
+                            .Optimize(GeoOptimizeBBox.Indexed)))
+                .SortGeoDistance(sort => sort
+                    .OnField(e => e.Location)
+                    .Ascending()
+                    .PinTo(lat, lng)
+                    .Unit(GeoUnit.Kilometers)
+                    .Mode(SortMode.Max)
+                    .DistanceType(GeoDistance.Arc)
+                ));
+
+            return result;
         }
     }
 }

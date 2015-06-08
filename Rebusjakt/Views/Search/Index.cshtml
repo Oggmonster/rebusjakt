@@ -17,7 +17,7 @@
         <ul>
             @foreach (var item in Model)
             {
-                <li>@item.Name</li>
+                <li>@item.Name @if (item.Distance > 0) { <span>@item.StartLocation @item.Distance.ToString("0") m</span> }</li>
             }
         </ul>
     </div>

@@ -57,6 +57,9 @@ namespace Rebusjakt.Models
             }
         }
 
+        [NotMapped]
+        public double Distance { get; set; }
+
         //public DateTime? StartDate { get; set; }        
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
