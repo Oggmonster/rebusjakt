@@ -102,7 +102,7 @@ var GameApp = React.createClass({
 	},
 	handleRiddleOpen: function(gameRiddle){
 		this.showContentContainer();
-		React.render(<RiddleGuesser gameRiddle={gameRiddle} maxwrong={3} onReturn={this.handleReturn} onSolved={this.handleRiddleSolved}  />, document.getElementById("content-container"));
+		React.render(<RiddleGuesser gameRiddle={gameRiddle} maxwrong={3} onReturn={this.handleReturn} onSolved={this.handleRiddleSolved} onSave={this.save}  />, document.getElementById("content-container"));
 	},
 	handleQuestionsCollected: function(gameRiddle){
 		if(gameRiddle){
@@ -118,7 +118,7 @@ var GameApp = React.createClass({
 	},	
 	handleAnswerQuestions: function(gameRiddle){
 		this.showContentContainer();
-		React.render(<QuestionGuesser gameRiddle={gameRiddle} onReturn={this.handleReturn} onCompleted={this.handleQuestionsCompleted} />, document.getElementById("content-container"));
+		React.render(<QuestionGuesser gameRiddle={gameRiddle} onReturn={this.handleReturn} onCompleted={this.handleQuestionsCompleted} onSave={this.save} />, document.getElementById("content-container"));
 	},
 	handleQuestionsCompleted: function(gameRiddle){
 		this.hideContentContainer();
@@ -148,7 +148,7 @@ var GameApp = React.createClass({
 		huntReview.HuntId = this.state.master.huntId;
 		huntReview.UserId = this.state.master.userId;
 		$.post("/game/addreview",huntReview, function(response){
-			console.log(response);
+			//console.log(response);
 		},"json");
 		this.setState({hasReview:true});
 	},
@@ -190,12 +190,10 @@ var GameApp = React.createClass({
 			(
 			<div>
 				
-				<h2 className="content-sub-heading">Ditt resultat är {this.state.master.score()} p med tiden {this.state.master.endTime } s</h2>
+				<h2 className="content-sub-heading">Ditt resultat är {this.state.master.score()} p med tiden {this.state.master.endTime}</h2>
 				{scoreMessage}
 				<p>
-					<span dangerouslySetInnerHTML={{__html: emojione.toImage(":camera:")}} /> <br />
-					För att föreviga ögonblicket får ni gärna ta en bild där ni försöker få med er själva samt platsen ni befinner er på.<br/>
-					Ladda upp bilden till Instagram med hashtagen #rebusjakt
+					<strong><span dangerouslySetInnerHTML={{__html: emojione.toImage(":camera:")}} />  bonusuppdrag (frivilligt)</strong><br /> Ta en bild på platsen där ni befinner er och ladda upp till Instagram med hashtagen #rebusjakt
 				</p>
 				<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-correct-hunt" >
 					<span className="collapsed-hide">Dölj</span>

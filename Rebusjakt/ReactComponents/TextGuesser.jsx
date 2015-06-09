@@ -59,7 +59,8 @@ var TextGuesser = React.createClass({
 		//check if wrong guess - and check against no. of wrong guesses
         guess = guess.toUpperCase();
         var wrongGuesses = this.state.wrongGuesses;
-        var guessWord = this.state.guessword;
+        var correctGuesses = this.state.correctGuesses;
+        var guessword = this.state.guessword;
         var answer = this.props.answer;
         if(guess.length > 1){
             if(guess === answer){
@@ -68,22 +69,25 @@ var TextGuesser = React.createClass({
             }else{
 				wrongGuesses.push(guess);
             }
-        }else{
-            var guessWordChars = guessWord.split('');
+        }else{ 
+            var correctChars = guessword.split('');           
             var answerChars = answer.split('');
             var hasHit = false;
             for(var i = 0; i < answer.length; i++){
                 if(answer[i] === guess){
-                    guessWordChars[i] = guess;
+                    correctChars[i] = guess;
                     hasHit = true;
                 }                        
             }
-            if(!hasHit)
+            if(!hasHit){
                 wrongGuesses.push(guess);
-
-            guessWord = guessWordChars.join('');
+            }else
+            {
+                correctGuesses.push(guess);
+            }           
+            guessword = correctChars.join('');
         }
-        if(guessWord === answer){
+        if(guessword === answer){
             this.endGuessing(true);
             return false;
         }
@@ -91,21 +95,31 @@ var TextGuesser = React.createClass({
             this.endGuessing(false);
             return false;
         }
-        this.setState({wrongGuesses: wrongGuesses, guessword: guessWord });
+        this.props.onSave();
+        this.setState({wrongGuesses: wrongGuesses, guessword: guessword, correctGuesses: correctGuesses});
 	},
-	initGuessWord : function(answerWord){
+	initGuessWord : function(answerWord, correctGuesses){
         var answer = answerWord.split('');
-        var guessWord = '';
+        var guessword = "";
         for (var i = 0; i < answer.length; i++) {
-            guessWord += answer[i] === ' ' ? " " : "_";
+            var letter = answer[i];
+            if(correctGuesses.indexOf(letter) !== -1){
+                guessword += letter;
+            }
+            else if(answer[i] === ' '){
+                guessword += " ";
+            }
+            else{
+                guessword += "_";
+            }
         }
-        return guessWord;
+        return guessword;
     },
 	componentWillReceiveProps : function(nextProps){
-        this.setState({ guessword: this.initGuessWord(nextProps.answer), wrongGuesses: [] });
+        this.setState({ guessword: this.initGuessWord(nextProps.answer, nextProps.correctGuesses), wrongGuesses: nextProps.wrongGuesses, correctGuesses: nextProps.correctGuesses });
     },
-    getInitialState: function() {
-        return { guessword: this.initGuessWord(this.props.answer), wrongGuesses: [] };
+    getInitialState: function() {  
+        return { guessword: this.initGuessWord(this.props.answer, this.props.correctGuesses), wrongGuesses: this.props.wrongGuesses, correctGuesses: this.props.correctGuesses };
     },
 	render: function(){
 		return(

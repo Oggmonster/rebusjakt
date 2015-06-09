@@ -33,49 +33,6 @@
         handleHasAnswered : function(isCorrect) {
             this.setState({ isOver : true, isWinner : isCorrect });
         },
-        handleGuess : function(guess){
-            //check if wrong guess - and check against no of wrong guesses
-            guess = guess.toUpperCase();
-            var guessCount = this.state.guesscount;
-            guessCount++;
-            var guesses = this.state.guesses;
-            guesses.push(guess);
-            var guessWord = this.state.guessword;
-            var answer = this.state.riddle.Answer;
-            var wrongcount = this.state.wrongcount;
-            if(guess.length > 1){
-                if(guess === answer){
-                    this.endGuessing(true);
-                    return false;
-                }else{
-                    wrongcount++;
-                }
-            }else{
-                var guessWordChars = guessWord.split('');
-                var answerChars = answer.split('');
-                var hasHit = false;
-                for(var i = 0; i < answer.length; i++){
-                    if(answer[i] === guess){
-                        guessWordChars[i] = guess;
-                        hasHit = true;
-                    }                        
-                }
-                if(!hasHit)
-                    wrongcount++;
-
-                guessWord = guessWordChars.join('');
-            }
-            if(guessWord === answer){
-                this.endGuessing(true);
-                return false;
-            }
-            if(wrongcount >= this.props.maxwrong){
-                this.endGuessing(false);
-                return false;
-            }
-            this.setState({guesscount:guessCount, wrongcount: wrongcount, guessword: guessWord, guesses : guesses, isOver : false });
-        },
-        
 		handleSolved: function(isWinner){
 			var gameRiddle = this.state.gameRiddle;
 			gameRiddle.isSolved = true;
@@ -106,7 +63,7 @@
                             <div>
 								<h2 className="content-sub-heading">Lös rebus</h2>
 								<p dangerouslySetInnerHTML={{__html: emojione.toImage(this.state.riddle.Description)}} />
-                                <TextGuesser answer={this.state.riddle.Answer} maxwrong={this.props.maxwrong} onHasAnswered={this.handleHasAnswered} />
+                                <TextGuesser answer={this.state.riddle.Answer} wrongGuesses={this.state.gameRiddle.wrongGuesses} correctGuesses={this.state.gameRiddle.correctGuesses} maxwrong={this.props.maxwrong} onHasAnswered={this.handleHasAnswered} onSave={this.props.onSave} />
 								<p>
 									<a href="#" onClick={this.handleReturn}>Återgå till rebuslistan</a>
 								</p>

@@ -29,12 +29,15 @@
                                         @item.Description
                                     </p>
                                     <div class="activation-container">
-                                        <strong class="activation-message">@(item.IsActive ? "Visas publikt" : "Visas inte publikt")</strong>
+                                        
+                                        Länk till jakten: <a href="/jakt/@item.Id/@item.Slug" title="">/jakt/@item.Id/@item.Slug</a>
                                         <p>
+                                            <strong class="activation-message">@(item.IsActive ? "Visas publikt" : "Visas inte publikt")</strong> &nbsp;
                                             <a href="#" class="btn-makeactive btn btn-blue @(item.IsActive ? "hide" : "")" data-id="@item.Id">Visa publikt</a>
-                                            <a href="#" class="btn-makeinactive btn btn-red @(item.IsActive ? "" : "hide")" data-id="@item.Id">Visa inte publikt</a>
+                                            <a href="#" class="btn-makeinactive btn btn-sm @(item.IsActive ? "" : "hide")" data-id="@item.Id">Visa inte publikt</a>
                                         </p>
                                     </div>
+                                    
                                 </div>
                                 <div class="card-action">
                                     <ul class="nav nav-list pull-left">

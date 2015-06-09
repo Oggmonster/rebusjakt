@@ -121,7 +121,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="bin/Rebusjakt.dll">
-      <publishTime>06/08/2015 15:06:06</publishTime>
+      <publishTime>06/09/2015 17:42:46</publishTime>
     </File>
     <File Include="bin/ru-ru/JavaScriptEngineSwitcher.Core.resources.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -274,7 +274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 10:08:19</publishTime>
     </File>
     <File Include="js/gamemaster.js">
-      <publishTime>06/03/2015 14:13:21</publishTime>
+      <publishTime>06/09/2015 14:28:51</publishTime>
     </File>
     <File Include="js/html5shiv.js">
       <publishTime>05/20/2015 10:08:19</publishTime>
@@ -286,19 +286,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="ReactComponents/CorrectHunt.jsx">
-      <publishTime>06/01/2015 16:33:08</publishTime>
+      <publishTime>06/09/2015 10:24:08</publishTime>
     </File>
     <File Include="ReactComponents/CountDownTimer.jsx">
-      <publishTime>06/01/2015 13:54:53</publishTime>
+      <publishTime>06/09/2015 09:40:09</publishTime>
     </File>
     <File Include="ReactComponents/EmojiPicker.jsx">
       <publishTime>05/22/2015 16:20:25</publishTime>
     </File>
     <File Include="ReactComponents/GameApp.jsx">
-      <publishTime>06/04/2015 16:52:44</publishTime>
+      <publishTime>06/09/2015 14:00:43</publishTime>
     </File>
     <File Include="ReactComponents/GeocodeMap.jsx">
-      <publishTime>06/03/2015 10:17:33</publishTime>
+      <publishTime>06/08/2015 16:07:31</publishTime>
     </File>
     <File Include="ReactComponents/GoogleMap.jsx">
       <publishTime>06/03/2015 10:30:34</publishTime>
@@ -325,7 +325,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2015 09:37:51</publishTime>
     </File>
     <File Include="ReactComponents/QuestionGuesser.jsx">
-      <publishTime>06/03/2015 14:40:40</publishTime>
+      <publishTime>06/09/2015 14:48:30</publishTime>
     </File>
     <File Include="ReactComponents/ReviewForm.jsx">
       <publishTime>06/04/2015 16:31:25</publishTime>
@@ -334,16 +334,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/12/2015 14:34:25</publishTime>
     </File>
     <File Include="ReactComponents/RiddleCreator.jsx">
-      <publishTime>06/01/2015 15:43:31</publishTime>
+      <publishTime>06/09/2015 16:54:40</publishTime>
     </File>
     <File Include="ReactComponents/RiddleGuesser.jsx">
-      <publishTime>06/03/2015 14:46:34</publishTime>
+      <publishTime>06/09/2015 14:40:13</publishTime>
     </File>
     <File Include="ReactComponents/SearchApp.jsx">
       <publishTime>06/08/2015 15:02:25</publishTime>
     </File>
     <File Include="ReactComponents/TextGuesser.jsx">
-      <publishTime>06/01/2015 13:56:26</publishTime>
+      <publishTime>06/09/2015 14:40:57</publishTime>
     </File>
     <File Include="ReactComponents/TrueOrFalseGuesser.jsx">
       <publishTime>05/22/2015 16:55:49</publishTime>
@@ -604,19 +604,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
     <File Include="Views/Game/Index.cshtml">
-      <publishTime>06/03/2015 15:27:05</publishTime>
+      <publishTime>06/09/2015 10:25:27</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>05/07/2015 09:41:27</publishTime>
+      <publishTime>06/09/2015 16:10:25</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>05/07/2015 09:41:27</publishTime>
     </File>
+    <File Include="Views/Home/HowTo.cshtml">
+      <publishTime>06/09/2015 17:23:13</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/08/2015 14:38:56</publishTime>
+      <publishTime>06/09/2015 17:35:16</publishTime>
     </File>
     <File Include="Views/Hunt/Index.cshtml">
-      <publishTime>06/08/2015 14:03:03</publishTime>
+      <publishTime>06/09/2015 11:39:08</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -646,13 +649,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/03/2015 11:47:11</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Index.cshtml">
-      <publishTime>06/03/2015 12:07:15</publishTime>
+      <publishTime>06/09/2015 17:12:21</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Riddles.cshtml">
       <publishTime>06/04/2015 12:37:54</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>06/08/2015 15:00:13</publishTime>
+      <publishTime>06/08/2015 15:12:25</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -661,16 +664,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/08/2015 10:33:28</publishTime>
+      <publishTime>06/09/2015 17:27:22</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
     <File Include="Views/Shared/_TopNavigation.cshtml">
-      <publishTime>06/08/2015 14:35:20</publishTime>
+      <publishTime>06/09/2015 16:06:48</publishTime>
     </File>
     <File Include="Views/User/Index.cshtml">
-      <publishTime>06/04/2015 15:13:25</publishTime>
+      <publishTime>06/09/2015 11:40:05</publishTime>
     </File>
     <File Include="Views/User/UserNotFound.cshtml">
       <publishTime>06/04/2015 15:32:09</publishTime>

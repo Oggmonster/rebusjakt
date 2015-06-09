@@ -20,6 +20,8 @@ namespace Rebusjakt.Models
         [Required]
         public int HuntId { get; set; }
 
+        public virtual Hunt Hunt { get; set; }
+
         [Required]
         public int TimeInSeconds { get; set; }
 

@@ -3,6 +3,7 @@ obj/
 debug/
 packages/
 App_Data/
+node_modules/
 
 # Compiled source #
 ###################

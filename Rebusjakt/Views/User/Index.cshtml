@@ -14,7 +14,82 @@
 </div>
 <div class="content-inner">
     <div class="container">
-        <p>@Model.UserName</p>
+       <div class="row">
+           <div class="col-lg-6 col-md-6">
+               <h2 class="content-sub-heading">Skapare av</h2>
+               <div class="card-wrap">
+                   @if (Model.Hunts.Count == 0)
+                   {
+                       <div class="card">
+                           <div class="card-main">
+                               <div class="card-inner">
+                                   <p class="card-heading text-alt">Inte mycket</p>
+                                   <p>
+                                       @Model.UserName verkar inte ha skapat några jakter.
+                                   </p>
+                               </div>
+                           </div>
+                       </div>
+                   }
+                   @foreach (var item in Model.Hunts)
+                   {
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading text-alt">@item.Name</p>
+                                <p>
+                                    <span class="icon icon-place text-green"></span> @item.StartLocation
+                                </p>
+                                <p>
+                                    <span class="icon icon-label text-green"></span> @item.Theme
+                                </p>
+                                <p>
+                                    <span class="icon icon-timer text-green"></span> @item.TimeLimit minuter
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <ul class="nav nav-list pull-left">
+                                    <li>
+                                        <a href="/jakt/@item.Id/@item.Slug" title="@item.Name">
+                                            <span class="text-blue">Visa</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                   }
+               </div>
+           </div>
+           <div class="col-lg-6 col-md-6">
+               <h2 class="content-sub-heading">Har deltagit i</h2>
+               <div class="tile-wrap">
+                   @if (Model.UserScores.Count == 0)
+                   {
+                       <div class="tile">
+                           <div class="tile-inner">
+                               @Model.UserName har inte deltagit i några jakter.
+                           </div>
+                       </div>
+                   }
+                   @foreach (var item in Model.UserScores)
+                   {
+                       <div class="tile">
+                           <div class="pull-left tile-side">
+                               <div class="avatar avatar-blue avatar-md">
+                                   @(item.Score) p
+                               </div>
+                           </div>
+                           <div class="tile-inner">
+                               <a href="@item.HuntUrl" title="@item.HuntName">@item.HuntName</a><br />
+                               <span class="icon icon-timer text-green"></span> @item.TimeDisplay &nbsp;
+                               <span class="icon icon-event text-green"></span> @item.CreatedDate.ToString("dd MMM - yyyy")
+                           </div>
+                       </div>
+                   }
+               </div>
+           </div>
+       </div>
     </div>
 </div>
 

@@ -71,7 +71,9 @@
                                 </div>
                             </div>                            
                             <div class="tile-inner">
-                                    <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a>
+                                <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a><br />
+                                <span class="icon icon-timer text-green"></span> @item.TimeDisplay &nbsp;
+                                <span class="icon icon-event text-green"></span> @item.CreatedDate.ToString("dd MMM - yyyy")
                             </div>
                         </div>
                     }

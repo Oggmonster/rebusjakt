@@ -1,7 +1,93 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Om Rebusjakt";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="content-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
+                <h1 class="heading">Om Rebusjakt</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-inner">
+    <div class="container">
+        <nav class="tab-nav">
+            <ul class="nav nav-justified">
+                <li class="active">
+                    <a class="waves-effect" data-toggle="tab" href="#history" aria-expanded="true">Historia</a>
+                </li>
+                <li class="">
+                    <a class="waves-effect" data-toggle="tab" href="#tech" aria-expanded="false">Teknisk info</a>
+                </li>
+                <li class="">
+                    <a class="waves-effect" data-toggle="tab" href="#cookies" aria-expanded="false">Cookies</a>
+                </li>
+            </ul>
+            <div class="tab-nav-indicator" ></div>
+        </nav>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="history">
+                <p>
+                    Idén till sidan kommer från en årlig släkttradition där min släkt träffas dagen efter midsommar varje år för en så kallad båtrebusjakt.
+                </p>
+            </div>
+            <div class="tab-pane fade" id="tech">
+                <p>
+                    Github <a href="https://github.com/Oggmonster/rebusjakt">https://github.com/Oggmonster/rebusjakt</a>
+                </p>
+                <div class="card-wrap">
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading text-alt">Frontend</p>
+                                <p>
+                                    Material HTML 5 UI Design <a href="https://github.com/Daemonite/material" title="Material HTML 5 UI">https://github.com/Daemonite/material</a>
+                                </p>
+                                <p>
+                                    React JS <a href="https://facebook.github.io/react/" title="React JS">https://facebook.github.io/react/</a>
+                                </p>
+                                <p>
+                                    Emojione <a href="http://emojione.com/" title="Emoji One">http://emojione.com/</a>
+                                </p>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading text-alt">Backend</p>
+                                <p>
+                                    .Net MVC 5 med OWIN för användarhantering.
+                                </p>
+                                <p>
+                                    Sök byggt med Elasticsearch <a href="https://www.elastic.co/products/elasticsearch" title="Elastic search">https://www.elastic.co/products/elasticsearch</a>
+                                </p>
+                                <p>
+                                    SQLite till databas <a href="https://www.sqlite.org/">https://www.sqlite.org/</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading text-alt">Hosting</p>
+                                <p>
+                                    Amazon Web Services <a href="http://aws.amazon.com/free/">http://aws.amazon.com/free/</a>
+                                </p>
+                                <p>
+                                    Använder bl.a. EC2, S3 och CloudFront
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="cookies">
+                <p>Sidan använder cookies för att förbättra sidans användbarhet i form av exempelvis inloggninsfunktionalitet och dataanalys.</p>
+            </div>
+        </div>
+    </div>
+</div>

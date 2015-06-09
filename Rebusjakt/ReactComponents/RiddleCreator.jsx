@@ -129,7 +129,7 @@
 						<div className="form-group">
 							<div className="row">
 								<div className="col-lg-6 col-md-8 col-sm-10">
-									<label>Namn på plats dit rebusen leder</label>
+									<label>Namn på plats där frågorna finns</label>
 									<input className="form-control form-control-default" type="text" name="LocationName" ref="locationname" value={this.state.riddle.LocationName} onChange={this.handleChange.bind(this, "LocationName")} />
 								</div>
 							</div>

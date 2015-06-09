@@ -24,9 +24,21 @@ namespace Rebusjakt.Controllers
             {
                 return View("UserNotFound");
             }
+            var userScores = unitOfWork.UserScoreRepository.Get().Where(u => u.UserId == user.Id).Select(s => new UserScoreViewModel
+            {
+                Score = s.Score,
+                TimeInSeconds = s.TimeInSeconds,
+                CreatedDate = s.CreatedDate,
+                HuntName = s.Hunt.Name,
+                HuntUrl = "/jakt/" + s.HuntId + "/" + s.Hunt.Slug
+            }).ToList();
+
+            var userHunts = unitOfWork.HuntRepository.Get().Where(h => h.UserId == user.Id).ToList();
             var viewModel = new UserIndexViewModel
             {
-                UserName = user.UserName
+                UserName = user.UserName,
+                UserScores = userScores,
+                Hunts = userHunts
             };
             return View(viewModel);
         }

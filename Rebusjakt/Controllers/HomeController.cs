@@ -14,7 +14,7 @@ namespace Rebusjakt.Controllers
 
         public ActionResult Index()
         {
-            var hunts = unitOfWork.HuntRepository.Get().Where(h => h.IsActive).ToList();
+            var hunts = unitOfWork.HuntRepository.Get().Where(h => h.IsActive).Take(5).ToList();
             return View(hunts);
         }
 
@@ -22,6 +22,11 @@ namespace Rebusjakt.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+        public ActionResult HowTo()
+        {
             return View();
         }
 

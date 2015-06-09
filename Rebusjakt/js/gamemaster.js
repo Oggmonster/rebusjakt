@@ -22,7 +22,7 @@ var GameMaster = function (hunt) {
         this.create(hunt.Riddles);
         this.save();
     }
-}
+};
 
 GameMaster.prototype.create = function (riddles) {
     var gameRiddles = [];
@@ -32,7 +32,9 @@ GameMaster.prototype.create = function (riddles) {
             gameQuestions.push({
                 question: q,
                 isAnswered: false,
-                isCorrect: false
+                isCorrect: false,
+                correctGuesses: [],
+                wrongGuesses : []
             });
         });
         gameRiddles.push({
@@ -42,7 +44,9 @@ GameMaster.prototype.create = function (riddles) {
             hasQuestions: false,
             isCorrect: false,
             isSuspicious: false,
-            isCompleted: false
+            isCompleted: false,
+            correctGuesses: [],
+            wrongGuesses: []
         });
     });
     this.gameRiddles = gameRiddles;
@@ -72,7 +76,18 @@ GameMaster.prototype.finish = function (callBack) {
         Score: this.score(),
         TimeInSeconds: timeInSeconds
     };
-    this.endTime = timeInSeconds;
+    var friendlyTime = function(time){
+        if(time === 0){
+            return "0.00.00";
+        }
+        var hours = Math.floor(time / 3600);
+        var minutes = Math.floor((time % 3600) / 60);    
+        var seconds = time % 60;
+    
+        return "" + hours + "." + (minutes < 10 ? "0" + minutes : minutes) + "." + (seconds < 10 ? "0" + seconds : seconds);
+    };
+
+    this.endTime = friendlyTime(timeInSeconds);
     $.post("/game/savescore", userScore, callBack, "json");
     localStorage.removeItem(this.huntKey);
 }

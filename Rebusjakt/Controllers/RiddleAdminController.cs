@@ -181,7 +181,8 @@ namespace Rebusjakt.Controllers
             var errors = new List<string>();
             if (ModelState.IsValid)
             {
-                riddle.Answer = riddle.Answer.ToUpper();
+                riddle.Description = riddle.Description.Trim();
+                riddle.Answer = riddle.Answer.Trim().ToUpper();
                 riddle.SortDate = DateTime.Now;
                 unitOfWork.RiddleRepository.Insert(riddle);
                 unitOfWork.Save();
@@ -207,7 +208,8 @@ namespace Rebusjakt.Controllers
             var errors = new List<string>();
             if (ModelState.IsValid)
             {
-                riddle.Answer = riddle.Answer.ToUpper();
+                riddle.Description = riddle.Description.Trim();
+                riddle.Answer = riddle.Answer.Trim().ToUpper();
                 riddle.SortDate = DateTime.Now; //fix <<              
                 unitOfWork.RiddleRepository.Update(riddle);
                 unitOfWork.Save();

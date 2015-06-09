@@ -4,12 +4,13 @@ var GameQuestion = React.createClass({
 		var gameQuestion = this.props.data;
 		gameQuestion.isAnswered = true;
 		gameQuestion.isCorrect = isCorrect;
+		this.props.onSave();
 		this.props.onHasAnswered(gameQuestion);
 	},
 	render: function(){
 		var answer = this.props.data.question.Answer;
 		var answerForms = {
-			"text" : <TextGuesser answer={answer} maxwrong={3} onHasAnswered={this.handleHasAnswered} />,
+			"text" : <TextGuesser answer={answer} wrongGuesses={this.props.data.wrongGuesses} correctGuesses={this.props.data.correctGuesses} maxwrong={3} onHasAnswered={this.handleHasAnswered} onSave={this.props.onSave} />,
 			"number" : <NumberGuesser answer={answer} onHasAnswered={this.handleHasAnswered} />,
 			"multi" : <MultiGuesser answer={answer} options={this.props.data.question.AnswerOptions} onHasAnswered={this.handleHasAnswered}s />,
 			"trueorfalse" : <TrueOrFalseGuesser answer={answer} onHasAnswered={this.handleHasAnswered} />
@@ -56,7 +57,7 @@ var QuestionGuesser = React.createClass({
 			finishedMessage = <p><span dangerouslySetInnerHTML={{__html: emojione.toImage(":thumbsup:")}} /> Alla frågor besvarade. Du kan återgå till rebuslistan.</p>;
 		}
 		if(this.state.showQuestion){
-			jsxQuestion = <GameQuestion data={this.state.gameQuestion} onHasAnswered={this.handleHasAnswered} />;
+			jsxQuestion = <GameQuestion data={this.state.gameQuestion} onHasAnswered={this.handleHasAnswered} onSave={this.props.onSave} />;
 		}else{
 			var nodes = this.state.gameQuestions.map(function(q){
 				var actions, cardClass = "card";
