@@ -21,6 +21,8 @@ var ReviewForm = React.createClass({
 		var downStyle = this.state.isUpVote ? {} : {fontSize:"1.5em"};
 		return(
 		<div className="card-wrap">
+			<div className="row">
+			<div className="col-lg-6 col-md-8 col-sm-10">
 			<div className="card">
 				<div className="card-main">
 				<div className="card-inner">
@@ -46,6 +48,8 @@ var ReviewForm = React.createClass({
 					</ul>
 				</div>
 				</div>
+			</div>
+			</div>
 			</div>
 		</div>
 		);

@@ -14,58 +14,56 @@
 </div>
 <div class="content-inner">
     <div class="container">
-        <div class="card-wrap">
-            <div class="card">
-                <div class="card-main">
-                    <div class="card-inner">
-                        <p class="card-heading text-alt">Välkommen till rebusjakt</p>
-                        <p>
-                            Vet du hur det går till kan du sätta igång direkt &nbsp; <a id="btn-bylocation" href="#" class="btn btn-blue"><span class="icon icon-my-location"></span> Hitta jakter nära mig</a>
-                        </p>
-                        <p>
-                            Är du ny här kan du läsa vår <a href="/home/howto">nybörjarguide</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-                    <h2 class="content-sub-heading">Senaste jakter</h2>
-                    <div class="card-wrap">
-                        <div class="row">
-                            @foreach (var item in Model)
-                            {
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="card">
-                                        <div class="card-main">
-                                            <div class="card-inner">
-                                                <p class="card-heading text-alt">@item.Name</p>
-                                                <p>
-                                                    <span class="icon icon-place text-green"></span> @item.StartLocation
-                                                </p>
-                                                <p>
-                                                    <span class="icon icon-label text-green"></span> @item.Theme
-                                                </p>
-                                                <p>
-                                                    <span class="icon icon-timer text-green"></span> @item.TimeLimit minuter
-                                                </p>
-                                            </div>
-                                            <div class="card-action">
-                                                <ul class="nav nav-list pull-left">
-                                                    <li>
-                                                        <a href="/jakt/@item.Id/@item.Slug" title="@item.Name">
-                                                            <span class="text-blue">Visa</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                <div class="card-wrap">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-main">
+                                    <div class="card-img">
+                                        <img src="http://d2igriiyls8v77.cloudfront.net/images/rebusheader.jpg" />
+                                    </div>
+                                    <div class="card-inner">
+                                        <p class="card-heading text-alt">Välkommen till rebusjakt</p>
+                                        <p>
+                                            Vet du hur det går till kan du sätta igång direkt <a id="btn-bylocation" href="#" class="btn btn-blue"><span class="icon icon-my-location"></span> Hitta jakter nära mig</a>
+                                        </p>
+                                        <p>
+                                            Är du ny här kan du läsa vår <a href="/home/howto">guide - Hur gör man?</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-main">
+                                        <div class="card-inner">
+                                            <p class="card-heading text-alt">@item.Name</p>
+                                            <p>
+                                                <span class="icon icon-place text-green"></span> Startplats: @item.StartLocation<br />
+                                                <span class="icon icon-label text-green"></span> Tema: @item.Theme <br />
+                                                <span class="icon icon-timer text-green"></span> Tidsgräns: @(item.TimeLimit == 0 ? "Ingen" : item.TimeLimit + " minuter")<br />
+                                                <span class="icon icon-event text-green"></span> Skapad: @item.CreatedDate.ToString("dd MMM - yyyy")
+                                            </p>                   
+                                            <p>
+                                                <a href="/jakt/@item.Id/@item.Slug" class="btn btn-blue" title="@item.Name">
+                                                    Visa
+                                                </a>
+                                            </p>                         
                                         </div>
                                     </div>
                                 </div>
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
-                </div>
+        </div>
+        
+
+        
+      
+    </div>
 </div>
 
 @section Scripts {
@@ -77,7 +75,7 @@
                 window.location = "/search/bylocation/?latStr=" + lat + "&lngStr=" + lng;
             };
             var handleGeoError = function () {
-                alert("funkar inte...");
+                toastIt("Kan inte hitta din position...");
             };
 
             $("#btn-bylocation").on("click", function (e) {

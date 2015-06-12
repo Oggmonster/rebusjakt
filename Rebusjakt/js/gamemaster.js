@@ -5,6 +5,8 @@ var GameMaster = function (hunt) {
     this.huntKey = "hunt" + hunt.HuntId + "user" + hunt.UserId;
     this.userId = hunt.UserId;
     this.started = Date.now();
+    this.isRandom = hunt.IsRandom;
+    this.hasNewLocations = false;
     this.duration = hunt.TimeLimit * 60;
     this.endGameRiddle = {
         riddle: {
@@ -57,6 +59,8 @@ GameMaster.prototype.load = function () {
     if (gameObj) {
         this.gameRiddles = gameObj.gameRiddles || [];
         this.started = gameObj.started || Date.now();
+        this.endGameRiddle = gameObj.endGameRiddle || this.endGameRiddle;
+        this.hasNewLocations = gameObj.hasNewLocations || false;
     } else {
         this.gameRiddles = [];
         this.started = Date.now();
@@ -64,7 +68,7 @@ GameMaster.prototype.load = function () {
 }
 
 GameMaster.prototype.save = function () {
-    var gameObj = { started: this.started, gameRiddles: this.gameRiddles };
+    var gameObj = { started: this.started, hasNewLocations: this.hasNewLocations, gameRiddles: this.gameRiddles, endGameRiddle: this.endGameRiddle };
     localStorage.setItem(this.huntKey, JSON.stringify(gameObj));
 }
 
@@ -96,11 +100,12 @@ GameMaster.prototype.score = function () {
     var score = 0;
     this.gameRiddles.forEach(function (r) {
         if (r.isCorrect) {
-            score += r.isSuspicious ? 2 : 3;
+              
+            score += r.isSuspicious || this.isRandom ? 2 : 3;      
             score += r.gameQuestions.filter(function (q) { return q.isCorrect; }).length;
         }
-    });
-    if (!this.endGameRiddle.isSuspicious) {
+    }.bind(this));
+    if (!this.endGameRiddle.isSuspicious && !this.isRandom) {
         score += 3;
     }
     return score;

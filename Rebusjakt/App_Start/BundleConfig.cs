@@ -9,15 +9,23 @@ namespace Rebusjakt
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new StyleBundle("~/css/style").Include(
+                "~/sass/base.css",
+                "~/css/own-style.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                        "~/js/base.min.js",
+                        "~/js/toastit.js"));
            
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/js/jquery.validate*"));
 
 
             bundles.Add(new JsxBundle("~/bundles/riddleeditor").Include(
                     "~/ReactComponents/GeocodeMap.jsx",
                     "~/ReactComponents/GoogleMap.jsx",
                     "~/ReactComponents/EmojiPicker.jsx",
+                    "~/ReactComponents/ImageUploader.jsx",
                     "~/ReactComponents/RiddleCreator.jsx",
                     "~/ReactComponents/QuestionCreator.jsx"
                 ));
@@ -36,8 +44,13 @@ namespace Rebusjakt
                     "~/ReactComponents/SearchApp.jsx"
                 ));
 
+            bundles.Add(new JsxBundle("~/bundles/newlocations").Include(
+                    "~/ReactComponents/GeoCodeMap.jsx",
+                    "~/ReactComponents/NewLocationsPicker.jsx"
+                ));
+
             bundles.Add(new JsxBundle("~/bundles/game").Include(
-                    "~/js/gamemaster.js",
+                    "~/js/gamemaster.js",                                        
                     "~/ReactComponents/GoogleMap.jsx",
                    "~/ReactComponents/TrueOrFalseGuesser.jsx",
                    "~/ReactComponents/TextGuesser.jsx",
@@ -48,7 +61,7 @@ namespace Rebusjakt
                    "~/ReactComponents/QuestionGuesser.jsx",
                    "~/ReactComponents/CountDownTimer.jsx",
                    "~/ReactComponents/CorrectHunt.jsx",
-                   "~/ReactComponents/ReviewForm.jsx",
+                   "~/ReactComponents/ReviewForm.jsx",                   
                    "~/ReactComponents/GameApp.jsx"
                 ));
 

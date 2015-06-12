@@ -15,9 +15,13 @@ var GameQuestion = React.createClass({
 			"multi" : <MultiGuesser answer={answer} options={this.props.data.question.AnswerOptions} onHasAnswered={this.handleHasAnswered}s />,
 			"trueorfalse" : <TrueOrFalseGuesser answer={answer} onHasAnswered={this.handleHasAnswered} />
 		};
+		var img;
+		if(this.props.data.question.ImageSrc){
+			img = <p><img src={this.props.data.question.ImageSrc} /></p>;
+		}
 		return(
 			<div>
-				<h2 className="content-sub-heading">{this.props.data.question.Name}</h2>
+				{img}
 				<p>{this.props.data.question.Description}</p>
 				{answerForms[this.props.data.question.AnswerType]}
 			</div>
@@ -60,16 +64,22 @@ var QuestionGuesser = React.createClass({
 			jsxQuestion = <GameQuestion data={this.state.gameQuestion} onHasAnswered={this.handleHasAnswered} onSave={this.props.onSave} />;
 		}else{
 			var nodes = this.state.gameQuestions.map(function(q){
-				var actions, cardClass = "card";
+				var actions, img, cardClass = "card";
 				if(q.isAnswered){
 					cardClass += q.isCorrect ? " card-green-bg" : " card-red-bg";
 				}else{
 					actions = <a href="#" onClick={this.handleOpenQuestion.bind(this, q)}><span className="text-blue">Svara</span></a>;
 				}
+				if(q.question.ImageSrc){
+					img = <div class="card-img">
+							<img  src={q.question.ImageSrc} />
+						</div>;
+				}
 				return (
 					<div className="col-lg-3 col-md-4 col-sm-6">
 						<div className={cardClass}>
 							<div className="card-main">
+								{img}
 								<div className="card-inner">
 									<p>{q.question.Description}</p>
 								</div>
@@ -92,9 +102,7 @@ var QuestionGuesser = React.createClass({
 							</div>
 						</div>   
 						{finishedMessage}
-						<p>
-							<a href="#" onClick={this.handleReturn}>Återgå till rebuslistan</a>
-						</p>
+						<a href="#" onClick={this.handleReturn} className="btn btn-flat btn-blue">Återgå till rebuslistan</a>
 					</div>;
 		}	
 		return(

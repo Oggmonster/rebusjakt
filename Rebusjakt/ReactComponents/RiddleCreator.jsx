@@ -1,4 +1,6 @@
-﻿
+
+
+    
     var RiddleForm = React.createClass({
         handleMapPosition: function(position){
 			var riddle = this.state.riddle;
@@ -24,19 +26,25 @@
         },
         isValid : function(){
         	if(!this.refs.riddle.getDOMNode().value){
-        		alert("Du måste skriva in en rebus");
+        		toastIt("Du måste skriva in en rebus");
         		return false;
         	}
-        	if(!this.refs.answer.getDOMNode().value){
-        		alert("Du måste skriva in ett svar");
+        	var answer = this.refs.answer.getDOMNode().value;
+        	if(!answer){
+        		toastIt("Du måste skriva in ett svar");
+        		return false;
+        	}
+        	var regEx = /^[a-z 0-9]+$/i;
+        	if(!regEx.test(answer)){
+        		toastIt("Endast bokstäver, siffror och mellanslag är tillåtet i svaret.");
         		return false;
         	}
         	if(!this.refs.locationname.getDOMNode().value){
-        		alert("Du måste skriva in vilken plats rebusen leder till");
+        		toastIt("Du måste skriva in vilken plats rebusen leder till");
         		return false;
         	}        	
         	if(!this.refs.lat.getDOMNode().value){
-        		alert("Du måste markera rebusens plats på kartan");
+        		toastIt("Du måste markera rebusens plats på kartan");
         		return false;
         	}
         	return true;
@@ -313,13 +321,13 @@
             }else if(this.state.showMap){
 				var positions = this.state.positions;
 				var first = positions.shift();
-				mapContent = <div><GoogleMap lat={first.lat} lng={first.lng} positions={positions} /><a href="#" onClick={this.handleHideMap}>Tillbaka</a></div>;
+				mapContent = <div><GoogleMap lat={first.lat} lng={first.lng} positions={positions} /><a href="#" className="btn btn-blue btn-flat" onClick={this.handleHideMap}>Tillbaka</a></div>;
 			}
             else{
 				intro = <h2 className="content-sub-heading">Lägg till nya eller redigera befintliga rebusar</h2>;
                 newButton = <button className="btn btn-blue" onClick={this.handleNewRiddleClick} >Lägg till ny rebus</button>;
                 riddleList = <RiddleList data={this.state.data} onRiddleEdit={this.handleRiddleEdit} onRiddleDelete={this.handleRiddleDelete} onRiddleNewQuestions={this.handleRiddleNewQuestions} />;
-				backButton = <p><a href="/riddleadmin/index" title="Tillbaka till admin">Tillbaka till admin</a></p>;
+				backButton = <a href="/riddleadmin/index" title="Tillbaka till admin" className="btn btn-flat btn-blue">Tillbaka till admin</a>;
 				if(this.state.data.length > 0){
 					mapButton = <button onClick={this.handleShowMap} className="btn" ><span className="icon icon-place"></span> Visa karta</button>;
 				}

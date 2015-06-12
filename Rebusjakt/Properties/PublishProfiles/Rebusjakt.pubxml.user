@@ -9,6 +9,57 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>C:\deploy\rebusjakt</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="android-icon-144x144.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="android-icon-192x192.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="android-icon-36x36.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="android-icon-48x48.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="android-icon-72x72.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="android-icon-96x96.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-114x114.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-120x120.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-144x144.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-152x152.png">
+      <publishTime>06/12/2015 13:26:37</publishTime>
+    </File>
+    <File Include="apple-icon-180x180.png">
+      <publishTime>06/12/2015 13:26:37</publishTime>
+    </File>
+    <File Include="apple-icon-57x57.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-60x60.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-72x72.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-76x76.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="apple-icon-precomposed.png">
+      <publishTime>06/12/2015 13:26:37</publishTime>
+    </File>
+    <File Include="apple-icon.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>06/02/2015 16:21:12</publishTime>
     </File>
@@ -17,6 +68,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/AutoMapper.Net4.dll">
       <publishTime>05/18/2015 14:45:16</publishTime>
+    </File>
+    <File Include="bin/AWSSDK.dll">
+      <publishTime>06/11/2015 09:15:43</publishTime>
     </File>
     <File Include="bin/ClearScript.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -47,6 +101,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>05/07/2015 09:41:37</publishTime>
+    </File>
+    <File Include="bin/ImageResizer.dll">
+      <publishTime>06/11/2015 09:26:06</publishTime>
     </File>
     <File Include="bin/JavaScriptEngineSwitcher.Core.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -121,7 +178,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="bin/Rebusjakt.dll">
-      <publishTime>06/09/2015 17:42:46</publishTime>
+      <publishTime>06/12/2015 13:53:55</publishTime>
     </File>
     <File Include="bin/ru-ru/JavaScriptEngineSwitcher.Core.resources.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -177,6 +234,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/x86/SQLite.Interop.dll">
       <publishTime>05/21/2015 11:33:03</publishTime>
     </File>
+    <File Include="browserconfig.xml">
+      <publishTime>06/12/2015 13:26:37</publishTime>
+    </File>
     <File Include="Content/bootstrap.css">
       <publishTime>05/07/2015 09:41:31</publishTime>
     </File>
@@ -226,10 +286,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 10:08:19</publishTime>
     </File>
     <File Include="css/own-style.css">
-      <publishTime>06/03/2015 11:12:04</publishTime>
+      <publishTime>06/10/2015 13:36:09</publishTime>
+    </File>
+    <File Include="favicon-16x16.png">
+      <publishTime>06/12/2015 13:41:41</publishTime>
+    </File>
+    <File Include="favicon-32x32.png">
+      <publishTime>06/12/2015 13:42:41</publishTime>
+    </File>
+    <File Include="favicon-96x96.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>05/07/2015 09:41:27</publishTime>
+      <publishTime>06/12/2015 13:26:42</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>05/07/2015 09:41:31</publishTime>
@@ -274,19 +343,49 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 10:08:19</publishTime>
     </File>
     <File Include="js/gamemaster.js">
-      <publishTime>06/09/2015 14:28:51</publishTime>
+      <publishTime>06/11/2015 17:10:52</publishTime>
     </File>
     <File Include="js/html5shiv.js">
       <publishTime>05/20/2015 10:08:19</publishTime>
     </File>
+    <File Include="js/jquery.validate.js">
+      <publishTime>05/07/2015 09:41:35</publishTime>
+    </File>
+    <File Include="js/jquery.validate.min.js">
+      <publishTime>05/07/2015 09:41:35</publishTime>
+    </File>
+    <File Include="js/jquery.validate.unobtrusive.js">
+      <publishTime>05/07/2015 09:41:35</publishTime>
+    </File>
+    <File Include="js/jquery.validate.unobtrusive.min.js">
+      <publishTime>05/07/2015 09:41:35</publishTime>
+    </File>
     <File Include="js/respond.js">
       <publishTime>05/20/2015 10:08:19</publishTime>
     </File>
+    <File Include="js/toastit.js">
+      <publishTime>06/10/2015 10:04:48</publishTime>
+    </File>
+    <File Include="manifest.json">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="ms-icon-144x144.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="ms-icon-150x150.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="ms-icon-310x310.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
+    <File Include="ms-icon-70x70.png">
+      <publishTime>06/12/2015 13:26:42</publishTime>
+    </File>
     <File Include="packages.config">
-      <publishTime>06/08/2015 11:02:28</publishTime>
+      <publishTime>06/11/2015 09:26:07</publishTime>
     </File>
     <File Include="ReactComponents/CorrectHunt.jsx">
-      <publishTime>06/09/2015 10:24:08</publishTime>
+      <publishTime>06/10/2015 09:13:21</publishTime>
     </File>
     <File Include="ReactComponents/CountDownTimer.jsx">
       <publishTime>06/09/2015 09:40:09</publishTime>
@@ -295,10 +394,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2015 16:20:25</publishTime>
     </File>
     <File Include="ReactComponents/GameApp.jsx">
-      <publishTime>06/09/2015 14:00:43</publishTime>
+      <publishTime>06/11/2015 17:01:06</publishTime>
     </File>
     <File Include="ReactComponents/GeocodeMap.jsx">
-      <publishTime>06/08/2015 16:07:31</publishTime>
+      <publishTime>06/10/2015 10:07:04</publishTime>
     </File>
     <File Include="ReactComponents/GoogleMap.jsx">
       <publishTime>06/03/2015 10:30:34</publishTime>
@@ -307,10 +406,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2015 10:21:19</publishTime>
     </File>
     <File Include="ReactComponents/LocationChecker.jsx">
-      <publishTime>06/03/2015 14:43:12</publishTime>
+      <publishTime>06/10/2015 10:08:24</publishTime>
     </File>
     <File Include="ReactComponents/LocationStartEndPicker.jsx">
-      <publishTime>05/28/2015 10:39:39</publishTime>
+      <publishTime>06/11/2015 14:42:32</publishTime>
     </File>
     <File Include="ReactComponents/MapApp.jsx">
       <publishTime>06/01/2015 10:58:40</publishTime>
@@ -318,29 +417,32 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ReactComponents/MultiGuesser.jsx">
       <publishTime>05/22/2015 14:51:24</publishTime>
     </File>
+    <File Include="ReactComponents/NewLocationsPicker.jsx">
+      <publishTime>06/12/2015 10:13:53</publishTime>
+    </File>
     <File Include="ReactComponents/NumberGuesser.jsx">
-      <publishTime>05/26/2015 15:33:51</publishTime>
+      <publishTime>06/11/2015 13:13:51</publishTime>
     </File>
     <File Include="ReactComponents/QuestionCreator.jsx">
-      <publishTime>05/29/2015 09:37:51</publishTime>
+      <publishTime>06/11/2015 13:07:07</publishTime>
     </File>
     <File Include="ReactComponents/QuestionGuesser.jsx">
-      <publishTime>06/09/2015 14:48:30</publishTime>
+      <publishTime>06/11/2015 13:33:38</publishTime>
     </File>
     <File Include="ReactComponents/ReviewForm.jsx">
-      <publishTime>06/04/2015 16:31:25</publishTime>
+      <publishTime>06/11/2015 13:27:27</publishTime>
     </File>
     <File Include="ReactComponents/RiddleController.jsx">
       <publishTime>05/12/2015 14:34:25</publishTime>
     </File>
     <File Include="ReactComponents/RiddleCreator.jsx">
-      <publishTime>06/09/2015 16:54:40</publishTime>
+      <publishTime>06/11/2015 13:23:52</publishTime>
     </File>
     <File Include="ReactComponents/RiddleGuesser.jsx">
-      <publishTime>06/09/2015 14:40:13</publishTime>
+      <publishTime>06/11/2015 13:30:05</publishTime>
     </File>
     <File Include="ReactComponents/SearchApp.jsx">
-      <publishTime>06/08/2015 15:02:25</publishTime>
+      <publishTime>06/11/2015 13:16:33</publishTime>
     </File>
     <File Include="ReactComponents/TextGuesser.jsx">
       <publishTime>06/09/2015 14:40:57</publishTime>
@@ -408,8 +510,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="sass/addon/_waves.scss">
       <publishTime>05/29/2015 10:14:55</publishTime>
     </File>
+    <File Include="sass/base.css">
+      <publishTime>06/10/2015 15:24:01</publishTime>
+    </File>
+    <File Include="sass/base.css.map">
+      <publishTime>06/10/2015 15:24:01</publishTime>
+    </File>
+    <File Include="sass/base.min.css">
+      <publishTime>06/10/2015 15:23:54</publishTime>
+    </File>
     <File Include="sass/base.scss">
-      <publishTime>05/29/2015 10:14:55</publishTime>
+      <publishTime>06/10/2015 14:16:49</publishTime>
     </File>
     <File Include="sass/element/_avatar.scss">
       <publishTime>05/29/2015 10:14:55</publishTime>
@@ -486,6 +597,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="sass/mixin/_utilities.scss">
       <publishTime>05/29/2015 10:14:55</publishTime>
     </File>
+    <File Include="sass/project.css">
+      <publishTime>06/10/2015 15:24:01</publishTime>
+    </File>
+    <File Include="sass/project.css.map">
+      <publishTime>06/10/2015 15:24:01</publishTime>
+    </File>
+    <File Include="sass/project.min.css">
+      <publishTime>06/10/2015 15:17:13</publishTime>
+    </File>
     <File Include="sass/project.scss">
       <publishTime>05/29/2015 10:14:55</publishTime>
     </File>
@@ -520,7 +640,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2015 10:14:55</publishTime>
     </File>
     <File Include="sass/_variable.scss">
-      <publishTime>05/29/2015 10:14:55</publishTime>
+      <publishTime>06/10/2015 15:23:52</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/07/2015 09:41:30</publishTime>
@@ -565,7 +685,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:52:26</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>06/02/2015 16:50:51</publishTime>
+      <publishTime>06/12/2015 13:01:50</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -603,11 +723,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
+    <File Include="Views/Challenge/Index.cshtml">
+      <publishTime>06/10/2015 16:52:47</publishTime>
+    </File>
     <File Include="Views/Game/Index.cshtml">
-      <publishTime>06/09/2015 10:25:27</publishTime>
+      <publishTime>06/11/2015 16:34:38</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>06/09/2015 16:10:25</publishTime>
+      <publishTime>06/11/2015 13:38:02</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>05/07/2015 09:41:27</publishTime>
@@ -616,10 +739,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/09/2015 17:23:13</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/09/2015 17:35:16</publishTime>
+      <publishTime>06/12/2015 13:49:19</publishTime>
     </File>
     <File Include="Views/Hunt/Index.cshtml">
-      <publishTime>06/09/2015 11:39:08</publishTime>
+      <publishTime>06/12/2015 13:52:33</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -640,31 +763,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Create.cshtml">
-      <publishTime>06/03/2015 11:31:19</publishTime>
+      <publishTime>06/11/2015 13:22:15</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Delete.cshtml">
-      <publishTime>05/20/2015 11:15:40</publishTime>
+      <publishTime>06/11/2015 13:22:15</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Edit.cshtml">
-      <publishTime>06/03/2015 11:47:11</publishTime>
+      <publishTime>06/11/2015 13:22:15</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Index.cshtml">
-      <publishTime>06/09/2015 17:12:21</publishTime>
+      <publishTime>06/11/2015 13:17:24</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Riddles.cshtml">
-      <publishTime>06/04/2015 12:37:54</publishTime>
+      <publishTime>06/12/2015 12:55:19</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>06/08/2015 15:12:25</publishTime>
+      <publishTime>06/10/2015 11:28:56</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/12/2015 10:21:06</publishTime>
     </File>
     <File Include="Views/Shared/Lockout.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
     </File>
+    <File Include="Views/Shared/NotActiveHunt.cshtml">
+      <publishTime>06/11/2015 13:50:27</publishTime>
+    </File>
+    <File Include="Views/Shared/NotFound.cshtml">
+      <publishTime>06/11/2015 15:48:52</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/09/2015 17:27:22</publishTime>
+      <publishTime>06/12/2015 13:27:03</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/07/2015 09:41:36</publishTime>
@@ -685,7 +814,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2015 09:41:27</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/08/2015 15:06:07</publishTime>
+      <publishTime>06/12/2015 13:04:28</publishTime>
     </File>
   </ItemGroup>
 </Project>

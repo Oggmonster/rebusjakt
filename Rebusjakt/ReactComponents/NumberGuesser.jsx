@@ -20,7 +20,7 @@
 				<div className="form-group-btn">
 					<div className="row">
 						<div className="col-lg-6 col-md-8 col-sm-10">
-							<button className="btn btn-blue waves-button waves-light waves-effect" type="submit">Spara</button>
+							<button className="btn btn-blue waves-button waves-light waves-effect" type="submit">Svara</button>
 						</div>
 					</div>
 				</div>				

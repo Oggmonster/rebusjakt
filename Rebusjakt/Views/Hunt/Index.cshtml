@@ -20,28 +20,38 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <p>
+                                <span class="icon icon-place text-green"></span> Startar vid: @Model.Hunt.StartLocation <br />
+                                <span class="icon icon-label text-green"></span> Tema: @Model.Hunt.Theme <br />
+                                <span class="icon icon-timer text-green"></span> Tidsgräns: @(Model.Hunt.TimeLimit == 0 ? "Ingen" : Model.Hunt.TimeLimit + " minuter") <br />
+                                <span class="icon icon-event text-green"></span> Skapad: @Model.Hunt.CreatedDate.ToString("dd MMM - yyyy") av <a href="@Model.CreatorUrl" title="@Model.Creator">@Model.Creator</a> <br />
+                            </p>
+                            <p>
                                 @Model.Hunt.Description
-                            </p>
-                            <p>
-                                <span class="icon icon-place text-green"></span> Startar vid: @Model.Hunt.StartLocation
-                            </p>
-                            <p>
-                                <span class="icon icon-label text-green"></span> Tema: @Model.Hunt.Theme
-                            </p>
-                            <p>
-                                <span class="icon icon-timer text-green"></span> Tidsgräns: @Model.Hunt.TimeLimit minuter
-                            </p>
-                            <p>
-                                <span class="icon icon-person text-green"></span> Skapad av: <a href="@Model.CreatorUrl" title="@Model.Creator">@Model.Creator</a>
                             </p>
                             <p>Vi rekommenderar att du befinner dig vid startpunkten innan du startar jakten.</p>
                             <p>
-                                <a class="btn btn-blue" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
+                                <a class="btn btn-blue hunt-link" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
                             </p>
+                            <div class="checkbox checkbox-adv">
+                                <label>
+                                    <input class="access-hide chk-move-hunt" type="checkbox" />Jag vill flytta jakten till en annan plats
+                                    <span class="circle"></span>
+                                    <span class="circle-check"></span>
+                                    <span class="circle-icon icon icon-done"></span>
+                                </label>
+                                <a class="collapsed btn btn-flat btn-blue btn-sm" data-toggle="collapse" href="#collapsible-region">
+                                    <span class="collapsed-hide">Dölj</span>
+                                    <span class="collapsed-show">Läs mer</span>
+                                </a>
+                            </div>
+                            <div class="collapsible-region collapse" id="collapsible-region">
+                                <p>
+                                    Om du checkar för att du vill flytta jakten kommer du i början av jakten få ange nya kartpositioner för alla rebusar samt målgången.
+                                    Du kommer dock inte ha möjlighet att få lika mycket poäng om du gör detta. 
+                                </p>
+                            </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            
-                            
                             <div id="map-container"></div>
                         </div>
                     </div>
@@ -109,7 +119,7 @@
                             }
                             <div class="tile-inner">
                                     @item.Description<br />
-                                    <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a>
+                                    <span class="icon icon-event text-green"></span> @item.CreatedDate.ToString("dd MMM - yyyy") <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a>
                             </div>
                         </div>
                     }
@@ -121,6 +131,16 @@
 
 @section Scripts{
     <script>
+        $(".chk-move-hunt").on("click", function(e){
+            var huntLink = $(".hunt-link");
+            var url = huntLink.attr("href");
+            if(url.indexOf("?isRandom=true") !== -1){
+                url = url.replace("?isRandom=true", "");
+            }else{
+                url += "?isRandom=true";
+            }
+            huntLink.attr("href",url);
+        });
         var mapData = {
             lat: @(Model.Hunt.StartLatitude),
             lng: @(Model.Hunt.StartLongitude)

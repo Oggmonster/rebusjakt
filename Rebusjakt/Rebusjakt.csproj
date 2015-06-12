@@ -52,6 +52,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>..\packages\AWSSDK.2.3.41.0\lib\net45\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="ClearScript">
       <HintPath>..\packages\JavaScriptEngineSwitcher.V8.1.2.4\lib\net40\ClearScript.dll</HintPath>
     </Reference>
@@ -63,6 +66,9 @@
     </Reference>
     <Reference Include="Elmah.Mvc">
       <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
     </Reference>
     <Reference Include="JavaScriptEngineSwitcher.Core">
       <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.2.4\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
@@ -227,9 +233,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChallengeController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HuntController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RiddleAdminController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -241,6 +249,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Challenge.cs" />
     <Compile Include="Models\HuntReview.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserScore.cs" />
@@ -278,11 +287,32 @@
     <None Include="ClearScript.V8\v8-x64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="android-icon-144x144.png" />
+    <Content Include="android-icon-192x192.png" />
+    <Content Include="android-icon-36x36.png" />
+    <Content Include="android-icon-48x48.png" />
+    <Content Include="android-icon-72x72.png" />
+    <Content Include="android-icon-96x96.png" />
+    <Content Include="apple-icon-114x114.png" />
+    <Content Include="apple-icon-120x120.png" />
+    <Content Include="apple-icon-144x144.png" />
+    <Content Include="apple-icon-152x152.png" />
+    <Content Include="apple-icon-180x180.png" />
+    <Content Include="apple-icon-57x57.png" />
+    <Content Include="apple-icon-60x60.png" />
+    <Content Include="apple-icon-72x72.png" />
+    <Content Include="apple-icon-76x76.png" />
+    <Content Include="apple-icon-precomposed.png" />
+    <Content Include="apple-icon.png" />
+    <Content Include="browserconfig.xml" />
     <Content Include="css\base.min.css" />
     <Content Include="css\emojionesprites.css" />
     <Content Include="css\fonts\fontawesome-webfont.svg" />
     <Content Include="css\fonts\MaterialDesignIcon.svg" />
     <Content Include="css\own-style.css" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon-96x96.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -299,6 +329,13 @@
     <Content Include="js\gamemaster.js" />
     <Content Include="js\html5shiv.js" />
     <Content Include="js\respond.js" />
+    <Content Include="js\toastit.js" />
+    <Content Include="manifest.json" />
+    <None Include="ReactComponents\ImageUploader.jsx" />
+    <Content Include="ms-icon-144x144.png" />
+    <Content Include="ms-icon-150x150.png" />
+    <Content Include="ms-icon-310x310.png" />
+    <Content Include="ms-icon-70x70.png" />
     <Content Include="ReactComponents\RiddleCreator.jsx" />
     <Content Include="ReactComponents\RiddleGuesser.jsx" />
     <Content Include="ReactComponents\GeocodeMap.jsx" />
@@ -344,6 +381,12 @@
     <Content Include="sass\addon\_font-awesome.scss" />
     <Content Include="sass\addon\_material-design-icon.scss" />
     <Content Include="sass\addon\_waves.scss" />
+    <Content Include="sass\base.css">
+      <DependentUpon>base.scss</DependentUpon>
+    </Content>
+    <Content Include="sass\base.min.css">
+      <DependentUpon>base.css</DependentUpon>
+    </Content>
     <Content Include="sass\base.scss" />
     <Content Include="sass\element\_avatar.scss" />
     <Content Include="sass\element\_breadcrumb.scss" />
@@ -370,6 +413,12 @@
     <Content Include="sass\mixin\_grid.scss" />
     <Content Include="sass\mixin\_responsive.scss" />
     <Content Include="sass\mixin\_utilities.scss" />
+    <Content Include="sass\project.css">
+      <DependentUpon>project.scss</DependentUpon>
+    </Content>
+    <Content Include="sass\project.min.css">
+      <DependentUpon>project.css</DependentUpon>
+    </Content>
     <Content Include="sass\project.scss" />
     <Content Include="sass\theme\_content.scss" />
     <Content Include="sass\theme\_footer.scss" />
@@ -389,19 +438,18 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="ReactComponents\SearchApp.jsx" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\showdown.js" />
-    <Content Include="Scripts\showdown.min.js" />
+    <Content Include="sass\base.css.map">
+      <DependentUpon>base.css</DependentUpon>
+    </Content>
+    <Content Include="sass\project.css.map">
+      <DependentUpon>project.css</DependentUpon>
+    </Content>
+    <Content Include="ReactComponents\NewLocationsPicker.jsx" />
+    <None Include="js\jquery.validate-vsdoc.js" />
+    <Content Include="js\jquery.validate.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\jquery.validate.unobtrusive.js" />
+    <Content Include="js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -419,7 +467,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -452,9 +499,13 @@
     <Content Include="Views\User\UserNotFound.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Home\HowTo.cshtml" />
+    <Content Include="Views\Challenge\Index.cshtml" />
+    <Content Include="Views\Shared\NotActiveHunt.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

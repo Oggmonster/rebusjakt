@@ -14,7 +14,7 @@ namespace Rebusjakt.Controllers
 
         public ActionResult Index()
         {
-            var hunts = unitOfWork.HuntRepository.Get().Where(h => h.IsActive).Take(5).ToList();
+            var hunts = unitOfWork.HuntRepository.Get().Where(h => h.IsActive).Take(10).ToList().OrderByDescending(h => h.CreatedDate).ToList();
             return View(hunts);
         }
 
@@ -28,6 +28,16 @@ namespace Rebusjakt.Controllers
         public ActionResult HowTo()
         {
             return View();
+        }
+
+        public ActionResult Error()
+        {
+            return View("Error");
+        }
+
+        public ActionResult NotFound()
+        {
+            return View("NotFound");
         }
 
         public ActionResult Contact()

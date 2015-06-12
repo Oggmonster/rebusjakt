@@ -2,14 +2,14 @@
 
 var CorrectAnswer = React.createClass({
 	render: function(){
-		var userAnswer = this.props.gameQuestion.isCorrect ? "rätt" : "fel";		
+		var userAnswer = this.props.gameQuestion.isCorrect ? "rätt" : "fel";
 		return (
 			<div className="tile">
 				<div className="tile-inner">
 					<p>
 						<strong>Fråga:</strong> {this.props.gameQuestion.question.Description}<br />
 						<strong>Svar:</strong> {this.props.gameQuestion.question.Answer} <br />
-						<small>Du svarade {userAnswer}</small> 
+						<small>Du svarade {userAnswer}</small>
 					</p>
 				</div>
 			</div>
@@ -22,7 +22,7 @@ var CorrectRiddle = React.createClass({
 		var questionNodes = this.props.gameRiddle.gameQuestions.map(function(gameQuestion, i){
 			return <CorrectAnswer gameQuestion={gameQuestion} key={i} />;
 		});
-		var userAnswer = this.props.gameRiddle.isCorrect ? "rätt" : "fel";		
+		var userAnswer = this.props.gameRiddle.isCorrect ? "rätt" : "fel";
 		return(
 			<div className="col-lg-3 col-md-4 col-sm-6">
 				<div className="card">
@@ -38,7 +38,7 @@ var CorrectRiddle = React.createClass({
 						</div>
 					</div>
 				</div>
-			</div>	
+			</div>
 		);
 	}
 });
@@ -50,7 +50,7 @@ var CorrectHunt = React.createClass({
 		});
 		return(
 			<div className="card-wrap">
-				<div className="row">        
+				<div className="row">
 					{riddleNodes}
 				</div>
 			</div>

@@ -1,18 +1,50 @@
 ﻿
 
     var QuestionForm = React.createClass({
+        isValid : function(){
+            if(!this.refs.description.getDOMNode().value){
+                toastIt("Du måste skriva in en fråga");
+                return false;
+            }
+
+            var answer = this.refs.answer.getDOMNode().value;
+            if(!answer){
+                toastIt("Du måste skriva in ett svar");
+                return false;
+            }
+            answer = answer.toLowerCase();
+            
+            var questiontype = this.getDOMNode().querySelector('[name="AnswerType"]:checked').value;
+            if(questiontype === "trueorfalse" && answer !== "true" && answer !== "false"){
+                toastIt("Du måste skriva true eller false som svar");
+                return false;
+            }
+            var regEx = /^[a-z 0-9]+$/i;
+            if(questiontype === "text" && !regEx.test(answer)){
+                toastIt("Endast bokstäver, siffror och mellanslag är tillåtet i svaret.");
+                return false;
+            }
+            var regExNum = /^[0-9]+$/i;
+            if(questiontype === "number" && !regExNum.test(answer)){
+                toastIt("Svaret måste vara en siffra");
+                return false;
+            }
+            if(questiontype === "multi" && !this.refs.answeroptions.getDOMNode().value){
+                toastIt("Du måste skriva in minst ett alternativ till svaret");
+                return false;
+            }
+            return true;
+        },
         handleSubmit: function(e){
             e.preventDefault();
-            var questiontype = this.getDOMNode().querySelector('[name="AnswerType"]:checked').value;
+            if(!this.isValid()){
+                return false;
+            }
             var question = {};
             $("#question-form").serializeArray().map(function(x){
                 question[x.name] = x.value;
-            }); 
-			var answer = question.Answer.toLowerCase();
-			if(questiontype === "trueorfalse" && answer !== "true" && answer !== "false"){
-				alert("Du måste skriva true eller false som svar");
-				return false;
-			}
+            }); 			
+			
             $("#question-form .make-empty").each(function(){
                 $(this).val('');
             });
@@ -34,6 +66,22 @@
                 $(".answersoptions-container").addClass("hide");
             }
         },
+        handleUploadedImage : function(src){
+            var question = this.state.question;
+            question.ImageSrc = src;
+            this.setState({question : question});
+        },
+        handleRemoveImage : function(e){
+            e.preventDefault();
+            if(!confirm("Är du säker på att du vill ta bort bilden?")){
+                return false;
+            }
+            var question = this.state.question;
+            var src = question.ImageSrc;
+            question.ImageSrc = "";
+            this.setState({question:question});
+            $.post("/image/removeImage",{src : src});
+        },
         handleChange: function(attribute, event) {            
             var question = this.state.question;    
             question[attribute] = event.target.value;
@@ -48,16 +96,26 @@
 			if(this.state.question.AnswerType !== "multi"){
 				answerOptionsClasses += " hide";
 			}
+            var img, imgUploader;
+            if(this.state.question.ImageSrc){
+                img = <div><img src={this.state.question.ImageSrc} /> <br /> <a href="#" className="btn btn-flat btn-sm btn-red" onClick={this.handleRemoveImage}>ta bort bild</a></div>;
+            }else{
+                imgUploader = <ImageUploader onImageUploaded={this.handleUploadedImage} />;
+            }
+
             return(
 				<div>
+                {img}    
+                {imgUploader}            
                 <form id="question-form" onSubmit={this.handleSubmit} className="form">
                     <input type="hidden" name="Id" value={this.props.question.Id} />
                     <input type="hidden" name="RiddleId" value={this.props.question.RiddleId} />
+                    <input type="hidden" name="ImageSrc" value={this.state.question.ImageSrc} onChange={this.handleChange.bind(this, "ImageSrc")} />
                     <div className="form-group">
 						<div className="row">
 							<div className="col-lg-6 col-md-8 col-sm-10">
 								<label>Fråga</label>
-								<textarea cols="30" rows="3" name="Description" className="form-control form-control-default make-empty" value={this.state.question.Description} onChange={this.handleChange.bind(this, "Description")} ></textarea>
+								<textarea cols="30" rows="3" name="Description" ref="description" className="form-control form-control-default make-empty" value={this.state.question.Description} onChange={this.handleChange.bind(this, "Description")} ></textarea>
 							</div>
 						</div>
 					</div>
@@ -106,7 +164,7 @@
 						<div className="row">
 							<div className="col-lg-6 col-md-8 col-sm-10">
 								<label>Svar</label>
-								<textarea cols="30" rows="3" className="form-control form-control-default make-empty" name="Answer" ref="Answer" value={this.state.question.Answer} onChange={this.handleChange.bind(this, "Answer")} ></textarea>
+								<textarea cols="30" rows="3" className="form-control form-control-default make-empty" name="Answer" ref="answer" value={this.state.question.Answer} onChange={this.handleChange.bind(this, "Answer")} ></textarea>
 								<span className={"form-help form-help-msg " + answerOptionsClasses}>Ska man välja flera alternativ för att svara rätt kan du separera svaren med kommatecken.</span>
 							</div>
 						</div>						
@@ -135,10 +193,17 @@
             },
             render: function(){
                 var questionNodes = this.props.data.map(function(question){
+                var img;
+                if(question.ImageSrc){
+                    img = <div class="card-img">
+                            <img  src={question.ImageSrc} />
+                        </div>;
+                }
                 return (
 					<div className="col-lg-3 col-md-4 col-sm-6">
 						<div className="card">
 							<div className="card-main">
+                                {img}
 								<div className="card-inner">
 									<p className="card-heading text-alt">{question.Name}</p>
 									<p>
@@ -246,7 +311,7 @@
             }else{
                 questionList = <QuestionList data={this.state.data} onQuestionEdit={this.handleQuestionEdit} onQuestionDelete={this.handleQuestionDelete} onNewQuestion={this.handleNewQuestion} />;
                 newButton = <button className="btn btn-blue" onClick={this.handleNewQuestion}>Ny fråga</button>;  
-				backButton =  <button onClick={this.handleQuestionsComplete} className="btn btn-primary">Klar med frågor</button>;           
+				backButton =  <button onClick={this.handleQuestionsComplete} className="btn btn-blue btn-flat">Klar med frågor</button>;           
             }
             
             return (

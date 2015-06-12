@@ -16,6 +16,8 @@ namespace Rebusjakt.Models
         [Required]
         public string Description { get; set; }
 
+        public string ImageSrc { get; set; }
+
         /// <summary>
         /// text, number or multi
         /// </summary>

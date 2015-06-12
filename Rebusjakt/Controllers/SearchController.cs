@@ -21,7 +21,8 @@ namespace Rebusjakt.Controllers
             var hunts = new List<Hunt>();
             if(result.Total > 0){
                 hunts = result.Hits.Select(h => h.Source).ToList();
-            }            
+            }
+            ViewBag.Query = q;
             return View(hunts);
         }               
 
@@ -37,6 +38,7 @@ namespace Rebusjakt.Controllers
                 hunts = result.Hits.Select(h => h.Source).ToList();
                 CalculateDistances(hunts, lat, lng);
             }
+            ViewBag.UseLocation = true;
             return View("Index", hunts);
         }
 

@@ -10,7 +10,8 @@
 		$palette-blue-light:     #bbdefb;
 		$palette-blue-light-m:   #64b5f6;
 
-		$palette-green:          #8bc34a;
+		//$palette-green:          #8bc34a;
+        $palette-green:          #0A8967;
 		$palette-green-dark:     #33691e;
 		$palette-green-dark-m:   #689f38;
 		$palette-green-light:    #dcedc8;
@@ -47,9 +48,17 @@
 		$white-bg-light:         #fafafa;
 
 	// brand colour
-		$brand-color:            #4caf50;
+		/*
+        $brand-color:            #4caf50;
 		$brand-color-dark:       #1b5e20;
 		$brand-color-dark-m:     #388e3c;
+		$brand-color-light:      #c8e6c9;
+		$brand-color-light-m:    #81c784;
+        */
+
+        $brand-color:            #0C5149;
+		$brand-color-dark:       #0A8967;
+		$brand-color-dark-m:     #0D192B;
 		$brand-color-light:      #c8e6c9;
 		$brand-color-light-m:    #81c784;
 

@@ -21,6 +21,14 @@ namespace Rebusjakt.Controllers
         public ActionResult Index(int id, bool? isRandom)
         {
             var hunt = unitOfWork.HuntRepository.GetByID(id);
+            if (hunt == null)
+            {
+                return View("NotFound");
+            }
+            if (!hunt.IsActive)
+            {
+                return View("NotActiveHunt");
+            }
             Mapper.CreateMap<Riddle, RiddleViewModel>();
             Mapper.CreateMap<Question, QuestionViewModel>();
             var viewModel = new GameViewModel

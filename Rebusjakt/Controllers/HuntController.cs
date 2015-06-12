@@ -17,6 +17,14 @@ namespace Rebusjakt.Controllers
         public ActionResult Index(int id, string slug)
         {
             var hunt = unitOfWork.HuntRepository.GetByID(id);
+            if (hunt == null)
+            {
+                return View("NotFound");
+            }
+            if (!hunt.IsActive)
+            {
+                return View("NotActiveHunt");
+            }
             if (slug != hunt.Slug)
             {
                 return RedirectPermanent(string.Format("/jakt/{0}/{1}", hunt.Id, hunt.Slug));
@@ -37,7 +45,7 @@ namespace Rebusjakt.Controllers
                     UserName = r.User.UserName,
                     UserUrl = "/u/" + r.User.Slug,
                     CreatedDate = r.CreatedDate                    
-                }).ToList();
+                }).ToList().OrderByDescending(r => r.CreatedDate).ToList() ;
 
             viewModel.TopScores = unitOfWork.UserScoreRepository.Get().Where(u => u.HuntId == id).Select(s =>
                 new UserScoreViewModel

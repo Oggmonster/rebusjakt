@@ -99,5 +99,33 @@ namespace Rebusjakt.Search
 
             return result;
         }
+
+        #region Challenges
+
+        public ISearchResponse<Challenge> FindChallengeById(string Id)
+        {
+            var result = client.Search<Challenge>(s => s
+                .Index(indexName)
+                .Query(q => q.QueryString(c => c.Query(Id).OnFields(d => d.Id))));
+            return result;
+        }
+
+        public ISearchResponse<Challenge> FindChallengeByChallengerUserId(string Id)
+        {
+            var result = client.Search<Challenge>(s => s
+                .Index(indexName)
+                .Query(q => q.QueryString(c => c.Query(Id).OnFields(d => d.ChallengerUserId))));
+            return result;
+        }
+
+        public ISearchResponse<Challenge> FindChallengeByChallengedUserEmail(string email)
+        {
+            var result = client.Search<Challenge>(s => s
+                .Index(indexName)
+                .Query(q => q.QueryString(c => c.Query(email).OnFields(d => d.ChallengedEmail))));
+            return result;
+        }
+
+        #endregion
     }
 }

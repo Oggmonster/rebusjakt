@@ -11,6 +11,8 @@ namespace Rebusjakt.ViewModels
 
         public int RiddleId { get; set; }
 
+        public string ImageSrc { get; set; }
+
         public string Description { get; set; }
 
         /// <summary>

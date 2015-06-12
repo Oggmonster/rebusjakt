@@ -45,7 +45,7 @@
                         map.fitBounds(results[0].geometry.viewport);					
 					} 						
                 } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
+                    toastIt('Geocode was not successful for the following reason: ' + status);
                 }
             }.bind(this));
         },

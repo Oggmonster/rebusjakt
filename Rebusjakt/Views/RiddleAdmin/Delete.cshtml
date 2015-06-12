@@ -14,7 +14,7 @@
 </div>
 <div class="content-inner">
     <div class="container">
-        <h3>Är du helt säker på att du vill ta bort jakten?</h3>
+        <h2 class="content-sub-heading">Är du helt säker på att du vill ta bort jakten?</h2>
         <p>
             @Model.Name
         </p>
@@ -27,11 +27,10 @@
 
             <div class="form-actions no-color">
                 <input type="submit" value="Ta bort" class="btn btn-default" />
+                &nbsp;
+                <a href="/riddleadmin/index" class="btn btn-flat btn-red waves-button waves-effect">Avbryt</a>
             </div>
         }
-        <p>
-            @Html.ActionLink("Tillbaka till admin", "Index")
-        </p>
     </div>
 </div>
         

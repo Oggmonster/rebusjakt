@@ -47,7 +47,20 @@ namespace Rebusjakt.Search
                 .Doc(hunt)
                 .DocAsUpsert()
             );
-            var isOk = response.IsValid;
+        }
+
+        public void UpdateChallenge(Challenge challenge)
+        {
+            var response = client.Update<Challenge, object>(c => c
+                .IdFrom(challenge)
+                .Doc(challenge)
+                .DocAsUpsert()
+            );
+        }
+
+        public void DeleteChallenge(string id)
+        {
+            client.Delete<Challenge>(id);
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿@model Rebusjakt.Models.Challenge
+@{
+    ViewBag.Title = "Antar du utmaningen?";
+}
+
+<div class="content-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-push-3 col-sm-10 col-sm-push-1">
+                <h1 class="heading">Antar du utmaningen?</h1>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="container">
+            <div class="card-wrap">
+                <div class="card">
+                    <div class="card-inner">
+                        <p>
+                            Du har blivit utmanad att delta i rebusjakten <a href="/jakt/@(Model.HuntId)/@(Model.HuntSlug)">@Model.HuntName</a> av @(Model.ChallengerUserName).
+                            Antar du utmaningen?
+                            <button>Ja!</button> <button>Nej</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 @import "mixin/css3";
 @import "mixin/grid";
@@ -30,17 +30,17 @@
 	@import "element/dropdown";
 	@import "element/form";
 	@import "element/form-adv-checkbox";
-	@import "element/form-adv-datepicker";
+	//@import "element/form-adv-datepicker";
 	@import "element/form-adv-label";
 	@import "element/form-adv-switch";
 	@import "element/form-adv-textarea";
 	@import "element/label";
-	@import "element/modal";
+	//@import "element/modal";
 	@import "element/nav";
-	@import "element/progress";
-	@import "element/sortable";
+	//@import "element/progress";
+	//@import "element/sortable";
 	@import "element/tab";
-	@import "element/table";
+	//@import "element/table";
 	@import "element/tile";
 	@import "element/toast";
 

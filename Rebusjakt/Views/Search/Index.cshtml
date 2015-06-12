@@ -19,7 +19,11 @@
 </div>
 <div class="content-inner">
     <div class="container">
-        @Html.React("SearchApp", new { data = Model })
+        @Html.React("SearchApp", new { 
+            data = Model,
+            uselocation = ViewBag.UseLocation != null,
+            query = ViewBag.Query 
+        })
     </div>
 </div>
 @section Scripts{

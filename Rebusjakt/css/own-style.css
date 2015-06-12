@@ -43,3 +43,13 @@
     background-size:cover;
     background-position:center;
 }
+#search-form {
+    height: 0;
+    overflow: hidden;
+    visibility:hidden;
+    opacity:0;
+    transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+    -moz-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+    -webkit-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+    -o-transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+}

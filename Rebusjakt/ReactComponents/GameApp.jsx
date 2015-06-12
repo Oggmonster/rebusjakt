@@ -114,7 +114,7 @@ var GameApp = React.createClass({
 	},
 	handleCollectQuestions: function(gameRiddle){
 		this.showContentContainer();
-		React.render(<div><LocationChecker gameRiddle={gameRiddle} onReturn={this.handleQuestionsCollected} /><p><a href="#" className="btn" onClick={this.handleReturn}>Tillbaka</a></p></div>, document.getElementById("content-container"));
+		React.render(<div><LocationChecker gameRiddle={gameRiddle} onReturn={this.handleQuestionsCollected} /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}>Tillbaka</a></div>, document.getElementById("content-container"));
 	},	
 	handleAnswerQuestions: function(gameRiddle){
 		this.showContentContainer();
@@ -139,10 +139,15 @@ var GameApp = React.createClass({
 			};
 		});
 		var first = positions.shift();
-		React.render(<div><GoogleMap positions={positions} lat={first.lat} lng={first.lng} /><p><a href="#" className="btn" onClick={this.handleReturn}>Tillbaka</a></p></div>, document.getElementById("content-container"));
+		React.render(<div><GoogleMap positions={positions} lat={first.lat} lng={first.lng} /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}>Tillbaka</a></div>, document.getElementById("content-container"));
 	},
 	handleTimeIsUp : function(){
 		this.setState({timeIsUp: true});
+	},
+	handleNewPositions : function(){
+		var master = this.state.master;
+		var gameRiddles = master.gameRiddles;
+		this.setState({master : master, data: gameRiddles, total: gameRiddles.length});
 	},
 	handleReviewSubmit : function(huntReview){
 		huntReview.HuntId = this.state.master.huntId;
@@ -167,7 +172,8 @@ var GameApp = React.createClass({
 		var marginStyle = { marginLeft : '20px'}, backUrl = "/jakt/" + this.state.master.huntId;
 		var hasCorrectRiddles = this.state.data.filter(function(r){ return r.isCorrect; }).length > 0;
 		var allCompleted = this.state.data.every(function(r){ return r.isCompleted });
-		var isCompleted = allCompleted || this.state.timeIsUp ;	
+		var isCompleted = allCompleted || this.state.timeIsUp;
+		var mustPickPositions = this.state.master.isRandom && !this.state.master.hasNewLocations;	
 		if(this.state.master.duration > 0){
 			if(this.state.timeIsUp){
 				endMessage = "Tiden är slut!";
@@ -186,41 +192,51 @@ var GameApp = React.createClass({
 		<div>
 		{
 			isCompleted ? 
-			this.state.isFinished ? 
-			(
-			<div>
-				
-				<h2 className="content-sub-heading">Ditt resultat är {this.state.master.score()} p med tiden {this.state.master.endTime}</h2>
-				{scoreMessage}
-				<p>
-					<strong><span dangerouslySetInnerHTML={{__html: emojione.toImage(":camera:")}} />  bonusuppdrag (frivilligt)</strong><br /> Ta en bild på platsen där ni befinner er och ladda upp till Instagram med hashtagen #rebusjakt
-				</p>
-				<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-correct-hunt" >
-					<span className="collapsed-hide">Dölj</span>
-					<span className="collapsed-show">Visa rätta svar</span>
-				</a>	
-				<div className="collapsible-region collapse" id="collapsible-correct-hunt">
-					<CorrectHunt gameRiddles={this.state.data} />
-				</div>	
-				{reviewForm}
-				{reviewThanks}
-				<p>
-					<a href={backUrl} className="btn">Avsluta</a>
-				</p>
-			</div>
-			)
+				this.state.isFinished ? 
+				(
+				<div>
+					
+					<h2 className="content-sub-heading">Ditt resultat är {this.state.master.score()} p med tiden {this.state.master.endTime}</h2>
+					{scoreMessage}
+					<p>
+						<strong><span dangerouslySetInnerHTML={{__html: emojione.toImage(":camera:")}} />  bonusuppdrag (frivilligt)</strong><br /> Ta en bild på platsen där ni befinner er och ladda upp till Instagram med hashtagen #rebusjakt
+					</p>
+					<a className="btn collapsed waves-button waves-effect" data-toggle="collapse" href="#collapsible-correct-hunt" >
+						<span className="collapsed-hide">Dölj</span>
+						<span className="collapsed-show">Visa rätta svar</span>
+					</a>	
+					<div className="collapsible-region collapse" id="collapsible-correct-hunt">
+						<CorrectHunt gameRiddles={this.state.data} />
+					</div>	
+					{reviewForm}
+					{reviewThanks}
+					<p>
+						<a href={backUrl} className="btn">Avsluta</a>
+					</p>
+				</div>
+				)
+				:
+				(<div>
+					<h2 className="content-sub-heading">{endMessage}</h2>
+					<LocationChecker gameRiddle={this.state.master.endGameRiddle} onReturn={this.handleReachedFinish} />
+				</div>
+				) 
 			:
-			(<div>
-				<h2 className="content-sub-heading">{endMessage}</h2>
-				<LocationChecker gameRiddle={this.state.master.endGameRiddle} onReturn={this.handleReachedFinish} />
-			</div>) :
-			(<div>
-				<p>
-					{countDowntimer} {mapButton}		 
-				</p>
-				<hr />
-				<GameRiddleList data={this.state.data} onRiddleOpen={this.handleRiddleOpen} onCollectQuestions={this.handleCollectQuestions} onAnswerQuestions={this.handleAnswerQuestions} />
-			</div>)
+			mustPickPositions ? 
+				(
+					<div>
+						<NewLocationsPicker master={this.state.master} onFinished={this.handleNewPositions} />
+					</div>
+				)
+				:
+				(<div>
+					<p>
+						{countDowntimer} {mapButton}		 
+					</p>
+					<hr />
+					<GameRiddleList data={this.state.data} onRiddleOpen={this.handleRiddleOpen} onCollectQuestions={this.handleCollectQuestions} onAnswerQuestions={this.handleAnswerQuestions} />
+				</div>
+				)
 		}
 		</div>
 		);
