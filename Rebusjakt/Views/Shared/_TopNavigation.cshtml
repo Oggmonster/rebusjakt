@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @{
     Layout = null;
+    var IsAuthenticated = Request.IsAuthenticated;
 }
 
 <header class="header">
@@ -29,18 +30,24 @@
             <div class="menu-content">
                 <ul class="nav">
                     <li>
-                        <a href="/"><span class="icon icon-home"></span> Startsidan</a>
+                        <a href="/" title="Rebusjakt"><span class="icon icon-home"></span> Startsidan</a>
                     </li>
                     <li>
-                        <a href="/riddleadmin/index"><span class="icon icon-my-location"></span> Skapa jakter</a>
+                        <a href="/riddleadmin/index" title="Admin"><span class="icon icon-my-location"></span> Skapa jakter</a>
+                    </li>
+                    @if (IsAuthenticated)
+                    {
+                        <li>
+                            <a href="/challenge/mychallenges" title="Utmaningar"><span class="icon icon-star"></span> Utmaningar</a>
+                        </li>
+                    }                    
+                    <li>
+                        <a href="/guide" title="Guide"><span class="icon icon-help"></span> Hur gör man?</a>
                     </li>
                     <li>
-                        <a href="/home/howto"><span class="icon icon-help"></span> Hur gör man?</a>
+                        <a href="/om" title="Om"><span class="icon icon-info"></span> Om rebusjakt</a>
                     </li>
-                    <li>
-                        <a href="/home/about"><span class="icon icon-info"></span> Om rebusjakt</a>
-                    </li>
-                    @if (Request.IsAuthenticated)
+                    @if (IsAuthenticated)
                     {
                         <li>
                             <a href="/manage"><span class="icon icon-account-box"></span>Kontoinställningar</a>
@@ -60,6 +67,7 @@
                     }
                 </ul>
             </div>
+
         </div>
     </div>
 </nav>

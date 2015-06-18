@@ -60,8 +60,218 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="apple-icon.png">
       <publishTime>06/12/2015 13:26:42</publishTime>
     </File>
+    <File Include="bin/about.cshtml.a8d08dba.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/addphonenumber.cshtml.68f676f.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>06/02/2015 16:21:12</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>06/18/2015 16:37:22</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>06/18/2015 16:37:22</publishTime>
+    </File>
+    <File Include="bin/App_Web_1bjgulsm.dll">
+      <publishTime>06/16/2015 11:22:08</publishTime>
+    </File>
+    <File Include="bin/App_Web_21apkguh.dll">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/App_Web_2lgxm1ft.dll">
+      <publishTime>06/16/2015 11:22:10</publishTime>
+    </File>
+    <File Include="bin/App_Web_3rvpknvc.dll">
+      <publishTime>06/16/2015 11:09:53</publishTime>
+    </File>
+    <File Include="bin/App_Web_45yxg50z.dll">
+      <publishTime>06/16/2015 10:11:43</publishTime>
+    </File>
+    <File Include="bin/App_Web_4dh4avfw.dll">
+      <publishTime>06/15/2015 09:44:23</publishTime>
+    </File>
+    <File Include="bin/App_Web_a2cayggw.dll">
+      <publishTime>06/16/2015 11:09:55</publishTime>
+    </File>
+    <File Include="bin/App_Web_aanfv50g.dll">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/App_Web_alsix0sz.dll">
+      <publishTime>06/17/2015 16:33:31</publishTime>
+    </File>
+    <File Include="bin/App_Web_aqudbhqh.dll">
+      <publishTime>06/16/2015 11:09:52</publishTime>
+    </File>
+    <File Include="bin/App_Web_b0qwaht4.dll">
+      <publishTime>06/17/2015 16:33:28</publishTime>
+    </File>
+    <File Include="bin/App_Web_binhx0cg.dll">
+      <publishTime>06/17/2015 16:33:29</publishTime>
+    </File>
+    <File Include="bin/App_Web_bt5jie1f.dll">
+      <publishTime>06/16/2015 10:11:42</publishTime>
+    </File>
+    <File Include="bin/App_Web_cbenskdf.dll">
+      <publishTime>06/17/2015 16:33:29</publishTime>
+    </File>
+    <File Include="bin/App_Web_cstj3otm.dll">
+      <publishTime>06/16/2015 11:09:53</publishTime>
+    </File>
+    <File Include="bin/App_Web_dd1c1v5d.dll">
+      <publishTime>06/15/2015 09:44:24</publishTime>
+    </File>
+    <File Include="bin/App_Web_dlcgah4x.dll">
+      <publishTime>06/16/2015 11:09:55</publishTime>
+    </File>
+    <File Include="bin/App_Web_dvoyxblu.dll">
+      <publishTime>06/18/2015 16:37:27</publishTime>
+    </File>
+    <File Include="bin/App_Web_ejypakvi.dll">
+      <publishTime>06/16/2015 11:09:52</publishTime>
+    </File>
+    <File Include="bin/App_Web_f4ztypkx.dll">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/App_Web_f5jfucey.dll">
+      <publishTime>06/15/2015 09:44:24</publishTime>
+    </File>
+    <File Include="bin/App_Web_fewyxfo1.dll">
+      <publishTime>06/15/2015 09:44:22</publishTime>
+    </File>
+    <File Include="bin/App_Web_g0di2qvu.dll">
+      <publishTime>06/15/2015 09:44:25</publishTime>
+    </File>
+    <File Include="bin/App_Web_gmqusnmi.dll">
+      <publishTime>06/16/2015 11:22:09</publishTime>
+    </File>
+    <File Include="bin/App_Web_gqupnzf3.dll">
+      <publishTime>06/16/2015 11:09:54</publishTime>
+    </File>
+    <File Include="bin/App_Web_gsr5gd3u.dll">
+      <publishTime>06/17/2015 16:33:29</publishTime>
+    </File>
+    <File Include="bin/App_Web_hll3gq5h.dll">
+      <publishTime>06/16/2015 10:11:42</publishTime>
+    </File>
+    <File Include="bin/App_Web_hu2techy.dll">
+      <publishTime>06/17/2015 16:33:30</publishTime>
+    </File>
+    <File Include="bin/App_Web_iewt4hqj.dll">
+      <publishTime>06/17/2015 16:33:31</publishTime>
+    </File>
+    <File Include="bin/App_Web_kckcwfar.dll">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/App_Web_kg4hr5ao.dll">
+      <publishTime>06/16/2015 11:22:09</publishTime>
+    </File>
+    <File Include="bin/App_Web_krr1axeu.dll">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/App_Web_ln0yj30d.dll">
+      <publishTime>06/16/2015 11:22:09</publishTime>
+    </File>
+    <File Include="bin/App_Web_ln1sagrz.dll">
+      <publishTime>06/16/2015 11:09:53</publishTime>
+    </File>
+    <File Include="bin/App_Web_lugttco4.dll">
+      <publishTime>06/16/2015 10:11:43</publishTime>
+    </File>
+    <File Include="bin/App_Web_ma34oevo.dll">
+      <publishTime>06/16/2015 10:11:45</publishTime>
+    </File>
+    <File Include="bin/App_Web_mdvd3c4h.dll">
+      <publishTime>06/16/2015 10:11:43</publishTime>
+    </File>
+    <File Include="bin/App_Web_mlkhpxre.dll">
+      <publishTime>06/16/2015 11:09:54</publishTime>
+    </File>
+    <File Include="bin/App_Web_mq2g3fc0.dll">
+      <publishTime>06/16/2015 11:22:07</publishTime>
+    </File>
+    <File Include="bin/App_Web_n4igehsh.dll">
+      <publishTime>06/17/2015 16:33:32</publishTime>
+    </File>
+    <File Include="bin/App_Web_ndvphadu.dll">
+      <publishTime>06/16/2015 10:11:42</publishTime>
+    </File>
+    <File Include="bin/App_Web_o5wrvb3t.dll">
+      <publishTime>06/17/2015 16:33:31</publishTime>
+    </File>
+    <File Include="bin/App_Web_ofxqm3ed.dll">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
+    <File Include="bin/App_Web_oitr4xbn.dll">
+      <publishTime>06/15/2015 09:44:24</publishTime>
+    </File>
+    <File Include="bin/App_Web_pbln2rqd.dll">
+      <publishTime>06/16/2015 11:22:08</publishTime>
+    </File>
+    <File Include="bin/App_Web_pg53iyod.dll">
+      <publishTime>06/16/2015 11:09:52</publishTime>
+    </File>
+    <File Include="bin/App_Web_pi3rxed5.dll">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/App_Web_qesro2tf.dll">
+      <publishTime>06/16/2015 11:22:11</publishTime>
+    </File>
+    <File Include="bin/App_Web_qkw3gkvy.dll">
+      <publishTime>06/16/2015 10:11:44</publishTime>
+    </File>
+    <File Include="bin/App_Web_qnpb4vdz.dll">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
+    <File Include="bin/App_Web_rfwp0mhy.dll">
+      <publishTime>06/16/2015 11:09:54</publishTime>
+    </File>
+    <File Include="bin/App_Web_rndhtyve.dll">
+      <publishTime>06/16/2015 11:22:10</publishTime>
+    </File>
+    <File Include="bin/App_Web_rwi1qqog.dll">
+      <publishTime>06/18/2015 16:37:27</publishTime>
+    </File>
+    <File Include="bin/App_Web_s1thmz3z.dll">
+      <publishTime>06/16/2015 11:22:08</publishTime>
+    </File>
+    <File Include="bin/App_Web_s5lzerz5.dll">
+      <publishTime>06/15/2015 09:44:22</publishTime>
+    </File>
+    <File Include="bin/App_Web_sssatr3u.dll">
+      <publishTime>06/16/2015 11:22:10</publishTime>
+    </File>
+    <File Include="bin/App_Web_tr3jtqnr.dll">
+      <publishTime>06/15/2015 09:44:23</publishTime>
+    </File>
+    <File Include="bin/App_Web_tsmbneqb.dll">
+      <publishTime>06/16/2015 10:11:44</publishTime>
+    </File>
+    <File Include="bin/App_Web_twbph0dc.dll">
+      <publishTime>06/17/2015 16:33:28</publishTime>
+    </File>
+    <File Include="bin/App_Web_uyn1uk2l.dll">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
+    <File Include="bin/App_Web_v3eqwvmc.dll">
+      <publishTime>06/15/2015 09:44:21</publishTime>
+    </File>
+    <File Include="bin/App_Web_v3fw5xc5.dll">
+      <publishTime>06/17/2015 16:33:30</publishTime>
+    </File>
+    <File Include="bin/App_Web_vef5fi31.dll">
+      <publishTime>06/15/2015 09:44:22</publishTime>
+    </File>
+    <File Include="bin/App_Web_w1is2veq.dll">
+      <publishTime>06/16/2015 10:11:45</publishTime>
+    </File>
+    <File Include="bin/App_Web_zfudotte.dll">
+      <publishTime>06/15/2015 09:44:25</publishTime>
+    </File>
+    <File Include="bin/App_Web_zixv55yo.dll">
+      <publishTime>06/16/2015 10:11:44</publishTime>
     </File>
     <File Include="bin/AutoMapper.dll">
       <publishTime>05/18/2015 14:45:16</publishTime>
@@ -71,6 +281,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/AWSSDK.dll">
       <publishTime>06/11/2015 09:15:43</publishTime>
+    </File>
+    <File Include="bin/changepassword.cshtml.68f676f.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
     </File>
     <File Include="bin/ClearScript.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -87,6 +300,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ClearScript.V8/v8-x64.dll">
       <publishTime>06/02/2015 16:28:45</publishTime>
     </File>
+    <File Include="bin/confirmemail.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/contact.cshtml.a8d08dba.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/create.cshtml.26e02470.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/delete.cshtml.26e02470.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/edit.cshtml.26e02470.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
     <File Include="bin/Elasticsearch.Net.dll">
       <publishTime>06/05/2015 09:06:18</publishTime>
     </File>
@@ -102,8 +330,50 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>05/07/2015 09:41:37</publishTime>
     </File>
+    <File Include="bin/error.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/externalloginconfirmation.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/externalloginfailure.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/forgotpassword.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/forgotpasswordconfirmation.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/howto.cshtml.a8d08dba.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
     <File Include="bin/ImageResizer.dll">
       <publishTime>06/11/2015 09:26:06</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.26e02470.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.62fd396e.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.65793277.compiled">
+      <publishTime>06/18/2015 16:37:27</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.68f676f.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.7f0f2fe9.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.a8ce8dad.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.a8d08dba.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
+    <File Include="bin/index.cshtml.fa39538c.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
     </File>
     <File Include="bin/JavaScriptEngineSwitcher.Core.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -116,6 +386,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/JSPool.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
+    </File>
+    <File Include="bin/lockout.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/login.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/managelogins.cshtml.68f676f.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>05/07/2015 09:41:38</publishTime>
@@ -159,11 +438,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/MsieJavaScriptEngine.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
     </File>
+    <File Include="bin/mychallenges.cshtml.fa39538c.compiled">
+      <publishTime>06/18/2015 16:37:24</publishTime>
+    </File>
     <File Include="bin/Nest.dll">
       <publishTime>06/05/2015 09:06:18</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>05/07/2015 09:43:55</publishTime>
+    </File>
+    <File Include="bin/notactivehunt.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/notfound.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>05/07/2015 09:41:39</publishTime>
@@ -178,7 +466,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="bin/Rebusjakt.dll">
-      <publishTime>06/12/2015 13:53:55</publishTime>
+      <publishTime>06/18/2015 16:37:18</publishTime>
+    </File>
+    <File Include="bin/register.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/resetpassword.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/resetpasswordconfirmation.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/riddles.cshtml.26e02470.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
     </File>
     <File Include="bin/ru-ru/JavaScriptEngineSwitcher.Core.resources.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
@@ -188,6 +488,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/ru-ru/MsieJavaScriptEngine.resources.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
+    </File>
+    <File Include="bin/sendcode.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/setpassword.cshtml.68f676f.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
     </File>
     <File Include="bin/System.Data.SQLite.dll">
       <publishTime>05/21/2015 11:33:04</publishTime>
@@ -222,6 +528,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>05/07/2015 09:41:33</publishTime>
     </File>
+    <File Include="bin/usernotfound.cshtml.65793277.compiled">
+      <publishTime>06/18/2015 16:37:27</publishTime>
+    </File>
+    <File Include="bin/verifycode.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/verifyphonenumber.cshtml.68f676f.compiled">
+      <publishTime>06/18/2015 16:37:25</publishTime>
+    </File>
     <File Include="bin/WebActivatorEx.dll">
       <publishTime>06/02/2015 16:28:42</publishTime>
     </File>
@@ -233,6 +548,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/x86/SQLite.Interop.dll">
       <publishTime>05/21/2015 11:33:03</publishTime>
+    </File>
+    <File Include="bin/_externalloginslistpartial.cshtml.5f83eb8c.compiled">
+      <publishTime>06/18/2015 16:37:23</publishTime>
+    </File>
+    <File Include="bin/_layout.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/_loginpartial.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/_topnavigation.cshtml.639c3968.compiled">
+      <publishTime>06/18/2015 16:37:26</publishTime>
+    </File>
+    <File Include="bin/_viewstart.cshtml.65a2d1ee.compiled">
+      <publishTime>06/18/2015 16:37:27</publishTime>
     </File>
     <File Include="browserconfig.xml">
       <publishTime>06/12/2015 13:26:37</publishTime>
@@ -384,6 +714,24 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="packages.config">
       <publishTime>06/11/2015 09:26:07</publishTime>
     </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>06/18/2015 16:37:19</publishTime>
+    </File>
+    <File Include="ReactComponents/ChallengeApp.jsx">
+      <publishTime>06/16/2015 17:03:23</publishTime>
+    </File>
+    <File Include="ReactComponents/ChallengeCreator.jsx">
+      <publishTime>06/18/2015 13:48:58</publishTime>
+    </File>
+    <File Include="ReactComponents/ChallengedApp.jsx">
+      <publishTime>06/18/2015 16:13:45</publishTime>
+    </File>
+    <File Include="ReactComponents/ChallengerApp.jsx">
+      <publishTime>06/18/2015 16:08:35</publishTime>
+    </File>
+    <File Include="ReactComponents/ChallengeResult.jsx">
+      <publishTime>06/18/2015 16:26:06</publishTime>
+    </File>
     <File Include="ReactComponents/CorrectHunt.jsx">
       <publishTime>06/10/2015 09:13:21</publishTime>
     </File>
@@ -394,7 +742,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2015 16:20:25</publishTime>
     </File>
     <File Include="ReactComponents/GameApp.jsx">
-      <publishTime>06/11/2015 17:01:06</publishTime>
+      <publishTime>06/16/2015 09:50:50</publishTime>
     </File>
     <File Include="ReactComponents/GeocodeMap.jsx">
       <publishTime>06/10/2015 10:07:04</publishTime>
@@ -406,7 +754,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2015 10:21:19</publishTime>
     </File>
     <File Include="ReactComponents/LocationChecker.jsx">
-      <publishTime>06/10/2015 10:08:24</publishTime>
+      <publishTime>06/16/2015 09:55:08</publishTime>
     </File>
     <File Include="ReactComponents/LocationStartEndPicker.jsx">
       <publishTime>06/11/2015 14:42:32</publishTime>
@@ -421,16 +769,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2015 10:13:53</publishTime>
     </File>
     <File Include="ReactComponents/NumberGuesser.jsx">
-      <publishTime>06/11/2015 13:13:51</publishTime>
+      <publishTime>06/16/2015 09:41:19</publishTime>
     </File>
     <File Include="ReactComponents/QuestionCreator.jsx">
       <publishTime>06/11/2015 13:07:07</publishTime>
     </File>
     <File Include="ReactComponents/QuestionGuesser.jsx">
-      <publishTime>06/11/2015 13:33:38</publishTime>
+      <publishTime>06/16/2015 09:51:49</publishTime>
     </File>
     <File Include="ReactComponents/ReviewForm.jsx">
-      <publishTime>06/11/2015 13:27:27</publishTime>
+      <publishTime>06/16/2015 09:56:52</publishTime>
     </File>
     <File Include="ReactComponents/RiddleController.jsx">
       <publishTime>05/12/2015 14:34:25</publishTime>
@@ -439,19 +787,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2015 13:23:52</publishTime>
     </File>
     <File Include="ReactComponents/RiddleGuesser.jsx">
-      <publishTime>06/11/2015 13:30:05</publishTime>
+      <publishTime>06/16/2015 09:58:53</publishTime>
     </File>
     <File Include="ReactComponents/SearchApp.jsx">
       <publishTime>06/11/2015 13:16:33</publishTime>
     </File>
     <File Include="ReactComponents/TextGuesser.jsx">
-      <publishTime>06/09/2015 14:40:57</publishTime>
+      <publishTime>06/16/2015 09:25:48</publishTime>
     </File>
     <File Include="ReactComponents/TrueOrFalseGuesser.jsx">
       <publishTime>05/22/2015 16:55:49</publishTime>
     </File>
     <File Include="readme.txt">
       <publishTime>06/02/2015 16:28:47</publishTime>
+    </File>
+    <File Include="robots.txt">
+      <publishTime>06/12/2015 15:33:14</publishTime>
     </File>
     <File Include="sass/addon/font-awesome/_animated.scss">
       <publishTime>05/29/2015 10:14:55</publishTime>
@@ -511,16 +862,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/29/2015 10:14:55</publishTime>
     </File>
     <File Include="sass/base.css">
-      <publishTime>06/10/2015 15:24:01</publishTime>
+      <publishTime>06/15/2015 13:46:48</publishTime>
     </File>
     <File Include="sass/base.css.map">
-      <publishTime>06/10/2015 15:24:01</publishTime>
+      <publishTime>06/15/2015 13:46:48</publishTime>
     </File>
     <File Include="sass/base.min.css">
-      <publishTime>06/10/2015 15:23:54</publishTime>
+      <publishTime>06/15/2015 13:46:38</publishTime>
     </File>
     <File Include="sass/base.scss">
-      <publishTime>06/10/2015 14:16:49</publishTime>
+      <publishTime>06/15/2015 13:46:35</publishTime>
     </File>
     <File Include="sass/element/_avatar.scss">
       <publishTime>05/29/2015 10:14:55</publishTime>
@@ -688,133 +1039,136 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2015 13:01:50</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginFailure.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/ForgotPassword.cshtml">
-      <publishTime>05/27/2015 14:21:16</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/ForgotPasswordConfirmation.cshtml">
-      <publishTime>05/27/2015 11:52:20</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>05/27/2015 14:20:28</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
-      <publishTime>05/27/2015 15:31:30</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
-      <publishTime>05/27/2015 11:56:15</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/ResetPasswordConfirmation.cshtml">
-      <publishTime>05/27/2015 11:57:41</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/SendCode.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/VerifyCode.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Challenge/Index.cshtml">
-      <publishTime>06/10/2015 16:52:47</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
+    </File>
+    <File Include="Views/Challenge/MyChallenges.cshtml">
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Game/Index.cshtml">
-      <publishTime>06/11/2015 16:34:38</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>06/11/2015 13:38:02</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>05/07/2015 09:41:27</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Home/HowTo.cshtml">
-      <publishTime>06/09/2015 17:23:13</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/12/2015 13:49:19</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Hunt/Index.cshtml">
-      <publishTime>06/12/2015 13:52:33</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Manage/ChangePassword.cshtml">
-      <publishTime>05/27/2015 13:58:00</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Manage/Index.cshtml">
-      <publishTime>05/27/2015 14:28:03</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Manage/ManageLogins.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Manage/SetPassword.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Create.cshtml">
-      <publishTime>06/11/2015 13:22:15</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Delete.cshtml">
-      <publishTime>06/11/2015 13:22:15</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Edit.cshtml">
-      <publishTime>06/11/2015 13:22:15</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Index.cshtml">
-      <publishTime>06/11/2015 13:17:24</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/RiddleAdmin/Riddles.cshtml">
-      <publishTime>06/12/2015 12:55:19</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Search/Index.cshtml">
-      <publishTime>06/10/2015 11:28:56</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>06/12/2015 10:21:06</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/Lockout.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/NotActiveHunt.cshtml">
-      <publishTime>06/11/2015 13:50:27</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/NotFound.cshtml">
-      <publishTime>06/11/2015 15:48:52</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/12/2015 13:27:03</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>05/07/2015 09:41:36</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Shared/_TopNavigation.cshtml">
-      <publishTime>06/09/2015 16:06:48</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/User/Index.cshtml">
-      <publishTime>06/09/2015 11:40:05</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/User/UserNotFound.cshtml">
-      <publishTime>06/04/2015 15:32:09</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/08/2015 11:02:28</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>05/07/2015 09:41:27</publishTime>
+      <publishTime>06/18/2015 16:37:28</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/12/2015 13:04:28</publishTime>
+      <publishTime>06/16/2015 11:09:47</publishTime>
     </File>
   </ItemGroup>
 </Project>

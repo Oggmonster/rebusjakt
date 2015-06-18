@@ -1,0 +1,10 @@
+﻿User-agent: *
+Allow: /
+User-agent: AhrefsBot
+Disallow: /
+User-agent: Baiduspider
+Disallow: /
+User-agent: Baiduspider-video
+Disallow: /
+User-agent: Libwww-perl
+Disallow: /

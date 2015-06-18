@@ -11,15 +11,37 @@
             </div>
         </div>
     </div>
-    <div class="content-inner">
-        <div class="container">
-            <div class="card-wrap">
-                <div class="card">
-                    <div class="card-inner">
+</div>
+<div class="content-inner">
+    <div class="container">
+        <div class="card-wrap">
+            <div class="card">
+                <div class="card-main">
+                    <div id="challenge-container" class="card-inner">
+                        @if (Model.IsAccepted)
+                        {
+                            <img src="http://d2igriiyls8v77.cloudfront.net/images/challenge-accepted.png" />
+                        }
+                        else
+                        {
+                            <p class="card-heading">
+                                Du har blivit utmanad av <a href="/u/@(Model.ChallengerUserName)">@(Model.ChallengerUserName)</a> att delta i rebusjakten @Model.HuntName
+                            </p>
+                            <p>
+                                Startplats: @Model.HuntLocation <br />
+                                Starttid: @Model.StartDate.ToString("kl HH:mm dd MMM-yyyy")
+                            </p>
+                            <p>
+                                Antar du utmaningen?
+                            </p>
+                            <p>
+                                <button id="btn-accept" class="btn btn-blue">Ja!</button>&nbsp; &nbsp; <button id="btn-reject" class="btn btn-red btn-flat">Nej</button>
+                            </p>
+                        }
+                        <h2 class="content-sub-heading">Mer om <a href="/jakt/@(Model.HuntId)/@(Model.HuntSlug)">@Model.HuntName</a></h2>
+                        <span>Tema: @Model.HuntTheme</span>
                         <p>
-                            Du har blivit utmanad att delta i rebusjakten <a href="/jakt/@(Model.HuntId)/@(Model.HuntSlug)">@Model.HuntName</a> av @(Model.ChallengerUserName).
-                            Antar du utmaningen?
-                            <button>Ja!</button> <button>Nej</button>
+                            @Model.HuntDescription
                         </p>
                     </div>
                 </div>
@@ -28,3 +50,28 @@
     </div>
 </div>
 
+
+@section Scripts{
+    <script>
+        $(function () {
+            var challengeId = '@(Model.Id)';
+            var acceptedImage = "<img src='http://d2igriiyls8v77.cloudfront.net/images/challenge-accepted.png' />";
+            var rejectedImage = "<img src='http://d2igriiyls8v77.cloudfront.net/images/challenge-denied.png' />";
+            $("#btn-accept").on("click", function (e) {
+                e.preventDefault();
+                $.post("/challenge/acceptchallenge", { id: challengeId }, function () {
+                    $("#challenge-container").html(acceptedImage);
+                }, "json");
+
+            });
+
+            $("#btn-reject").on("click", function (e) {
+                e.preventDefault();
+                $.post("/challenge/rejectchallenge", { id: challengeId }, function () {
+                    $("#challenge-container").html(rejectedImage);
+                }, "json");
+            });
+
+        })
+    </script>
+}

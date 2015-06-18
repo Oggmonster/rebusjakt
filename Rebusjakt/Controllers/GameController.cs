@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Rebusjakt.Services;
 using System.Globalization;
+using Rebusjakt.Search;
 
 namespace Rebusjakt.Controllers
 {
@@ -72,6 +73,25 @@ namespace Rebusjakt.Controllers
                 userScore.CreatedDate = DateTime.Now;
                 unitOfWork.UserScoreRepository.Insert(userScore);
                 unitOfWork.Save();
+                //check for challenges
+                var searcher = new Searcher();
+                var challenges = searcher.FindChallengeByChallengedUserId(userScore.UserId);
+                if(challenges.Total > 0){
+                    var huntChallenges = challenges.Hits.Select(s => s.Source).Where(c => c.HuntId == userScore.HuntId);
+                    var userScoreViewModel = new UserScoreViewModel
+                    {
+                        Score = userScore.Score,
+                        TimeInSeconds = userScore.TimeInSeconds,
+                        CreatedDate = DateTime.Now                        
+                    };
+
+                    var indexer = new Indexer();
+                    foreach (var item in huntChallenges)
+                    {
+                        item.UserScore = userScoreViewModel;
+                        indexer.UpsertChallenge(item);
+                    }                    
+                }
                 return Json("");
             }
             return Json("Du har genomfört den här jakten tidigare och fick då " + existingScore.Score + "p. Det är endast din första poäng som sparas till topplistan.");

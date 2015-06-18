@@ -14,6 +14,10 @@ namespace Rebusjakt.ViewModels
 
         public string CreatorUrl { get; set; }
 
+        public bool IsAuthenticated { get; set; }
+
+        public string UserId { get; set; }
+
         public List<HuntReviewViewModel> HuntReviews { get; set; }
 
         public List<UserScoreViewModel> TopScores { get; set; }

@@ -14,7 +14,7 @@ namespace Rebusjakt.Services
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
-        {            
+        {
             string text = message.Body;
             string html = message.Body;
             string senderAccount = ConfigurationManager.AppSettings["mailAccount"];

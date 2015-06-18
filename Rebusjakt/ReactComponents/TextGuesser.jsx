@@ -1,25 +1,19 @@
-﻿var TextGuessingResult = React.createClass({
+﻿var WrongGuesses = React.createClass({
     render: function(){        
-        var styling = {letterSpacing:'5px', fontSize:'1.5em'};
-		var wrongWords, wrongGuessesLeft;
-		if(this.props.wrongGuesses.length > 0){
-			wrongGuessesLeft = this.props.maxwrong - this.props.wrongGuesses.length;
-			var guessNodes = this.props.wrongGuesses.map(function(word, i){
-				return(
-						<div key={i} className="tile tile-red"><div className="tile-inner">{word}</div></div>
-					);
-			});
-			wrongWords = (<div className="tile-wrap">
-							{guessNodes}
-							<div className="tile"><div className="tile-inner">Du kan gissa fel <strong>{wrongGuessesLeft}</strong> ggr till</div></div>
-						</div>);
-		}
+        var wrongGuessesLeft = this.props.maxwrong - this.props.wrongGuesses.length;
+        var guessNodes = this.props.wrongGuesses.map(function(word, i){
+                return(
+                        <div key={i} className="tile tile-red"><div className="tile-inner">{word}</div></div>
+                    );
+            });
         return(
-            <div>
-                <label style={styling}>{this.props.guessword}</label>
-                {wrongWords}
+            <div className="tile-wrap">
+                <div className="tile">
+                    <div className="tile-inner">Du kan gissa fel <strong>{wrongGuessesLeft}</strong> ggr till</div>
+                </div>
+                {guessNodes}
             </div>
-            );
+        );
     }
 });
 
@@ -40,9 +34,9 @@ var TextGuessingForm = React.createClass({
 				<div className="form-group">
 					<div className="row">
 						<div className="col-lg-12">							
-							<label>Skriv in hela ordet/meningen eller gissa på en bokstav/siffra i taget</label>
 							<input type="text" className="txt-guess form-control form-control-default input-inline" placeholder="Gissning" ref="guess"  />
 							<input type="submit" className="btn btn-blue btn-inline" value="Gissa" />
+                            <span className="form-help form-help-msg">Skriv in hela ordet/meningen eller gissa på en bokstav/siffra i taget</span>
 						</div>
 					</div>
 				</div>
@@ -122,10 +116,16 @@ var TextGuesser = React.createClass({
         return { guessword: this.initGuessWord(this.props.answer, this.props.correctGuesses), wrongGuesses: this.props.wrongGuesses, correctGuesses: this.props.correctGuesses };
     },
 	render: function(){
+        var styling = {letterSpacing:'5px', fontSize:'1.5em'};
+        var wrongGuesses;
+        if(this.state.wrongGuesses.length > 0){
+            wrongGuesses = <WrongGuesses wrongGuesses={this.state.wrongGuesses} maxwrong={this.props.maxwrong} />;
+        }
 		return(
 			<div>
-				<TextGuessingResult guessword={this.state.guessword} wrongGuesses={this.state.wrongGuesses} maxwrong={this.props.maxwrong} />
+                <label style={styling}>{this.state.guessword}</label>
 				<TextGuessingForm onGuess={this.handleGuess} />
+                {wrongGuesses}
 			</div>
 		);
 	}

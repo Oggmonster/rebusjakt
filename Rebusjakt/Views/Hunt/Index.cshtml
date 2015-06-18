@@ -16,7 +16,7 @@
     <div class="container">
         <div class="card-wrap">
             <div class="card">
-                <div class="card-inner">                    
+                <div class="card-inner">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <p>
@@ -27,11 +27,8 @@
                             </p>
                             <p>
                                 @Model.Hunt.Description
-                            </p>
+                            </p>                            
                             <p>Vi rekommenderar att du befinner dig vid startpunkten innan du startar jakten.</p>
-                            <p>
-                                <a class="btn btn-blue hunt-link" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
-                            </p>
                             <div class="checkbox checkbox-adv">
                                 <label>
                                     <input class="access-hide chk-move-hunt" type="checkbox" />Jag vill flytta jakten till en annan plats
@@ -47,15 +44,24 @@
                             <div class="collapsible-region collapse" id="collapsible-region">
                                 <p>
                                     Om du checkar för att du vill flytta jakten kommer du i början av jakten få ange nya kartpositioner för alla rebusar samt målgången.
-                                    Du kommer dock inte ha möjlighet att få lika mycket poäng om du gör detta. 
+                                    Du kommer dock inte ha möjlighet att få lika mycket poäng om du gör detta.
                                 </p>
                             </div>
+                            <p>
+                                <a class="btn btn-blue hunt-link" href="/game/index/@Model.Hunt.Id" title="Sätt igång jakten">Sätt igång jakten</a>
+                            </p>
+                            @if (Model.IsAuthenticated)
+                            {
+                                <div id="challenge-container"></div>
+                            }
+                            
+                           
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div id="map-container"></div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -77,9 +83,9 @@
                         <div class="tile">
                             <div class="pull-left tile-side">
                                 <div class="avatar avatar-blue avatar-md">
-                                   @(item.Score) p
+                                    @(item.Score) p
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="tile-inner">
                                 <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a><br />
                                 <span class="icon icon-timer text-green"></span> @item.TimeDisplay &nbsp;
@@ -118,8 +124,8 @@
                                 </div>
                             }
                             <div class="tile-inner">
-                                    @item.Description<br />
-                                    <span class="icon icon-event text-green"></span> @item.CreatedDate.ToString("dd MMM - yyyy") <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a>
+                                <span class="icon icon-event text-green"></span> @item.CreatedDate.ToString("dd MMM - yyyy") <a href="@item.UserUrl" title="@item.UserName">@item.UserName</a><br />
+                                @item.Description
                             </div>
                         </div>
                     }
@@ -130,21 +136,28 @@
 </div>
 
 @section Scripts{
-    <script>
-        $(".chk-move-hunt").on("click", function(e){
-            var huntLink = $(".hunt-link");
-            var url = huntLink.attr("href");
-            if(url.indexOf("?isRandom=true") !== -1){
-                url = url.replace("?isRandom=true", "");
-            }else{
-                url += "?isRandom=true";
-            }
-            huntLink.attr("href",url);
-        });
-        var mapData = {
-            lat: @(Model.Hunt.StartLatitude),
-            lng: @(Model.Hunt.StartLongitude)
-            };
-    </script>
+    
+    @if (Model.IsAuthenticated)
+    {
+        @Scripts.Render("~/bundles/challenge")
+        <script>
+            React.render(React.createElement(ChallengeCreator, {huntId : @(Model.Hunt.Id), userId: "@(Model.UserId)"}), document.getElementById("challenge-container"));
+        </script>
+    }
     @Scripts.Render("~/bundles/huntview")
+    <script>
+        $(function(){
+            $(".chk-move-hunt").on("click", function(e){
+                var huntLink = $(".hunt-link");
+                var url = huntLink.attr("href");
+                if(url.indexOf("?isRandom=true") !== -1){
+                    url = url.replace("?isRandom=true", "");
+                }else{
+                    url += "?isRandom=true";
+                }
+                huntLink.attr("href",url);
+            });
+            React.render(React.createElement(GoogleMap,{lat:@(Model.Hunt.StartLatitude), lng:@(Model.Hunt.StartLongitude)}), document.getElementById("map-container"));
+        });        
+    </script>
 }

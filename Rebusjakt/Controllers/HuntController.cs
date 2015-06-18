@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Microsoft.AspNet.Identity;
 
 namespace Rebusjakt.Controllers
 {
@@ -30,11 +30,14 @@ namespace Rebusjakt.Controllers
                 return RedirectPermanent(string.Format("/jakt/{0}/{1}", hunt.Id, hunt.Slug));
             }
             var creator = unitOfWork.UserRepository.GetByID(hunt.UserId);
+            bool isAuthenticated = Request.IsAuthenticated;
             var viewModel = new HuntIndexViewModel
             {
                 Hunt = hunt,
                 Creator = creator.UserName,
-                CreatorUrl = "/u/" + creator.Slug
+                CreatorUrl = "/u/" + creator.Slug,
+                IsAuthenticated = isAuthenticated,
+                UserId = isAuthenticated ? User.Identity.GetUserId() : string.Empty
             };            
             
             viewModel.HuntReviews = unitOfWork.HuntReviewRepository.Get().Where(h => h.HuntId == id)

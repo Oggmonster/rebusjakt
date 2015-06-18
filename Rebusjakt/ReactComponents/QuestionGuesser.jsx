@@ -68,7 +68,7 @@ var QuestionGuesser = React.createClass({
 				if(q.isAnswered){
 					cardClass += q.isCorrect ? " card-green-bg" : " card-red-bg";
 				}else{
-					actions = <a href="#" onClick={this.handleOpenQuestion.bind(this, q)}><span className="text-blue">Svara</span></a>;
+					actions = <p><a href="#" onClick={this.handleOpenQuestion.bind(this, q)} className="btn btn-green">Svara</a></p>;
 				}
 				if(q.question.ImageSrc){
 					img = <div class="card-img">
@@ -82,12 +82,9 @@ var QuestionGuesser = React.createClass({
 								{img}
 								<div className="card-inner">
 									<p>{q.question.Description}</p>
+									{actions}
 								</div>
-								<div className="card-action">
-									<ul className="nav nav-list pull-left">
-										<li>{actions}</li>
-									</ul>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -102,7 +99,7 @@ var QuestionGuesser = React.createClass({
 							</div>
 						</div>   
 						{finishedMessage}
-						<a href="#" onClick={this.handleReturn} className="btn btn-flat btn-blue">Återgå till rebuslistan</a>
+						<a href="#" onClick={this.handleReturn} className="btn btn-flat btn-blue"><span className="icon icon-chevron-left"></span>Återgå till rebuslistan</a>
 					</div>;
 		}	
 		return(

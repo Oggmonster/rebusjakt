@@ -28,6 +28,10 @@ namespace Rebusjakt.Controllers
 
         public ActionResult ByLocation(string latStr, string lngStr)
         {
+            if (string.IsNullOrEmpty(latStr) || string.IsNullOrEmpty(lngStr))
+            {
+                return Redirect("/search/index/?q=");
+            }
             double lat = 0, lng = 0;
             double.TryParse(latStr.Replace(".", ","), out lat);
             double.TryParse(lngStr.Replace(".", ","), out lng);

@@ -39,13 +39,9 @@ var ReviewForm = React.createClass({
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="card-action">
-					<ul className="nav nav-list pull-left">
-						<li>
-							<a href="#" onClick={this.handleSubmit}><span className="text-blue">Skicka</span></a>
-						</li>
-					</ul>
+					<p>
+						<a href="#" onClick={this.handleSubmit} className="btn btn-blue">Skicka</a>
+					</p>
 				</div>
 				</div>
 			</div>

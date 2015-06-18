@@ -40,7 +40,7 @@ namespace Rebusjakt.Search
             client.Delete<Hunt>(id);
         }
 
-        public void UpdateHunt(Hunt hunt)
+        public void UpsertHunt(Hunt hunt)
         {
             var response = client.Update<Hunt, object>(h => h
                 .IdFrom(hunt)
@@ -49,7 +49,7 @@ namespace Rebusjakt.Search
             );
         }
 
-        public void UpdateChallenge(Challenge challenge)
+        public void UpsertChallenge(Challenge challenge)
         {
             var response = client.Update<Challenge, object>(c => c
                 .IdFrom(challenge)

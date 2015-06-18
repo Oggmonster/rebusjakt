@@ -23,14 +23,14 @@ var GameRiddle = React.createClass({
 				if(gameRiddle.hasQuestions){
 					var unAnswered = gameRiddle.gameQuestions.filter(function(q){ return !q.isAnswered; }).length;
 					extraContent = <p><strong>{unAnswered} st obesvarade frågor</strong></p>;
-					actions = <a href="#"  onClick={this.handleAnswerQuestions}><span className="text-blue">Svara på frågor</span></a>;
+					actions = <a href="#"  onClick={this.handleAnswerQuestions} className="btn btn-green">Svara på frågor</a>;
 				}else{
 					extraContent = <p><span className="icon icon-place alt-text"></span> Frågorna finns vid {gameRiddle.riddle.LocationName}</p>;
-					actions = <a href="#" onClick={this.handleCollectQuestions}><span className="text-blue">Hämta frågor</span></a>;
+					actions = <a href="#" onClick={this.handleCollectQuestions} className="btn">Hämta frågor</a>;
 				}
 			}
 		}else{
-			actions = <a href="#" onClick={this.handleOpenRiddle}><span className="text-blue">Lös rebus</span></a>;
+			actions = <a href="#" onClick={this.handleOpenRiddle} className="btn btn-blue">Lös rebus</a>;
 		}
 		return (
 				<div className="col-lg-3 col-md-4 col-sm-6">
@@ -39,12 +39,12 @@ var GameRiddle = React.createClass({
 							<div className="card-inner">
 								<p dangerouslySetInnerHTML={{__html: emojione.toImage(gameRiddle.riddle.Description)}} />
 								{extraContent}
+								<p>
+									{actions}
+								</p>
+								
 							</div>
-							<div className="card-action">
-								<ul className="nav nav-list pull-left">
-									<li>{actions}</li>
-								</ul>
-							</div>
+							
 						</div>						
 					</div>
 				</div>					
@@ -114,7 +114,7 @@ var GameApp = React.createClass({
 	},
 	handleCollectQuestions: function(gameRiddle){
 		this.showContentContainer();
-		React.render(<div><LocationChecker gameRiddle={gameRiddle} onReturn={this.handleQuestionsCollected} /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}>Tillbaka</a></div>, document.getElementById("content-container"));
+		React.render(<div><LocationChecker gameRiddle={gameRiddle} onReturn={this.handleQuestionsCollected} /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}><span className="icon icon-chevron-left"></span>Tillbaka</a></div>, document.getElementById("content-container"));
 	},	
 	handleAnswerQuestions: function(gameRiddle){
 		this.showContentContainer();
@@ -139,7 +139,7 @@ var GameApp = React.createClass({
 			};
 		});
 		var first = positions.shift();
-		React.render(<div><GoogleMap positions={positions} lat={first.lat} lng={first.lng} /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}>Tillbaka</a></div>, document.getElementById("content-container"));
+		React.render(<div><br /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}><span className="icon icon-chevron-left"></span>Tillbaka</a><GoogleMap positions={positions} lat={first.lat} lng={first.lng} /><a href="#" className="btn btn-flat btn-blue" onClick={this.handleReturn}><span className="icon icon-chevron-left"></span>Tillbaka</a></div>, document.getElementById("content-container"));
 	},
 	handleTimeIsUp : function(){
 		this.setState({timeIsUp: true});
@@ -169,7 +169,7 @@ var GameApp = React.createClass({
     },
 	render: function(){
 		var countDowntimer, mapButton, reviewForm, reviewThanks, scoreMessage = <p>{this.state.scoreMessage}</p>, endMessage = "Snyggt du har klarat alla rebusar!";
-		var marginStyle = { marginLeft : '20px'}, backUrl = "/jakt/" + this.state.master.huntId;
+		var marginLeft = { marginLeft : '20px'}, marginBottom = {marginBottom : "0px"},  backUrl = "/jakt/" + this.state.master.huntId;
 		var hasCorrectRiddles = this.state.data.filter(function(r){ return r.isCorrect; }).length > 0;
 		var allCompleted = this.state.data.every(function(r){ return r.isCompleted });
 		var isCompleted = allCompleted || this.state.timeIsUp;
@@ -181,7 +181,7 @@ var GameApp = React.createClass({
 			countDowntimer = <CountDownTimer duration={this.state.master.duration} started={this.state.master.started} onTimeIsUp={this.handleTimeIsUp} />;
 		}
 		if(hasCorrectRiddles){
-			mapButton = <button onClick={this.handleShowMap} className="btn btn-blue" style={marginStyle}><span className="icon icon-place"></span> Visa karta</button>;
+			mapButton = <button onClick={this.handleShowMap} className="btn btn-blue" style={marginLeft}><span className="icon icon-place"></span> Visa karta</button>;
 		}
 		if(this.state.hasReview){
 			reviewThanks = <p>Tack för ditt betyg!</p>;
@@ -217,7 +217,7 @@ var GameApp = React.createClass({
 				)
 				:
 				(<div>
-					<h2 className="content-sub-heading">{endMessage}</h2>
+					<h2 className="content-sub-heading" style={marginBottom}>{endMessage}</h2>
 					<LocationChecker gameRiddle={this.state.master.endGameRiddle} onReturn={this.handleReachedFinish} />
 				</div>
 				) 
@@ -243,5 +243,4 @@ var GameApp = React.createClass({
 	}
 });
 
-var gameMaster = new GameMaster(huntData);
-React.render(<GameApp gameMaster={gameMaster} />, document.getElementById("game-container"));
+

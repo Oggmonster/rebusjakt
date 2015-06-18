@@ -26,7 +26,7 @@ namespace Rebusjakt.Controllers
                 var keyName = Guid.NewGuid().ToString().Replace("-", "") + DateTime.Now.ToString("ddMMyyyyHHmmss") + extension;
                 using(var destinationStream = new MemoryStream())
 	            {
-                    ImageBuilder.Current.Build(file.InputStream, destinationStream, new ResizeSettings("maxwidth=600&maxheight=600&scale=both"), true);
+                    ImageBuilder.Current.Build(file.InputStream, destinationStream, new ResizeSettings("maxwidth=400&maxheight=400&scale=both"), true);
                     using (var client = Amazon.AWSClientFactory.CreateAmazonS3Client(accessKey, secretKey, Amazon.RegionEndpoint.EUWest1))
                     {
                         PutObjectRequest request = new PutObjectRequest

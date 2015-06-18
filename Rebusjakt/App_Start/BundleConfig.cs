@@ -36,8 +36,17 @@ namespace Rebusjakt
                 ));
 
             bundles.Add(new JsxBundle("~/bundles/huntview").Include(
-                    "~/ReactComponents/GoogleMap.jsx",
-                    "~/ReactComponents/MapApp.jsx"
+                    "~/ReactComponents/GoogleMap.jsx"
+                ));
+
+            bundles.Add(new JsxBundle("~/bundles/challengeview").Include(
+                    "~/ReactComponents/ChallengeResult.jsx",
+                    "~/ReactComponents/ChallengedApp.jsx",
+                     "~/ReactComponents/ChallengerApp.jsx"
+                ));
+
+            bundles.Add(new JsxBundle("~/bundles/challenge").Include(
+                    "~/ReactComponents/ChallengeCreator.jsx"
                 ));
 
             bundles.Add(new JsxBundle("~/bundles/search").Include(

@@ -11,6 +11,8 @@ namespace Rebusjakt.Models
     {
         public string Id { get; set; }
 
+        public string GroupId { get; set; }
+
         public int HuntId { get; set; }
 
         public string HuntSlug { get; set; }
@@ -19,11 +21,11 @@ namespace Rebusjakt.Models
 
         public string HuntTheme { get; set; }
 
+        public string HuntLocation { get; set; }
+
         public string HuntDescription { get; set; }
 
         public string ChallengerUserId { get; set; }
-
-        public string ChallengerName { get; set; }
 
         public string ChallengerUserName { get; set; }
 
@@ -31,13 +33,21 @@ namespace Rebusjakt.Models
 
         public string ChallengedEmail { get; set; }
 
-        public string ChallengedName { get; set; }
+        public string ChallengedUserName { get; set; }
 
         public string Message { get; set; }        
 
         public DateTime StartDate { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+
+        public string FriendlyStartTime { get { return StartDate.ToString("HH:mm dd MMM-yyyy"); } }
+
+        public string FriendlyCreatedDate { get { return CreatedDate.ToString("dd MMM-yyyy"); } }
+
         public bool IsAccepted { get; set; }
+
+        public bool IsActive { get { return DateTime.Now < StartDate; } }
 
         public UserScoreViewModel UserScore { get; set;  }
 

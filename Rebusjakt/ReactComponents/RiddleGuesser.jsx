@@ -13,14 +13,15 @@
                             <h2 className="content-sub-heading">Bra där du gissade rätt</h2>
 							<p>
 								Bege dig till <strong>{this.props.riddle.LocationName}</strong> för att hämta rebusens frågor.
-                            </p>                                
+                            </p>   
+                            <a href="#" className="btn btn-flat btn-blue" onClick={this.completedGuessing}><span className="icon icon-chevron-left"></span>Återgå till rebuslistan</a>                        
                             <GoogleMap lat={this.props.riddle.Latitude} lng={this.props.riddle.Longitude} />
-							<a href="#" className="btn btn-flat btn-blue" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
+							
                         </div> : 
                         <div>
                             <h2 className="content-sub-heading">Tyvärr det var fel</h2>
 							<p dangerouslySetInnerHTML={{__html: emojione.toImage(":worried:")}} />
-							<a href="#" className="btn btn-flat btn-blue" onClick={this.completedGuessing}>Återgå till rebuslistan</a>
+							<a href="#" className="btn btn-flat btn-blue" onClick={this.completedGuessing}><span className="icon icon-chevron-left"></span>Återgå till rebuslistan</a>
                         </div>
                     }
                 </div>
@@ -65,7 +66,7 @@
 								<p dangerouslySetInnerHTML={{__html: emojione.toImage(this.state.riddle.Description)}} />
                                 <TextGuesser answer={this.state.riddle.Answer} wrongGuesses={this.state.gameRiddle.wrongGuesses} correctGuesses={this.state.gameRiddle.correctGuesses} maxwrong={this.props.maxwrong} onHasAnswered={this.handleHasAnswered} onSave={this.props.onSave} />
 								<p>
-									<a href="#" onClick={this.handleReturn} className="btn btn-flat btn-blue">Återgå till rebuslistan</a>
+									<a href="#" onClick={this.handleReturn} className="btn btn-flat btn-blue"><span className="icon icon-chevron-left"></span>Återgå till rebuslistan</a>
 								</p>
                             </div>
                         }

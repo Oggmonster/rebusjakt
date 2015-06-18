@@ -13,14 +13,8 @@
 					<div className="row">
 						<div className="col-lg-6 col-md-8 col-sm-10">
 							<label>Skriv in ett nummer som svar</label>
-							<input className="form-control form-control-default"  type="number" ref="number" />
-						</div>
-					</div>
-				</div>				
-				<div className="form-group-btn">
-					<div className="row">
-						<div className="col-lg-6 col-md-8 col-sm-10">
-							<button className="btn btn-blue waves-button waves-light waves-effect" type="submit">Svara</button>
+							<input className="form-control form-control-default input-inline"  type="number" ref="number" />
+							<button className="btn btn-blue waves-button waves-light waves-effect btn-inline" type="submit">Svara</button>
 						</div>
 					</div>
 				</div>				

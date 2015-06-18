@@ -78,15 +78,18 @@ var LocationChecker = React.createClass({
 		if(this.state.showAlternative){
 			altbutton = <p><button className="btn btn-red" onClick={this.handleForceUnlock}>Jag svär jag är där!</button></p>;
 		}
+		var marginTop = {marginTop: "24px"};
 		return (
 			<div>
-				<h2 className="content-sub-heading">Bege dig till {this.state.location}</h2>
+				<h2 className="content-sub-heading" style={marginTop}>Bege dig till {this.state.location}</h2>
 				<div>
 					<p>
 						Du måste befinna dig inom 50 m från platsen.
 					</p>
 					{distanceMessage}
-					<button className="btn btn-blue" onClick={this.handleCheckLocation}>Jag är där</button>
+					<p>
+						<button className="btn btn-blue" onClick={this.handleCheckLocation}>Jag är där</button>
+					</p>					
 					{altbutton}
 				</div>				
 				<GoogleMap lat={this.state.lat} lng={this.state.lng} />

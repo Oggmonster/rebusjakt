@@ -102,6 +102,14 @@ namespace Rebusjakt.Search
 
         #region Challenges
 
+        public ISearchResponse<Challenge> FindChallengeByGroupId(string groupId)
+        {
+            var result = client.Search<Challenge>(s => s
+                .Index(indexName)
+                .Query(q => q.QueryString(c => c.Query(groupId).OnFields(d => d.GroupId))));
+            return result;
+        }
+
         public ISearchResponse<Challenge> FindChallengeById(string Id)
         {
             var result = client.Search<Challenge>(s => s
@@ -115,6 +123,14 @@ namespace Rebusjakt.Search
             var result = client.Search<Challenge>(s => s
                 .Index(indexName)
                 .Query(q => q.QueryString(c => c.Query(Id).OnFields(d => d.ChallengerUserId))));
+            return result;
+        }
+
+        public ISearchResponse<Challenge> FindChallengeByChallengedUserId(string Id)
+        {
+            var result = client.Search<Challenge>(s => s
+                .Index(indexName)
+                .Query(q => q.QueryString(c => c.Query(Id).OnFields(d => d.ChallengedUserId))));
             return result;
         }
 

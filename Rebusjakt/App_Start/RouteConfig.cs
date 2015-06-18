@@ -26,6 +26,18 @@ namespace Rebusjakt
                 );
 
             routes.MapRoute(
+                name: "Guide",
+                url: "guide",
+                defaults : new { controller = "Home", action = "HowTo" }
+                );
+
+            routes.MapRoute(
+                name: "Om",
+                url: "om",
+                defaults: new { controller = "Home", action = "About" }
+                );
+
+            routes.MapRoute(
                 name: "Errorpage",
                 url: "error",
                 defaults: new { controller = "Home", action = "Error" }

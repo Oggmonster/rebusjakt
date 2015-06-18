@@ -75,7 +75,7 @@ namespace Rebusjakt.Controllers
                 unitOfWork.Save();
                 if (hunt.IsActive)
                 {
-                    indexer.UpdateHunt(hunt);
+                    indexer.UpsertHunt(hunt);
                 }                
                 return RedirectToAction("Index");
             }
@@ -123,7 +123,7 @@ namespace Rebusjakt.Controllers
                 unitOfWork.Save();
                 //remove related object for index update to be able to serialize object
                 hunt.Riddles = null;
-                indexer.UpdateHunt(hunt);
+                indexer.UpsertHunt(hunt);
                 return Json("ok");
             }
             else
